@@ -1,0 +1,10 @@
+# Generated HTML output
+html_output/
+
+# Backup files
+*.bak
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
