@@ -1,0 +1,353 @@
+# Datacenter Infrastructure: A Comprehensive Learning Guide
+
+**A pedagogically-structured curriculum covering modern datacenter virtualization, networking, and infrastructure technologies.**
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-markdown-green.svg)](docs/)
+
+---
+
+## 📚 What This Is
+
+This repository contains **44 comprehensive, interconnected documents** covering the complete stack of modern datacenter infrastructure, from CPU virtualization fundamentals to advanced overlay networking. Unlike typical technical documentation that assumes expert knowledge, this curriculum is **structured for learning**, with clear entry points, explicit prerequisites, and progressive complexity.
+
+### Topics Covered
+
+- **Virtualization**: Ring-0 problem, VT-x/AMD-V, VM exits, EPT/NPT, KVM, QEMU, virtio, SR-IOV, VFIO
+- **Networking**: Spine-leaf architecture, ECMP, VLAN vs VXLAN, overlay networks, BGP EVPN
+- **High-Performance I/O**: RDMA (RoCEv2, InfiniBand, iWARP), PFC, DCB, NUMA considerations
+- **Specialized Topics**: Firecracker/serverless, CPU/memory deep dives, compatibility layers
+- **Practical Guides**: KVM development, environment setup, technology selection frameworks
+
+### What Makes This Different
+
+✅ **Learner-centered organization** - Not a reference manual; a structured curriculum
+✅ **Explicit prerequisites** - Every document states what to read first
+✅ **Multiple learning paths** - Choose by role (virtualization engineer, network engineer, etc.)
+✅ **Time estimates** - Plan your learning (2 hours to 40 hours depending on path)
+✅ **Progressive difficulty** - Foundational → Intermediate → Specialized
+✅ **Complete coverage** - From fundamental concepts to production deployment
+
+---
+
+## 🚀 Quick Start
+
+### For Complete Beginners
+
+**Start here:** [docs/00_START_HERE.md](docs/00_START_HERE.md)
+
+This master index explains:
+- How to use this guide based on your background
+- Four curated learning paths with complete roadmaps
+- Time estimates for each path (10-40 hours)
+- What to expect from each section
+
+### For Quick Overview (2-5 hours)
+
+Choose a fast-track guide:
+- **[Virtualization Essentials](docs/quick_start_virtualization.md)** (2 hours) - Ring-0 problem through SR-IOV
+- **[Networking Essentials](docs/quick_start_networking.md)** (2 hours) - Spine-leaf through RDMA
+- **[Full Stack Overview](docs/quick_start_full_stack.md)** (5 hours) - Complete datacenter infrastructure
+
+### For Experienced Engineers
+
+Jump directly to specialized topics:
+- [Specialized Documentation](docs/03_specialized/) - Deep dives by area
+- [Reference Materials](docs/04_reference/) - Setup guides and decision frameworks
+
+---
+
+## 🎯 Learning Paths
+
+This curriculum supports four main learning paths, organized by professional role:
+
+### Path 1: Virtualization Engineer (15-20 hours) 🎯 *Highest Priority*
+
+**Goal:** Deep expertise in CPU/memory virtualization and hypervisor technologies
+
+```
+Foundations → Virtualization (1.5h)
+    ↓
+Intermediate → Complete Virtualization (4h)
+    ↓
+Specialized → CPU & Memory Deep Dives (3h)
+    ↓
+Specialized → Serverless/Firecracker (3h)
+```
+
+**Outcome:** Understand virtualization from Ring-0 problem through Firecracker microVMs
+
+---
+
+### Path 2: Network Engineer (12-16 hours)
+
+**Goal:** Modern datacenter networking and overlay technologies
+
+```
+Foundations → Datacenter Topology (2h)
+    ↓
+Intermediate → Advanced Networking (2h)
+    ↓
+Intermediate → RDMA (3h)
+    ↓
+Specialized → Overlay Networking (7h)
+```
+
+**Outcome:** Design and troubleshoot spine-leaf networks with VXLAN overlays
+
+---
+
+### Path 3: Storage Engineer (10-14 hours)
+
+**Goal:** High-performance storage networking with RDMA
+
+```
+Foundations → Mixed (3.5h)
+    ↓
+Intermediate → RDMA Deep Dive (3h)
+    ↓
+Specialized → Storage Applications (3h)
+```
+
+**Outcome:** Deploy RDMA-based storage solutions (NVMe-oF, distributed storage)
+
+---
+
+### Path 4: Full Stack Platform Engineer (30-40 hours)
+
+**Goal:** Complete datacenter infrastructure expertise
+
+```
+Follow all paths sequentially, prioritizing:
+  1. Virtualization (highest priority)
+  2. Networking
+  3. Storage
+  4. Specialized topics as needed
+```
+
+**Outcome:** Architect and operate complete datacenter infrastructure
+
+---
+
+## 📁 Repository Structure
+
+```
+datacenter_virt/
+├── README.md                    ← You are here
+├── LICENSE                      ← Apache 2.0
+├── docs/                        ← All markdown content
+│   ├── 00_START_HERE.md        ← Master index (start here!)
+│   ├── quick_start_*.md        ← Fast-track guides (2-5 hours)
+│   ├── 01_foundations/         ← Essential building blocks
+│   │   ├── 01_virtualization_basics/    (3 documents, 1.5h)
+│   │   └── 02_datacenter_topology/      (4 documents, 2h)
+│   ├── 02_intermediate/        ← Build on fundamentals
+│   │   ├── 01_advanced_networking/      (2 documents, 1.5h)
+│   │   ├── 02_rdma/                     (4 documents, 2.5h)
+│   │   └── 03_complete_virtualization/  (4 documents, 4h)
+│   ├── 03_specialized/         ← Deep dives by area
+│   │   ├── 01_storage/                  (1 document)
+│   │   ├── 02_overlay_networking/       (7 documents)
+│   │   ├── 03_serverless/               (3 documents)
+│   │   ├── 04_cpu_memory/               (2 documents)
+│   │   └── 05_compatibility/            (3 documents)
+│   └── 04_reference/           ← Practical guides
+│       ├── setup_guides/                (2 documents)
+│       ├── learning_resources/          (2 documents)
+│       └── decision_frameworks/         (1 document)
+├── scripts/                     ← Build scripts
+│   └── convert_to_html.sh      ← Generate HTML from markdown
+├── html/                        ← Generated HTML (run script to create)
+└── archive/                     ← Original flat structure (preserved)
+```
+
+---
+
+## 🛠️ Generating HTML Documentation
+
+To convert the markdown documentation to browsable HTML:
+
+```bash
+# From repository root
+./scripts/convert_to_html.sh
+
+# Then open in browser
+xdg-open html/00_START_HERE.html
+```
+
+**Features:**
+- Preserves directory structure
+- Automatic table of contents for each document
+- All cross-references converted to working HTML links
+- GitHub-style CSS for readability
+
+**Requirements:**
+- `pandoc` - Document converter
+- `sed` - Text processing (standard on Linux/macOS)
+
+---
+
+## 📖 How to Use This Repository
+
+### As a Learner
+
+1. **Read [00_START_HERE.md](docs/00_START_HERE.md)** to understand the curriculum structure
+2. **Choose a learning path** based on your role and goals
+3. **Follow the prerequisites** - Each document lists what to read first (YAML frontmatter)
+4. **Use time estimates** to plan your learning sessions
+5. **Refer back to quick starts** for refreshers on key concepts
+
+### As an Instructor
+
+- Use the **learning paths as course syllabi** (complete with time estimates)
+- Assign **quick start guides as pre-reading** before lectures
+- Use **specialized topics as advanced electives**
+- The **progressive structure supports semester-long courses** (12-16 weeks)
+
+### As a Reference
+
+- Jump to **03_specialized/** for specific deep dives
+- Use **04_reference/** for setup guides and glossaries
+- Search within **docs/** for specific technologies or concepts
+
+---
+
+## 📝 Document Metadata
+
+Every document includes YAML frontmatter with:
+
+```yaml
+---
+level: foundational | intermediate | specialized | reference
+estimated_time: 30 min
+prerequisites:
+  - path/to/prerequisite.md
+next_recommended:
+  - path/to/next.md
+tags: [relevant, topics, here]
+---
+```
+
+This metadata enables:
+- **Self-paced learning** - Know what to read first
+- **Time planning** - Budget your learning sessions
+- **Topic navigation** - Find related documents via tags
+
+---
+
+## 🎓 Learning Outcomes
+
+After completing this curriculum, you will understand:
+
+### Virtualization
+- ✅ Why x86 virtualization is fundamentally hard (Ring-0 problem)
+- ✅ How VT-x/AMD-V provide hardware support (two Ring-0 modes)
+- ✅ What VM exits are and why minimizing them matters (2400 cycle cost)
+- ✅ How EPT eliminates 95% of memory-related exits
+- ✅ Complete device virtualization evolution (emulation → virtio → SR-IOV)
+- ✅ Modern optimization techniques (VPID, Posted Interrupts)
+
+### Networking
+- ✅ Modern datacenter topology (spine-leaf architecture)
+- ✅ Load balancing with ECMP (5-tuple hashing, per-flow)
+- ✅ Overlay networking (VXLAN, Geneve, BGP EVPN)
+- ✅ RDMA fundamentals (host optimization, not network!)
+- ✅ Making Ethernet lossless (PFC, DCB, priority classes)
+- ✅ SDN architecture (OVS, Cilium, eBPF)
+
+### Integration
+- ✅ Complete packet flow (VM → virtio → vhost → NIC → network)
+- ✅ NUMA considerations for RDMA performance
+- ✅ When to use different virtualization approaches
+- ✅ Serverless/microVM architectures (Firecracker)
+- ✅ Production deployment considerations
+
+---
+
+## 🤝 Contributing
+
+This repository welcomes contributions! Areas where you can help:
+
+### Content Updates
+- **Update technology information** as standards evolve (link speeds, protocol versions)
+- **Add new specialized topics** following the existing structure
+- **Improve examples** with real-world scenarios
+- **Expand reference materials** (setup guides, troubleshooting)
+
+### Structure Improvements
+- **Add more learning paths** for other roles (security, observability)
+- **Create exercises** or hands-on labs to accompany documents
+- **Translate content** to other languages (maintaining same structure)
+- **Build interactive tools** (progress tracking, quiz generation)
+
+### How to Contribute
+
+1. **Fork the repository**
+2. **Create a branch** for your changes
+3. **Follow the existing structure**:
+   - Add YAML frontmatter to new documents
+   - Place in appropriate directory (foundations/intermediate/specialized/reference)
+   - Update prerequisites and next_recommended links
+   - Add to [00_START_HERE.md](docs/00_START_HERE.md) if creating new paths
+4. **Submit a pull request** with clear description
+
+**Style Guidelines:**
+- Use clear, pedagogical writing (explain *why*, not just *what*)
+- Include diagrams where helpful (ASCII art for markdown)
+- Provide concrete examples
+- Link to official documentation for authoritative references
+
+---
+
+## 📜 License
+
+This work is licensed under the **Apache License 2.0** - see [LICENSE](LICENSE) file for details.
+
+**What this means:**
+- ✅ Free to use for personal learning
+- ✅ Free to use in educational settings
+- ✅ Free to modify and create derivative works
+- ✅ Free to use commercially
+- ✅ Attribution required (preserve license notices)
+
+---
+
+## 🙏 Acknowledgments
+
+This curriculum synthesizes knowledge from many sources:
+
+- **Official documentation**: Intel VT-x manuals, AMD-V specifications, KVM documentation
+- **Academic research**: Virtualization papers, datacenter networking studies
+- **Industry practices**: Cloud provider architectures, open-source projects
+- **Community contributions**: Kernel developers, hypervisor maintainers, network engineers
+
+Special recognition to the **KVM, QEMU, Open vSwitch, and Cilium communities** whose work makes modern datacenter infrastructure possible.
+
+---
+
+## 🚦 Getting Started Now
+
+**Ready to learn?** Choose your path:
+
+1. **Complete beginner** → Start with [00_START_HERE.md](docs/00_START_HERE.md)
+2. **Quick overview** → Try a [quick start guide](docs/quick_start_virtualization.md)
+3. **Experienced engineer** → Jump to [specialized topics](docs/03_specialized/)
+
+**Questions or feedback?** Open an issue or discussion!
+
+---
+
+## 📊 Repository Stats
+
+- **44 comprehensive documents** covering complete datacenter stack
+- **85+ total files** including READMEs and navigation aids
+- **28,000+ lines** of technical documentation
+- **30-40 hours** of learning content for full curriculum
+- **2-5 hours** for quick-start paths
+
+**Last updated:** 2026-02-14
+**Status:** ✅ Complete and ready for use
+
+---
+
+**Start your learning journey:** [docs/00_START_HERE.md](docs/00_START_HERE.md) 🎯

@@ -1,5 +1,5 @@
-# Generated HTML output
-html_output/
+# Generated HTML output (run scripts/convert_to_html.sh to create)
+html/
 
 # Backup files
 *.bak
@@ -8,3 +8,12 @@ html_output/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build artifacts
+*.tmp
