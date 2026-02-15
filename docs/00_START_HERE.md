@@ -20,7 +20,7 @@ This documentation set contains **59 high-quality documents** covering datacente
 → Skip to **[Part 2.3: Complete Virtualization](#23-complete-virtualization-understanding)** or start with **[Part 1.2: Datacenter Topology](#12-understanding-the-datacenter-topology)**
 
 **📦 Interested in containers and Kubernetes?**
-→ Start with **[Part 1.3: Container Fundamentals](#13-container-fundamentals)** or **[Path 5: Container Platform Engineer](#path-5-container-platform-engineer)**
+→ Start with **[Part 1.3: Container Fundamentals](#13-container-fundamentals-📦)** or **[Path 5: Container Platform Engineer](#path-5-container-platform-engineer)**
 
 **🎯 Solving a specific problem?**
 → Jump to **[Part 4: Reference & Practical Guides](#part-4-reference--practical-guides)**
@@ -159,15 +159,15 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 **Curriculum:**
 1. **Foundations/Container Fundamentals** (2.5 hours)
-   - [Isolation Fundamentals](03_foundations_containers/01_container_fundamentals/01_isolation_fundamentals.md) (50 min)
-   - [Images and Filesystems](03_foundations_containers/01_container_fundamentals/02_images_filesystems.md) (45 min)
-   - [Container vs VM Comparison](03_foundations_containers/01_container_fundamentals/03_container_vs_vm.md) (50 min)
+   - [Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md) (50 min)
+   - [Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md) (45 min)
+   - [Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md) (50 min)
 
 2. **Container Runtimes** (3 hours)
-   - [OCI and CRI Standards](04_containers/02_runtimes/01_oci_cri_standards.md) (45 min)
+   - [Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md) (45 min)
    - [Docker and containerd](04_containers/02_runtimes/02_docker_containerd.md) (50 min)
-   - [Alternative Runtimes (CRI-O)](04_containers/02_runtimes/03_alternative_runtimes.md) (40 min)
-   - [Isolation-Enhanced Runtimes](04_containers/02_runtimes/04_isolation_runtimes.md) (55 min)
+   - [Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md) (40 min)
+   - [Runtime Comparison](04_containers/02_runtimes/04_runtime_comparison.md) (55 min)
 
 3. **Kubernetes Orchestration** (4.5 hours)
    - [Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md) (45 min)
@@ -259,19 +259,19 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 **Why learn this:** Modern infrastructure relies on containers alongside VMs
 
-8. **[Isolation Fundamentals](03_foundations_containers/01_container_fundamentals/01_isolation_fundamentals.md)** (50 min)
+8. **[Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md)** (50 min)
    - **What you'll learn:** cgroups, namespaces, container isolation
    - **Prerequisites:** None
-   - **Next:** Images and Filesystems
+   - **Next:** Union Filesystems
 
-9. **[Images and Filesystems](03_foundations_containers/01_container_fundamentals/02_images_filesystems.md)** (45 min)
+9. **[Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md)** (45 min)
    - **What you'll learn:** Container images, layers, OverlayFS
-   - **Prerequisites:** Isolation Fundamentals
+   - **Prerequisites:** Linux Container Primitives
    - **Next:** Container vs VM Comparison
 
-10. **[Container vs VM Comparison](03_foundations_containers/01_container_fundamentals/03_container_vs_vm.md)** (50 min)
+10. **[Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md)** (50 min)
     - **What you'll learn:** When to use containers vs VMs
-    - **Prerequisites:** Images and Filesystems, virtualization basics
+    - **Prerequisites:** Union Filesystems, virtualization basics
     - **Next:** Container runtimes or continue with VM track
 
 **Part 1.3 Total: ~2.5 hours**
@@ -355,24 +355,24 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 #### **2.4 Container Technologies**
 
-18. **[OCI and CRI Standards](04_containers/02_runtimes/01_oci_cri_standards.md)** (45 min)
-    - **What you'll learn:** Container runtime standards and interfaces
+18. **[Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md)** (45 min)
+    - **What you'll learn:** OCI/CRI standards, runtime ecosystem overview
     - **Prerequisites:** Container fundamentals (Part 1.3)
     - **Next:** Docker and containerd
 
 19. **[Docker and containerd Architecture](04_containers/02_runtimes/02_docker_containerd.md)** (50 min)
-    - **What you'll learn:** How Docker works, containerd role
-    - **Prerequisites:** OCI and CRI Standards
-    - **Next:** Alternative runtimes
+    - **What you'll learn:** How Docker works, containerd role, runc
+    - **Prerequisites:** Container Runtime Landscape
+    - **Next:** Secure runtimes
 
-20. **[Alternative Runtimes (CRI-O)](04_containers/02_runtimes/03_alternative_runtimes.md)** (40 min)
-    - **What you'll learn:** CRI-O, runc, runtime ecosystem
-    - **Prerequisites:** Docker and containerd
-    - **Next:** Isolation-enhanced runtimes
-
-21. **[Isolation-Enhanced Runtimes (Kata, gVisor)](04_containers/02_runtimes/04_isolation_runtimes.md)** (55 min)
+20. **[Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md)** (40 min)
     - **What you'll learn:** VM-isolated containers, userspace kernels
-    - **Prerequisites:** Alternative runtimes, virtualization knowledge
+    - **Prerequisites:** Docker and containerd, virtualization knowledge
+    - **Next:** Runtime comparison
+
+21. **[Runtime Comparison and Selection](04_containers/02_runtimes/04_runtime_comparison.md)** (55 min)
+    - **What you'll learn:** When to use each runtime, tradeoffs
+    - **Prerequisites:** All runtime documents
     - **Next:** Kubernetes orchestration
 
 22. **[Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md)** (45 min)
@@ -600,5 +600,5 @@ All original documents are preserved in `original_docs/` for reference.
 
 **Ready to begin?**
 - **Virtualization track:** Start with [The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md) 🎯
-- **Container track:** Start with [Isolation Fundamentals](03_foundations_containers/01_container_fundamentals/01_isolation_fundamentals.md) 📦
+- **Container track:** Start with [Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md) 📦
 - **Quick overview:** Try a [Quick Start Guide](#quick-start-guides)
