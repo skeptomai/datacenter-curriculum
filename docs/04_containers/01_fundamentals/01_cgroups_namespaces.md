@@ -144,10 +144,28 @@ PID   USER     COMMAND
   - Firewall rules (iptables/nftables)
 - Namespaces connected via **veth pairs** (virtual ethernet cables)
 
+**What is a veth pair?**
+
+A **veth (virtual ethernet) pair** acts like a virtual network cable connecting two network namespaces:
+- Creates two connected network interfaces (both are kernel devices)
+- One end typically placed in the container's namespace
+- Other end stays in the host's namespace (attached to a bridge)
+- Packets sent to one end immediately appear at the other end
+
+**veth vs TAP/TUN (used for VMs):**
+- **TAP/TUN**: Bridges kernel and userspace process
+  - One end is a file descriptor that userspace programs (like QEMU) read/write
+  - Used for VMs: hypervisor reads packets from TAP device
+- **veth**: Connects two kernel network namespaces
+  - Both ends are kernel devices (no userspace involved)
+  - Used for containers: kernel-to-kernel forwarding
+  - Lower overhead than TAP/TUN
+
 **Why this matters:**
 - Each container gets its own network stack
 - No IP address conflicts between containers
 - Container networking isolated from host
+- Veth pairs provide the "bridge" between isolated container and host network
 
 ---
 
