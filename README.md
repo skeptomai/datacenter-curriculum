@@ -63,77 +63,12 @@ Jump directly to specialized topics:
 
 ## 🎯 Learning Paths
 
-This curriculum supports four main learning paths, organized by professional role:
+This curriculum supports five main learning paths. **Choose based on what you're actually working with:**
 
-### Path 1: Virtualization Engineer (15-20 hours) 🎯 *Highest Priority*
+### Path 1: Container Platform Engineer (20-25 hours) 📦
 
-**Goal:** Deep expertise in CPU/memory virtualization and hypervisor technologies
-
-```
-Foundations → Virtualization (1.5h)
-    ↓
-Intermediate → Complete Virtualization (4h)
-    ↓
-Specialized → CPU & Memory Deep Dives (3h)
-    ↓
-Specialized → Serverless/Firecracker (3h)
-```
-
-**Outcome:** Understand virtualization from Ring-0 problem through Firecracker microVMs
-
----
-
-### Path 2: Network Engineer (12-16 hours)
-
-**Goal:** Modern datacenter networking and overlay technologies
-
-```
-Foundations → Datacenter Topology (2h)
-    ↓
-Intermediate → Advanced Networking (2h)
-    ↓
-Intermediate → RDMA (3h)
-    ↓
-Specialized → Overlay Networking (7h)
-```
-
-**Outcome:** Design and troubleshoot spine-leaf networks with VXLAN overlays
-
----
-
-### Path 3: Storage Engineer (10-14 hours)
-
-**Goal:** High-performance storage networking with RDMA
-
-```
-Foundations → Mixed (3.5h)
-    ↓
-Intermediate → RDMA Deep Dive (3h)
-    ↓
-Specialized → Storage Applications (3h)
-```
-
-**Outcome:** Deploy RDMA-based storage solutions (NVMe-oF, distributed storage)
-
----
-
-### Path 4: Full Stack Platform Engineer (30-40 hours)
-
-**Goal:** Complete datacenter infrastructure expertise
-
-```
-Follow all paths sequentially, prioritizing:
-  1. Virtualization (highest priority)
-  2. Networking
-  3. Storage
-  4. Specialized topics as needed
-```
-
-**Outcome:** Architect and operate complete datacenter infrastructure
-
----
-
-### Path 5: Container Platform Engineer (20-25 hours)
+**Best for:** Application developers, DevOps engineers, platform engineers
+**You'll use this if:** Deploying apps, managing Kubernetes, building CI/CD pipelines
 
 **Goal:** Master container technologies from fundamentals through Kubernetes production deployment
 
@@ -152,6 +87,93 @@ Container Security (3h)
 **Outcome:** Deploy and secure production Kubernetes clusters with deep understanding of container mechanics
 
 **Quick Start Available:** [Container Quick Start](docs/quick_start_containers.md) (2.5 hours)
+
+---
+
+### Path 2: Virtualization Engineer (15-20 hours) 🔧
+
+**Best for:** Infrastructure engineers, hypervisor developers, cloud platform builders
+**You'll use this if:** Building VM infrastructure, optimizing hypervisor performance, understanding cloud internals
+
+**Goal:** Deep expertise in CPU/memory virtualization and hypervisor technologies
+
+```
+Foundations → Virtualization (1.5h)
+    ↓
+Intermediate → Complete Virtualization (4h)
+    ↓
+Specialized → CPU & Memory Deep Dives (3h)
+    ↓
+Specialized → Serverless/Firecracker (3h)
+```
+
+**Outcome:** Understand virtualization from Ring-0 problem through Firecracker microVMs
+
+---
+
+### Path 3: Network Engineer (12-16 hours) 🌐
+
+**Best for:** Network engineers, SREs, infrastructure architects
+**You'll use this if:** Designing datacenter networks, troubleshooting connectivity, implementing SDN
+
+**Goal:** Modern datacenter networking and overlay technologies
+
+```
+Foundations → Datacenter Topology (2h)
+    ↓
+Intermediate → Advanced Networking (2h)
+    ↓
+Intermediate → RDMA (3h)
+    ↓
+Specialized → Overlay Networking (7h)
+```
+
+**Outcome:** Design and troubleshoot spine-leaf networks with VXLAN overlays
+
+---
+
+### Path 4: Storage Engineer (10-14 hours) 💾
+
+**Best for:** Storage specialists, performance engineers, distributed systems engineers
+**You'll use this if:** Building storage infrastructure, optimizing I/O performance, deploying NVMe-oF
+
+**Goal:** High-performance storage networking with RDMA
+
+```
+Foundations → Mixed (3.5h)
+    ↓
+Intermediate → RDMA Deep Dive (3h)
+    ↓
+Specialized → Storage Applications (3h)
+```
+
+**Outcome:** Deploy RDMA-based storage solutions (NVMe-oF, distributed storage)
+
+---
+
+### Path 5: Full Stack Platform Engineer (45-55 hours) 🎯
+
+**Best for:** Senior engineers, architects, technical leads building complete platforms
+**You'll use this if:** Designing end-to-end infrastructure, making technology decisions, leading platform teams
+
+**Goal:** Complete datacenter infrastructure expertise across VMs and containers
+
+```
+Complete all foundational topics:
+  → Virtualization + Datacenter + Containers (6h)
+    ↓
+Complete all intermediate topics:
+  → Advanced Networking + RDMA + Virtualization + Containers (22.5h)
+    ↓
+Select specialized topics based on your focus:
+  → Storage, Overlay Networking, Serverless, CPU/Memory (15-20h)
+    ↓
+Reference materials as needed
+```
+
+**Outcome:** Architect and operate complete datacenter infrastructure with deep understanding of VMs, containers, networking, and storage
+
+**Recommended approach:** Start with either Container (Path 1) or Virtualization (Path 2) track based on immediate needs, then complete the other
 
 ---
 
@@ -224,11 +246,17 @@ xdg-open html/00_START_HERE.html
 
 ### As a Learner
 
-1. **Read [00_START_HERE.md](docs/00_START_HERE.md)** to understand the curriculum structure
-2. **Choose a learning path** based on your role and goals
-3. **Follow the prerequisites** - Each document lists what to read first (YAML frontmatter)
-4. **Use time estimates** to plan your learning sessions
-5. **Refer back to quick starts** for refreshers on key concepts
+**Choose your starting point:**
+- 🏃 **Need it now?** → Start with Path 1 (Containers) - you're probably using them already
+- 🏗️ **Building infrastructure?** → Start with Path 2 (Virtualization) - understand the foundation
+- 🌐 **Networking focus?** → Start with Path 3 (Networking) - applies to both VMs and containers
+- 📚 **Want everything?** → Follow Path 5 (Full Stack) - pick container or VM track first
+
+**Then:**
+1. **Read [00_START_HERE.md](docs/00_START_HERE.md)** for detailed curriculum structure
+2. **Follow the prerequisites** - Each document lists what to read first (YAML frontmatter)
+3. **Use time estimates** to plan your learning sessions (all paths include estimates)
+4. **Refer back to quick starts** for refreshers on key concepts
 
 ### As an Instructor
 

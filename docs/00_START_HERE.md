@@ -8,19 +8,22 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 ## How to Use This Guide
 
-### Choose Your Entry Point Based on Your Background:
+### Choose Your Entry Point:
 
-**🆕 New to datacenter infrastructure?**
-→ Start with **[Part 1: Foundations](#part-1-foundations-start-here)** and read sequentially
+**🏃 Need it now? (Most common starting point)**
+→ Start with **[Path 1: Container Platform Engineer](#path-1-container-platform-engineer-📦)** - you're probably using containers already
 
-**🌐 Know networking basics but not virtualization?**
-→ Skip to **[Path 2: Network Engineer](#path-2-network-engineer)** or start with **[Part 2.1: Advanced Networking](#21-advanced-networking-concepts)**
+**🏗️ Building infrastructure?**
+→ Start with **[Path 2: Virtualization Engineer](#path-2-virtualization-engineer-🔧)** - understand the foundation
 
-**💻 Know virtualization basics but not datacenter networking?**
-→ Skip to **[Part 2.3: Complete Virtualization](#23-complete-virtualization-understanding)** or start with **[Part 1.2: Datacenter Topology](#12-understanding-the-datacenter-topology)**
+**🌐 Networking focus?**
+→ Start with **[Path 3: Network Engineer](#path-3-network-engineer-🌐)** - applies to both VMs and containers
 
-**📦 Interested in containers and Kubernetes?**
-→ Start with **[Part 1.3: Container Fundamentals](#13-container-fundamentals-📦)** or **[Path 5: Container Platform Engineer](#path-5-container-platform-engineer)**
+**💾 Storage specialization?**
+→ Start with **[Path 4: Storage Engineer](#path-4-storage-engineer-💾)** - RDMA and high-performance I/O
+
+**📚 Want everything?**
+→ Follow **[Path 5: Full Stack](#path-5-full-stack-platform-engineer-🎯)** - but pick container or VM track first
 
 **🎯 Solving a specific problem?**
 → Jump to **[Part 4: Reference & Practical Guides](#part-4-reference--practical-guides)**
@@ -29,11 +32,61 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 ## Learning Paths
 
-**Organized by priority: Virtualization → Networking → Storage** (as requested)
+**Choose based on what you're actually working with - all paths are equally valid:**
 
-### Path 1: Virtualization Engineer 🎯 HIGHEST PRIORITY
+### Path 1: Container Platform Engineer 📦
 
-**Goal:** Master modern virtualization from first principles to production deployment
+**Best for:** Application developers, DevOps engineers, platform engineers
+**You'll use this if:** Deploying apps, managing Kubernetes, building CI/CD pipelines
+
+**Goal:** Master container technologies from fundamentals through Kubernetes production deployment
+
+**Curriculum:**
+1. **Foundations/Container Fundamentals** (2.5 hours)
+   - [Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md) (50 min)
+   - [Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md) (45 min)
+   - [Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md) (50 min)
+
+2. **Container Runtimes** (3 hours)
+   - [Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md) (45 min)
+   - [Docker and containerd](04_containers/02_runtimes/02_docker_containerd.md) (50 min)
+   - [Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md) (40 min)
+   - [Runtime Comparison](04_containers/02_runtimes/04_runtime_comparison.md) (55 min)
+
+3. **Kubernetes Orchestration** (4.5 hours)
+   - [Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md) (45 min)
+   - [Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md) (50 min)
+   - [Services and Networking](04_containers/03_orchestration/03_services_networking.md) (55 min)
+   - [Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md) (45 min)
+   - [Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md) (40 min)
+   - [Production Patterns](04_containers/03_orchestration/06_production_patterns.md) (50 min)
+
+4. **Container Networking** (5 hours)
+   - [CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md) (60 min)
+   - [Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md) (55 min)
+   - [eBPF Networking](04_containers/04_networking/03_ebpf_networking.md) (65 min)
+   - [Service Mesh](04_containers/04_networking/04_service_mesh.md) (60 min)
+   - [Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md) (50 min)
+
+5. **Container Security** (3 hours)
+   - [Image Security](04_containers/05_security/01_image_security.md) (45 min)
+   - [Runtime Security](04_containers/05_security/02_runtime_security.md) (50 min)
+   - [Pod Security Standards](04_containers/05_security/03_pod_security.md) (45 min)
+   - [Supply Chain Security](04_containers/05_security/04_supply_chain.md) (50 min)
+
+**Total Time:** 20-25 hours
+**Outcome:** Deploy and secure production Kubernetes clusters with deep understanding of container mechanics
+
+**Quick Start Available:** [Container Quick Start](quick_start_containers.md) (2.5 hours)
+
+---
+
+### Path 2: Virtualization Engineer 🔧
+
+**Best for:** Infrastructure engineers, hypervisor developers, cloud platform builders
+**You'll use this if:** Building VM infrastructure, optimizing hypervisor performance, understanding cloud internals
+
+**Goal:** Deep expertise in CPU/memory virtualization and hypervisor technologies
 
 **Curriculum:**
 1. **Foundations/Virtualization** (1.5 hours)
@@ -66,7 +119,10 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 ---
 
-### Path 2: Network Engineer
+### Path 3: Network Engineer 🌐
+
+**Best for:** Network engineers, SREs, infrastructure architects
+**You'll use this if:** Designing datacenter networks, troubleshooting connectivity, implementing SDN
 
 **Goal:** Master datacenter networking from physical topology to software overlays
 
@@ -101,9 +157,12 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 ---
 
-### Path 3: Storage Engineer
+### Path 4: Storage Engineer 💾
 
-**Goal:** Understand storage networking from RDMA to distributed systems
+**Best for:** Storage specialists, performance engineers, distributed systems engineers
+**You'll use this if:** Building storage infrastructure, optimizing I/O performance, deploying NVMe-oF
+
+**Goal:** High-performance storage networking with RDMA
 
 **Curriculum:**
 1. **Foundations/Virtualization** (1.5 hours)
@@ -136,20 +195,36 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 ---
 
-### Path 4: Full Stack (All Topics)
+### Path 5: Full Stack Platform Engineer 🎯
 
-**Goal:** Comprehensive understanding of all datacenter infrastructure
+**Best for:** Senior engineers, architects, technical leads building complete platforms
+**You'll use this if:** Designing end-to-end infrastructure, making technology decisions, leading platform teams
 
-**Approach:** Read Parts 1-3 sequentially, prioritizing Path 1 (virtualization) content first
+**Goal:** Complete datacenter infrastructure expertise across VMs and containers
+
+**Approach:** Complete all foundational and intermediate topics, then select specialized areas
 
 **Curriculum:**
-1. Complete **Part 1: Foundations** (3.5 hours)
-2. Complete **Part 2: Intermediate** (9-12 hours)
-3. Select from **Part 3: Specialized** based on interests (15-20 hours)
+1. Complete **Part 1: Foundations** (6 hours)
+   - Virtualization basics (1.5h)
+   - Datacenter topology (2h)
+   - Container fundamentals (2.5h)
+
+2. Complete **Part 2: Intermediate** (22.5 hours)
+   - Advanced networking (1.5h)
+   - RDMA (2.5h)
+   - Complete virtualization (3.5h)
+   - Container technologies (15h)
+
+3. Select from **Part 3: Specialized** based on your focus (15-20 hours)
+   - Storage, overlay networking, serverless, CPU/memory deep dives
+
 4. Reference **Part 4** as needed
 
-**Total Time:** 30-40 hours
-**Outcome:** Expert-level knowledge across all datacenter technologies
+**Total Time:** 45-55 hours
+**Outcome:** Architect and operate complete datacenter infrastructure with deep understanding of VMs, containers, networking, and storage
+
+**Recommended approach:** Start with either Container (Path 1) or Virtualization (Path 2) based on immediate needs, then complete the other
 
 ---
 
@@ -201,12 +276,11 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 ### **Part 1: FOUNDATIONS (Start Here)**
 
-**Essential building blocks - read in order**
-**Priority: Virtualization → Networking** (as requested)
+**Essential building blocks - can be read in any order based on your needs**
 
-#### **1.1 Virtualization Fundamentals** 🎯 HIGHEST PRIORITY
+#### **1.1 Virtualization Fundamentals** 🔧
 
-**Why start here:** Understanding virtualization is fundamental to modern infrastructure
+**Why learn this:** Essential for understanding how VMs work, cloud internals, and hypervisor performance
 
 1. **[The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md)** (20 min)
    - **What you'll learn:** Why virtualization is hard on x86
@@ -227,9 +301,9 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 ---
 
-#### **1.2 Understanding the Datacenter Topology**
+#### **1.2 Understanding the Datacenter Topology** 🌐
 
-**Why learn this:** Context for where VMs actually run
+**Why learn this:** Essential for understanding modern datacenter networks, applies to both VM and container infrastructure
 
 4. **[Modern Datacenter Network Topology](01_foundations/02_datacenter_topology/01_modern_topology.md)** (40 min)
    - **What you'll learn:** Link speeds, 3-tier vs spine-leaf, oversubscription
