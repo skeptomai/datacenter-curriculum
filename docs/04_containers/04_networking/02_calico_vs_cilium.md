@@ -825,6 +825,18 @@ hubble observe --http-status 500
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Calico Repository](https://github.com/projectcalico/calico)** - Source code and documentation for Calico networking and security
+- **[Cilium Repository](https://github.com/cilium/cilium)** - eBPF-based networking, observability, and security for cloud native environments
+- **[Cilium vs Calico Benchmark](https://cilium.io/blog/2021/05/11/cni-benchmark)** - Performance comparison between the two CNI plugins
+
+---
+
 ## Related Documents
 
 - **Previous**: `04_networking/01_cni_deep_dive.md` - CNI fundamentals

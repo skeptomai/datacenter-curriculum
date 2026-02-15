@@ -666,6 +666,18 @@ docker run --runtime=runsc -it alpine sh
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Kata Containers](https://github.com/kata-containers/kata-containers)** - Secure container runtime using lightweight VMs
+- **[gVisor](https://github.com/google/gvisor)** - User-space kernel for containers with reduced syscall attack surface
+- **[Security Comparison: Kata vs gVisor](https://gvisor.dev/docs/architecture_guide/security/)** - Deep dive into different approaches to container isolation
+
+---
+
 ## Next Steps
 
 **Continue learning:**

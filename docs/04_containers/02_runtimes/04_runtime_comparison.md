@@ -530,6 +530,18 @@ Choose gVisor when:
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[youki](https://github.com/containers/youki)** - Container runtime written in Rust, faster and more memory-safe alternative to runc
+- **[crun](https://github.com/containers/crun)** - Fast and lightweight OCI runtime written in C
+- **[Container Runtime Benchmarks](https://katacontainers.io/benchmarks/)** - Performance comparisons across different runtime implementations
+
+---
+
 ## Next Steps
 
 **Continue learning:**

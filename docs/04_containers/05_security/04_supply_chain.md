@@ -751,6 +751,18 @@ kubectl create -f https://github.com/kyverno/kyverno/releases/download/v1.10.0/i
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[SLSA Framework](https://slsa.dev/)** - Supply-chain Levels for Software Artifacts with implementation guides
+- **[Sigstore Documentation](https://docs.sigstore.dev/)** - Keyless signing and transparency log for software artifacts
+- **[Syft](https://github.com/anchore/syft)** - Generate Software Bill of Materials (SBOM) from container images
+
+---
+
 ## Related Documents
 
 - **Previous**: `05_security/03_pod_security.md` - Pod Security Standards

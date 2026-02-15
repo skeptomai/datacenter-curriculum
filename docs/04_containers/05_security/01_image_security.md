@@ -701,6 +701,18 @@ docker pull myapp@sha256:a1b2c3d4...
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Trivy](https://github.com/aquasecurity/trivy)** - Comprehensive vulnerability scanner for containers, file systems, and Git repositories
+- **[cosign](https://github.com/sigstore/cosign)** - Container signing and verification with keyless signatures
+- **[Docker Scout](https://docs.docker.com/scout/)** - Docker's built-in image analysis and vulnerability detection tool
+
+---
+
 ## Related Documents
 
 - **Previous**: `04_networking/05_network_policies_advanced.md` - Network isolation

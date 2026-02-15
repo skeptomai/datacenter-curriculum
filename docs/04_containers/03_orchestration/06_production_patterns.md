@@ -1132,6 +1132,18 @@ Monthly DR drill:
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[ArgoCD](https://github.com/argoproj/argo-cd)** - Declarative GitOps continuous delivery for Kubernetes
+- **[Flux](https://github.com/fluxcd/flux2)** - GitOps toolkit for progressive delivery and infrastructure automation
+- **[Production Readiness Checklist](https://learnk8s.io/production-best-practices)** - Comprehensive guide to production Kubernetes deployments
+
+---
+
 ## Related Documents
 
 - **Previous**: `03_orchestration/05_storage_volumes.md` - Storage patterns

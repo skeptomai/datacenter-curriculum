@@ -900,6 +900,18 @@ sudo ipvsadm -Ln
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Kubernetes Networking Guide](https://kubernetes.io/docs/concepts/services-networking/)** - Official documentation on services, ingress, and network policies
+- **[kind (Kubernetes in Docker)](https://github.com/kubernetes-sigs/kind)** - Local Kubernetes clusters for testing networking configurations
+- **[Understanding CNI Plugins](https://www.cni.dev/docs/)** - How Container Network Interface plugins work
+
+---
+
 ## Related Documents
 
 - **Previous**: `03_orchestration/02_pods_workloads.md` - Pod fundamentals

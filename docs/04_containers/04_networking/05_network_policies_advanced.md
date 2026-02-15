@@ -980,6 +980,18 @@ kubectl run test --rm -it --image=busybox -- nc -zv <target> <port>
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Network Policy Recipes](https://github.com/ahmetb/kubernetes-network-policy-recipes)** - Collection of common network policy patterns and examples
+- **[Cilium Network Policy Examples](https://docs.cilium.io/en/stable/security/policy/)** - Advanced L7 policies including HTTP, gRPC, and Kafka
+- **[Network Policy Editor](https://editor.cilium.io/)** - Visual tool for creating and understanding Kubernetes network policies
+
+---
+
 ## Related Documents
 
 - **Previous**: `04_networking/04_service_mesh.md` - Service mesh patterns

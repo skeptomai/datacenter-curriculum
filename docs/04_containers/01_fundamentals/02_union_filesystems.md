@@ -565,6 +565,18 @@ COPY --from=builder /app /app
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Docker Storage Drivers](https://docs.docker.com/storage/storagedriver/)** - Official documentation explaining overlay2, devicemapper, and other storage backends
+- **[OverlayFS Kernel Documentation](https://www.kernel.org/doc/html/latest/filesystems/overlayfs.html)** - Deep dive into the overlay filesystem implementation
+- **[Understanding Docker Storage](https://www.youtube.com/watch?v=GsLZz8cZCzc)** - Visual explanation of how union filesystems work with containers
+
+---
+
 ## Next Steps
 
 **Continue learning:**

@@ -922,6 +922,18 @@ Memory:
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Resource Management Best Practices](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)** - Official guide to setting resource requests and limits
+- **[Vertical Pod Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)** - Automatically adjust resource requests based on actual usage
+- **[Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)** - Scale workloads based on CPU, memory, or custom metrics
+
+---
+
 ## Related Documents
 
 - **Previous**: `03_orchestration/03_services_networking.md` - Pod networking

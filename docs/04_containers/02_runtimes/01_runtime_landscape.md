@@ -605,6 +605,18 @@ crictl --runtime-endpoint unix:///run/containerd/containerd.sock ps
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[OCI Runtime Specification](https://github.com/opencontainers/runtime-spec)** - Official spec defining the standard interface for container runtimes
+- **[runc Source Code](https://github.com/opencontainers/runc)** - Reference implementation of the OCI runtime spec
+- **[Understanding the Container Runtime Interface](https://kubernetes.io/blog/2016/12/container-runtime-interface-cri-in-kubernetes/)** - How Kubernetes abstracts runtime implementations
+
+---
+
 ## Next Steps
 
 **Continue learning:**

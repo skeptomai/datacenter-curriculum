@@ -549,6 +549,18 @@ Start: Do you need to run untrusted code?
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Firecracker](https://github.com/firecracker-microvm/firecracker)** - Lightweight microVMs combining VM isolation with container-like density and speed
+- **[gVisor](https://github.com/google/gvisor)** - Application kernel for containers providing stronger isolation than standard runtimes
+- **[Container vs VM Performance](https://www.phoronix.com/review/containers-vms-2021)** - Benchmarks comparing container and VM performance characteristics
+
+---
+
 ## Next Steps
 
 **Continue learning:**

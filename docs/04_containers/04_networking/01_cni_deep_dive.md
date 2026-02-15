@@ -879,6 +879,18 @@ ip link | grep veth
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[CNI Plugins Repository](https://github.com/containernetworking/plugins)** - Reference implementations of bridge, host-device, and other core CNI plugins
+- **[Writing a CNI Plugin](https://www.cni.dev/docs/spec/)** - Official CNI specification and plugin development guide
+- **[CNI Plugin Tutorial](https://karampok.me/posts/writing-a-cni-plugin/)** - Step-by-step guide to creating a custom CNI plugin
+
+---
+
 ## Related Documents
 
 - **Previous**: `03_orchestration/03_services_networking.md` - CNI overview

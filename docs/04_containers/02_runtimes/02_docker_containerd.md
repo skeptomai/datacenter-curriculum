@@ -672,6 +672,18 @@ Kubernetes:
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[containerd Source Code](https://github.com/containerd/containerd)** - Industry-standard container runtime with gRPC API
+- **[Docker Architecture Documentation](https://docs.docker.com/get-started/overview/#docker-architecture)** - Official guide to Docker's modular design
+- **[nerdctl](https://github.com/containerd/nerdctl)** - Docker-compatible CLI for containerd with enhanced features
+
+---
+
 ## Next Steps
 
 **Continue learning:**

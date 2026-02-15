@@ -730,6 +730,18 @@ roleRef:
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)** - Official documentation on Privileged, Baseline, and Restricted policies
+- **[Pod Security Admission Examples](https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/)** - Practical guide to enforcing PSS
+- **[OPA Gatekeeper](https://github.com/open-policy-agent/gatekeeper)** - Policy controller for Kubernetes with custom security rules
+
+---
+
 ## Related Documents
 
 - **Previous**: `05_security/02_runtime_security.md` - Runtime security

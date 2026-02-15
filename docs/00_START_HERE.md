@@ -6,6 +6,9 @@ This guide consists of **59 documents** covering containers, virtualization, dat
 
 **Most people start with containers** (Path 1) since they're ubiquitous in modern infrastructure. Infrastructure engineers building the underlying platform typically start with virtualization (Path 2). Network and storage engineers have dedicated paths for their domains. The paths are designed to stand alone or combine—senior engineers often complete multiple paths to build complete platform expertise.
 
+> 📚 **Hands-On Learning:** For tutorials, code repositories, and interactive labs to complement the curriculum, see:
+> **→ [Complete Container Learning Resources](04_containers/00_LEARNING_RESOURCES.md)**
+
 ---
 
 ## Learning Paths
@@ -56,6 +59,7 @@ This guide consists of **59 documents** covering containers, virtualization, dat
 **Outcome:** Deploy and secure production Kubernetes clusters with deep understanding of container mechanics
 
 **Quick Start Available:** [Container Quick Start](quick_start_containers.md)
+**Hands-On Resources:** 📚 [Complete Container Learning Resources](04_containers/00_LEARNING_RESOURCES.md) - Tutorials, code repos, and labs
 
 ---
 

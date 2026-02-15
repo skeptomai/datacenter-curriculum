@@ -648,6 +648,18 @@ cat /sys/fs/cgroup/docker/container1/cpu.stat
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Containers from Scratch](https://ericchiang.github.io/post/containers-from-scratch/)** - Build a minimal container runtime to understand namespaces and cgroups from first principles
+- **[bocker](https://github.com/p8952/bocker)** - Docker implementation in ~100 lines of bash demonstrating the core primitives
+- **[Linux Programmer's Manual](https://man7.org/linux/man-pages/man7/namespaces.7.html)** - Official documentation for namespaces and cgroups syscalls
+
+---
+
 ## Next Steps
 
 **Continue learning:**

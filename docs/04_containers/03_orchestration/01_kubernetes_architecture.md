@@ -671,6 +671,18 @@ Kubernetes is a **declarative orchestration system** that:
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Kubernetes the Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way)** - Learn Kubernetes by manually bootstrapping every component from scratch
+- **[minikube](https://github.com/kubernetes/minikube)** - Run a local Kubernetes cluster for development and testing
+- **[Kubernetes Components Documentation](https://kubernetes.io/docs/concepts/overview/components/)** - Official guide to control plane and node components
+
+---
+
 ## Related Documents
 
 - **Previous**: `02_runtimes/01_runtime_landscape.md` - How Kubernetes uses CRI

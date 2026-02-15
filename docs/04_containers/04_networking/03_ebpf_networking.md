@@ -872,6 +872,18 @@ sudo cat /sys/kernel/debug/tracing/trace_pipe
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[eBPF.io Learning Resources](https://ebpf.io/)** - Comprehensive introduction to eBPF, tutorials, and use cases
+- **[cilium/ebpf Go Library](https://github.com/cilium/ebpf)** - Pure Go library for loading and managing eBPF programs
+- **[BPF Performance Tools Book](http://www.brendangregg.com/bpf-performance-tools-book.html)** - Definitive guide to using eBPF for performance analysis
+
+---
+
 ## Related Documents
 
 - **Previous**: `04_networking/02_calico_vs_cilium.md` - Cilium's eBPF usage

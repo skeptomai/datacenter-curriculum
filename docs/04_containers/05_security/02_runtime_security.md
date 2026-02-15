@@ -782,6 +782,18 @@ kubectl logs -n falco -l app.kubernetes.io/name=falco -f
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Falco](https://github.com/falcosecurity/falco)** - Cloud-native runtime security using eBPF to detect anomalous behavior
+- **[Falco Getting Started](https://falco.org/docs/getting-started/)** - Quick start guide with installation and rule configuration
+- **[Seccomp Profiles](https://github.com/kubernetes/kubernetes/tree/master/test/e2e_node/seccomp)** - Example seccomp profiles for Kubernetes
+
+---
+
 ## Related Documents
 
 - **Previous**: `05_security/01_image_security.md` - Image security

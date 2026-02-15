@@ -884,6 +884,18 @@ kubectl get pods -n kube-system | grep csi
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Persistent Volume Examples](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)** - Official documentation with practical examples
+- **[CSI Drivers List](https://kubernetes-csi.github.io/docs/drivers.html)** - Directory of Container Storage Interface drivers for various storage backends
+- **[Local Path Provisioner](https://github.com/rancher/local-path-provisioner)** - Simple local storage provisioner for development clusters
+
+---
+
 ## Related Documents
 
 - **Previous**: `03_orchestration/04_scheduling_resources.md` - Resource management

@@ -898,6 +898,18 @@ kubectl debug frontend-abc --image=busybox  # Ephemeral debug container
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Kubernetes Examples](https://github.com/kubernetes/examples)** - Official repository with practical examples of pods, deployments, and other workloads
+- **[kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)** - Quick reference for common kubectl commands
+- **[Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)** - Official documentation on pod phases and container states
+
+---
+
 ## Related Documents
 
 - **Previous**: `03_orchestration/01_kubernetes_architecture.md` - Control plane components

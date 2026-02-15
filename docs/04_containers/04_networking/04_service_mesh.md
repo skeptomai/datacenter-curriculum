@@ -857,6 +857,18 @@ hubble observe --namespace default
 
 ---
 
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all container topics, see:
+> **→ [Complete Container Learning Resources](../00_LEARNING_RESOURCES.md)** 📚
+
+- **[Istio Getting Started](https://istio.io/latest/docs/setup/getting-started/)** - Official guide to deploying and configuring Istio service mesh
+- **[Linkerd Repository](https://github.com/linkerd/linkerd2)** - Ultralight service mesh for Kubernetes with automatic mTLS
+- **[Service Mesh Comparison](https://servicemesh.es/)** - Interactive comparison of Istio, Linkerd, Consul, and other service meshes
+
+---
+
 ## Related Documents
 
 - **Previous**: `04_networking/03_ebpf_networking.md` - eBPF fundamentals

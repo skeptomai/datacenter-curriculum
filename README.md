@@ -30,6 +30,7 @@ This repository contains **66 comprehensive, interconnected documents** covering
 ✅ **Depth indicators** - Know what you're getting into (Foundational → Intermediate → Specialized)
 ✅ **Progressive difficulty** - Build from basics to advanced topics at your own pace
 ✅ **Complete coverage** - From fundamental concepts to production deployment
+✅ **Hands-on resources** - 📚 [External tutorials, code repositories, and interactive labs](docs/04_containers/00_LEARNING_RESOURCES.md)
 
 ---
 
@@ -88,6 +89,7 @@ This curriculum supports five main learning paths. **Choose based on what you're
 **Outcome:** Deploy and secure production Kubernetes clusters with deep understanding of container mechanics
 
 **Quick Start Available:** [Container Quick Start](docs/quick_start_containers.md)
+**Hands-On Resources:** 📚 [Complete Container Learning Resources](docs/04_containers/00_LEARNING_RESOURCES.md) - Tutorials, code repos, and labs
 
 ---
 
