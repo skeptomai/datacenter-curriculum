@@ -420,9 +420,9 @@ CPU limit: Throttled if exceeded (container slows down)
 Memory limit: OOMKilled if exceeded (container killed and restarted)
 ```
 
-### QoS Classes (Quality of Service)
+### QoS (Quality of Service) Classes
 
-Kubernetes assigns QoS based on requests/limits:
+Kubernetes assigns QoS (Quality of Service) based on requests/limits:
 
 **1. Guaranteed** (highest priority):
 ```yaml
@@ -474,7 +474,7 @@ BestEffort: Low-priority batch jobs, experimentation
 
 ### 5.1 Horizontal Pod Autoscaler (HPA)
 
-**Goal**: Scale number of pod replicas based on metrics.
+**Goal**: Scale number of pod replicas based on metrics (HPA is Horizontal Pod Autoscaler).
 
 ```yaml
 apiVersion: autoscaling/v2
@@ -573,7 +573,7 @@ kubectl top pods
 
 ### 5.2 Vertical Pod Autoscaler (VPA)
 
-**Goal**: Automatically adjust pod resource requests/limits.
+**Goal**: Automatically adjust pod resource requests/limits (VPA is Vertical Pod Autoscaler).
 
 ```yaml
 apiVersion: autoscaling.k8s.io/v1

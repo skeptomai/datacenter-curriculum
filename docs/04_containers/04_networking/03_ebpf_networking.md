@@ -32,11 +32,11 @@ Before reading this, you should understand:
 
 ---
 
-## 1. What is eBPF?
+## 1. What is eBPF (extended Berkeley Packet Filter)?
 
 ### Extended Berkeley Packet Filter
 
-**Original BPF** (1992):
+**Original BPF (Berkeley Packet Filter)** (1992):
 ```
 Purpose: Filter packets in tcpdump
 Example: "Show me only TCP packets to port 80"
@@ -228,7 +228,7 @@ bpf_map_update_elem(map_fd, &key, &value, BPF_ANY);
 
 ### XDP (eXpress Data Path)
 
-**Earliest hook point** (right after NIC receives packet):
+**Earliest hook point** (right after NIC receives packet). XDP is eXpress Data Path:
 
 ```
 Packet flow:
@@ -295,7 +295,7 @@ With XDP:
 
 ### TC (Traffic Control)
 
-**Hook point**: After routing decision, before/after network device.
+**Hook point**: After routing decision, before/after network device. TC is Traffic Control.
 
 ```
 Packet flow (ingress):

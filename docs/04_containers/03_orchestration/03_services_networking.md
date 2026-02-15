@@ -353,9 +353,9 @@ TCP  10.96.100.50:80 rr
 
 ---
 
-## 4. DNS and Service Discovery
+## 4. DNS (Domain Name System) and Service Discovery
 
-Kubernetes runs a DNS server (CoreDNS) in the cluster.
+Kubernetes runs a DNS (Domain Name System) server (CoreDNS) in the cluster.
 
 ### DNS Records
 

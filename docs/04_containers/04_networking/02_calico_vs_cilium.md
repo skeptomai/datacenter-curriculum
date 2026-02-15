@@ -72,7 +72,7 @@ Data path: Standard Linux routing (no encapsulation)
 
 **Key components**:
 - **Felix**: Host agent, programs routes and iptables
-- **BIRD**: BGP daemon, distributes routes
+- **BIRD**: BGP (Border Gateway Protocol) daemon, distributes routes
 - **confd**: Monitors etcd, configures BIRD
 - **Typha** (optional): Caching/fanout for large clusters
 
@@ -80,7 +80,7 @@ Data path: Standard Linux routing (no encapsulation)
 
 ### Cilium: eBPF-First Philosophy
 
-**Design principle**: "Programmable kernel networking with eBPF."
+**Design principle**: "Programmable kernel networking with eBPF (extended Berkeley Packet Filter)."
 
 ```
 ┌─────────────────────────────────────────────────┐

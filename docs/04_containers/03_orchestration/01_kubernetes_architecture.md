@@ -111,7 +111,7 @@ The control plane makes global decisions about the cluster (scheduling, detectin
 
 ### 3.1 API Server (kube-apiserver)
 
-**Role**: The front door to Kubernetes. ALL interactions go through it.
+**Role**: The front door to Kubernetes. ALL interactions go through it (API is Application Programming Interface).
 
 ```
 kubectl → API Server → etcd
@@ -373,7 +373,7 @@ kubelet → [CRI] → containerd → [OCI] → runc → Linux namespaces/cgroups
 
 ## 5. Networking Components (CNI Plugins)
 
-Kubernetes networking requires a **Container Network Interface (CNI)** plugin.
+Kubernetes networking requires a **CNI (Container Network Interface)** plugin.
 
 **CNI responsibilities**:
 1. Assign IP addresses to pods

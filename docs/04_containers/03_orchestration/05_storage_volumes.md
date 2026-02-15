@@ -331,7 +331,7 @@ Covered in detail in Section 3.
 
 ### 3.1 PersistentVolume (PV)
 
-**Created by admins** (or dynamically provisioned).
+**Created by admins** (or dynamically provisioned). PV is PersistentVolume.
 
 ```yaml
 apiVersion: v1
@@ -368,7 +368,7 @@ Recycle: Deprecated (was: rm -rf /volume/*, reuse PV)
 
 ### 3.2 PersistentVolumeClaim (PVC)
 
-**Created by users** (requests storage).
+**Created by users** (requests storage). PVC is PersistentVolumeClaim.
 
 ```yaml
 apiVersion: v1
@@ -581,9 +581,9 @@ Manual cleanup:
 
 ---
 
-## 5. Container Storage Interface (CSI)
+## 5. CSI (Container Storage Interface)
 
-**Goal**: Standardize storage plugin interface (like CNI for networking).
+**Goal**: Standardize storage plugin interface (like CNI for networking). CSI is Container Storage Interface.
 
 ### Pre-CSI World
 

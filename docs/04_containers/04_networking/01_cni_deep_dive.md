@@ -31,9 +31,9 @@ Before reading this, you should understand:
 
 ---
 
-## 1. The CNI Specification
+## 1. The CNI (Container Network Interface) Specification
 
-### Why CNI Exists
+### Why CNI (Container Network Interface) Exists
 
 **Problem before CNI**:
 ```
@@ -324,7 +324,7 @@ No iptables, no NAT (same L2 domain)
 
 **Problem**: Who assigns IP addresses to pods?
 
-**Solution**: IPAM plugins (invoked by main plugin).
+**Solution**: IPAM (IP Address Management) plugins (invoked by main plugin).
 
 ### host-local IPAM
 
@@ -411,7 +411,7 @@ No iptables, no NAT (same L2 domain)
 {
   "name": "mynet",
   "type": "vxlan",
-  "vni": 4096,
+  "vni": 4096,  // VNI is VXLAN Network Identifier
   "port": 4789,
   "ipam": {
     "type": "host-local",

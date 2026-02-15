@@ -60,7 +60,7 @@ We know [containers use cgroups and namespaces](../01_fundamentals/01_cgroups_na
 
 ### What is OCI?
 
-**Open Container Initiative (OCI)** - Industry standards for container formats and runtimes.
+**OCI (Open Container Initiative)** - Industry standards for container formats and runtimes.
 
 **Founded:** 2015 (by Docker, CoreOS, Google, and others)
 **Goal:** Prevent fragmentation, ensure interoperability
@@ -357,7 +357,7 @@ runc run mycontainer
 
 ## Part 4: The CRI (Container Runtime Interface)
 
-### What is CRI?
+### What is CRI (Container Runtime Interface)?
 
 **Problem:** Kubernetes needs to work with different runtimes (Docker, containerd, CRI-O, etc.)
 
