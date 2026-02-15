@@ -41,6 +41,13 @@
   - Expanded all acronyms at first use across 22 container documents (33 unique acronyms)
   - Enhanced veth pair explanations with TAP/TUN comparisons and namespace boundary diagrams
 
+- [x] **Comprehensive hands-on learning resources** (100+ curated external resources)
+  - Created 00_LEARNING_RESOURCES.md with tutorials, code repositories, and interactive labs
+  - Added focused "Hands-On Resources" section to all 22 container documents
+  - Organized by topic: fundamentals, runtimes, orchestration, networking, security
+  - Includes: minimal implementations (bocker, minc), OCI runtimes (runc, crun, youki), K8s tools (minikube, kind), CNI plugins, security tools (Falco, Trivy), practice environments
+  - Prominent discoverability: README, START_HERE, and every document with 📚 emoji
+
 ---
 
 ## 🎯 Immediate Next Steps
