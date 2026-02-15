@@ -49,6 +49,153 @@
 
 ---
 
+## 🚨 CRITICAL CONTENT GAP: Container & Orchestration Curriculum
+
+**Priority:** HIGHEST - Major infrastructure category missing
+
+### Current State
+The curriculum has limited container coverage:
+- Brief mentions in Firecracker docs (comparing microVMs to containers)
+- Kata Containers referenced (1 paragraph)
+- Some Kubernetes/pod references in networking contexts
+- Network namespaces in overlay networking
+
+### What's Missing: Complete Container Stack
+
+This represents **20-25 hours of learning content** across a new major category:
+
+#### Proposed Structure Option A: Specialized Section
+```
+03_specialized/06_containers/
+├── 01_fundamentals/          (3 documents, ~2.5 hours)
+│   ├── 01_cgroups_namespaces.md
+│   ├── 02_union_filesystems.md
+│   └── 03_container_vs_vm.md
+├── 02_runtimes/              (4 documents, ~3 hours)
+│   ├── 01_runtime_landscape.md
+│   ├── 02_docker_containerd.md
+│   ├── 03_kata_gvisor.md
+│   └── 04_runtime_comparison.md
+├── 03_orchestration/         (6 documents, ~6 hours)
+│   ├── 01_kubernetes_architecture.md
+│   ├── 02_pods_workloads.md
+│   ├── 03_services_networking.md
+│   ├── 04_scheduling_resources.md
+│   ├── 05_storage_volumes.md
+│   └── 06_production_patterns.md
+├── 04_networking/            (5 documents, ~5 hours)
+│   ├── 01_cni_overview.md
+│   ├── 02_calico_vs_cilium.md
+│   ├── 03_ebpf_networking.md
+│   ├── 04_service_mesh.md
+│   └── 05_network_policies.md
+└── 05_security/              (4 documents, ~3.5 hours)
+    ├── 01_image_security.md
+    ├── 02_runtime_security.md
+    ├── 03_pod_security.md
+    └── 04_supply_chain.md
+```
+
+#### Proposed Structure Option B: Top-Level Section (Preferred)
+```
+docs/04_containers/           (New major section)
+├── README.md
+├── 01_fundamentals/
+├── 02_runtimes/
+├── 03_orchestration/
+├── 04_networking/
+└── 05_security/
+
+docs/05_specialized/          (Renumber existing 03_specialized)
+docs/06_reference/            (Renumber existing 04_reference)
+```
+
+### Topics to Cover
+
+**Container Fundamentals:**
+- Linux primitives: cgroups (v1/v2), namespaces (pid, net, mnt, uts, ipc, user)
+- Capabilities, seccomp, AppArmor, SELinux
+- Union filesystems: OverlayFS, AUFS, device mapper
+- Container images: OCI spec, layers, registries, manifest
+- Process isolation vs VM isolation (comparison with existing virt content)
+
+**Container Runtimes:**
+- Runtime hierarchy: CRI → containerd/CRI-O → runc/crun
+- Docker architecture and evolution
+- containerd deep dive
+- Kata Containers (VM-isolated containers)
+- gVisor (runsc) - userspace kernel
+- Firecracker integration (links to existing 03_serverless content)
+- Runtime comparison matrix
+
+**Kubernetes Orchestration:**
+- Control plane: API server, etcd, scheduler, controller manager
+- Node components: kubelet, kube-proxy, container runtime
+- Pod lifecycle and design patterns
+- Workload resources: Deployments, StatefulSets, DaemonSets, Jobs, CronJobs
+- Services: ClusterIP, NodePort, LoadBalancer, ExternalName
+- Ingress and Gateway API
+- ConfigMaps and Secrets
+- Scheduling: affinity/anti-affinity, taints/tolerations, resource limits
+- Storage: PersistentVolumes, StorageClasses, CSI drivers
+- Production patterns: rolling updates, blue-green, canary
+
+**Container Networking (Deep Integration with 02_intermediate/01_advanced_networking):**
+- CNI specification and plugin architecture
+- CNI plugins comparison: Calico, Cilium, Flannel, Weave
+- eBPF-based networking (Cilium deep dive)
+- Service mesh: Istio, Linkerd, architecture
+- Network policies and micro-segmentation
+- Service discovery and load balancing
+- Integration with VXLAN overlays (cross-reference existing content)
+
+**Container Security:**
+- Image security: scanning, signing, trusted registries, admission controllers
+- Runtime security: seccomp profiles, AppArmor/SELinux policies
+- Pod Security Standards (Privileged, Baseline, Restricted)
+- RBAC and service accounts
+- Supply chain security: SBOM, SLSA, provenance
+- Security monitoring and runtime detection
+
+### New Learning Path Required
+
+**Path 5: Container Platform Engineer (20-25 hours)**
+```
+Prerequisites: 01_foundations/01_virtualization_basics (understand isolation concepts)
+    ↓
+04_containers/01_fundamentals (2.5h)
+    ↓
+04_containers/02_runtimes (3h)
+    ↓
+04_containers/03_orchestration (6h)
+    ↓
+04_containers/04_networking (5h) + 02_intermediate/01_advanced_networking
+    ↓
+04_containers/05_security (3.5h)
+    ↓
+Optional: 03_specialized/03_serverless (Kata/Firecracker integration)
+```
+
+### Integration Points with Existing Content
+
+- **01_foundations/01_virtualization_basics** ← Container fundamentals build on isolation concepts
+- **02_intermediate/01_advanced_networking** ← CNI integrates with VXLAN/overlays
+- **02_intermediate/02_rdma** ← RDMA for distributed storage in K8s
+- **03_specialized/02_overlay_networking** ← Cilium/Calico use VXLAN/BGP
+- **03_specialized/03_serverless** ← Kata Containers/Firecracker connection
+
+### Execution Plan Required
+
+See **CONTAINER_CURRICULUM_PLAN.md** (to be created) for:
+- Research phase (identifying authoritative sources)
+- Content analysis and gap identification
+- Curriculum design and prerequisites mapping
+- Content creation workflow
+- Review and integration process
+- Estimated timeline and milestones
+
+---
+
 ## 📚 Content Enhancements (From Original Plan)
 
 ### Interactive Features
