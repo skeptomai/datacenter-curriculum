@@ -1,692 +1,592 @@
-# Container & Orchestration Curriculum: Execution Plan
+# Container & Orchestration Curriculum: Research & Content Plan
 
-**Status:** Planning Phase
-**Target Completion:** 8-12 weeks (part-time) or 3-4 weeks (full-time)
-**Estimated Content:** 22 documents, 20-25 hours learning time
+**Scope:** 22 documents covering container fundamentals through Kubernetes production deployments
+**Structure:** Top-level section (docs/04_containers/) with existing sections renumbered
 **Created:** 2026-02-14
 
 ---
 
-## 📋 Executive Summary
+## Content Structure (Option B - Top-Level Section)
 
-This plan outlines the complete workflow for researching, analyzing, designing, and creating a comprehensive container and orchestration curriculum to add to the datacenter-curriculum repository. The goal is to maintain the same pedagogical quality and structure as existing content while covering the full container stack from Linux primitives through Kubernetes production deployments.
+```
+docs/04_containers/
+├── README.md
+├── 01_fundamentals/              (3 documents, ~2.5 hours)
+│   ├── 01_cgroups_namespaces.md
+│   ├── 02_union_filesystems.md
+│   └── 03_container_vs_vm.md
+├── 02_runtimes/                  (4 documents, ~3 hours)
+│   ├── 01_runtime_landscape.md
+│   ├── 02_docker_containerd.md
+│   ├── 03_kata_gvisor.md
+│   └── 04_runtime_comparison.md
+├── 03_orchestration/             (6 documents, ~6 hours)
+│   ├── 01_kubernetes_architecture.md
+│   ├── 02_pods_workloads.md
+│   ├── 03_services_networking.md
+│   ├── 04_scheduling_resources.md
+│   ├── 05_storage_volumes.md
+│   └── 06_production_patterns.md
+├── 04_networking/                (5 documents, ~5 hours)
+│   ├── 01_cni_overview.md
+│   ├── 02_calico_vs_cilium.md
+│   ├── 03_ebpf_networking.md
+│   ├── 04_service_mesh.md
+│   └── 05_network_policies.md
+└── 05_security/                  (4 documents, ~3.5 hours)
+    ├── 01_image_security.md
+    ├── 02_runtime_security.md
+    ├── 03_pod_security.md
+    └── 04_supply_chain.md
+
+docs/05_specialized/              (renumbered from 03_specialized)
+docs/06_reference/                (renumbered from 04_reference)
+```
+
+**Additional files:**
+- `quick_start_containers.md` (2-3 hour overview)
+- Update `00_START_HERE.md` with Path 5
+- Update `README.md` with container topics
+
+**Total: 22 core documents + 3 integration documents**
 
 ---
 
-## Phase 1: Research & Source Identification (Week 1)
+## Research Sources
 
-### Objective
-Identify authoritative, technically accurate sources across all container topics.
+### Official Specifications & Documentation
 
-### 1.1 Official Documentation Review
+**OCI (Open Container Initiative)**
+- Runtime Specification: https://github.com/opencontainers/runtime-spec
+- Image Specification: https://github.com/opencontainers/image-spec
+- Distribution Specification: https://github.com/opencontainers/distribution-spec
+- Use for: Authoritative definitions of container standards
+
+**Kubernetes**
+- Official Documentation: https://kubernetes.io/docs/
+- Concepts: https://kubernetes.io/docs/concepts/
+- Reference: https://kubernetes.io/docs/reference/
+- KEPs (Kubernetes Enhancement Proposals): https://github.com/kubernetes/enhancements
+- Use for: K8s architecture, API objects, design decisions
+
+**Linux Kernel**
+- cgroups v2: https://docs.kernel.org/admin-guide/cgroup-v2.html
+- Namespaces: https://man7.org/linux/man-pages/man7/namespaces.7.html
+- Capabilities: https://man7.org/linux/man-pages/man7/capabilities.7.html
+- Use for: Low-level container primitives
+
+**Container Runtimes**
+- containerd: https://containerd.io/docs/
+- CRI-O: https://cri-o.io/
+- Docker Engine: https://docs.docker.com/engine/
+- runc: https://github.com/opencontainers/runc
+- Use for: Runtime implementation details
+
+**Container Networking**
+- CNI Specification: https://github.com/containernetworking/cni/blob/main/SPEC.md
+- Cilium: https://docs.cilium.io/
+- Calico: https://docs.tigera.io/calico/latest/about/
+- Istio: https://istio.io/latest/docs/
+- Use for: Networking architecture and plugin details
+
+**Secure Runtimes**
+- Kata Containers: https://katacontainers.io/docs/
+- gVisor: https://gvisor.dev/docs/
+- Use for: VM-isolated container approaches
+
+### Technical Books
+
+**"Kubernetes in Action" (2nd Edition)** - Marko Lukša
+- Comprehensive K8s coverage from basics to advanced
+- Excellent for pod patterns and workload design
+- Good production practices
+
+**"Container Security"** - Liz Rice
+- Deep dive into Linux container primitives
+- Security boundaries and isolation
+- Runtime security practices
+
+**"Kubernetes Patterns"** - Bilgin Ibryam & Roland Huß
+- Production deployment patterns
+- Design principles for cloud-native apps
+- Best practices catalog
+
+**"Docker Deep Dive"** - Nigel Poulton
+- Container fundamentals
+- Image layering and registries
+- Docker networking basics
+
+**"Programming Kubernetes"** - Michael Hausenblas & Stefan Schimanski
+- K8s API internals
+- Controller patterns
+- Extension mechanisms
+- Use for: Deep technical understanding
+
+### Research Papers & Whitepapers
+
+**Container Isolation & Security**
+- "My VM is Lighter (and Safer) than your Container" - Kata Containers architecture
+- "gVisor: Building and Battle Testing a Userspace OS in Go" - Google's approach to container security
+
+**Orchestration History**
+- "Borg, Omega, and Kubernetes" - Google CACM 2016 (evolution of cluster management)
+- "Large-scale cluster management at Google with Borg" - EuroSys 2015 (Borg architecture)
+
+**Performance Studies**
+- Container networking performance comparisons (academic papers)
+- Storage overhead studies
+- Security isolation benchmarks
+- Use for: Understanding tradeoffs
+
+### Industry Engineering Blogs
 
 **Primary Sources:**
-- [ ] **OCI Specifications**
-  - Runtime spec (runc)
-  - Image spec (container images)
-  - Distribution spec (registries)
-  - Source: https://opencontainers.org/
+- CNCF Blog: https://www.cncf.io/blog/
+- Kubernetes Blog: https://kubernetes.io/blog/
+- Google Cloud Blog: https://cloud.google.com/blog (GKE, container internals)
+- Red Hat Blog: https://www.redhat.com/en/blog (OpenShift, container tech)
+- Cilium Blog: https://cilium.io/blog/ (eBPF networking)
+- Isovalent Blog: https://isovalent.com/blog/ (eBPF deep dives)
+- Aqua Security: https://blog.aquasec.com/ (container security research)
 
-- [ ] **Kubernetes Official Docs**
-  - Concepts documentation
-  - Reference documentation
-  - Design proposals (KEPs)
-  - Source: https://kubernetes.io/docs/
+**Use for:** Real-world implementation details, performance insights, security best practices
 
-- [ ] **Container Runtime Documentation**
-  - containerd: https://containerd.io/docs/
-  - CRI-O: https://cri-o.io/
-  - Docker: https://docs.docker.com/
-  - runc: https://github.com/opencontainers/runc
+### Source Code (Reference Only)
 
-- [ ] **Linux Kernel Documentation**
-  - cgroups v1/v2: https://docs.kernel.org/admin-guide/cgroup-v2.html
-  - Namespaces: https://man7.org/linux/man-pages/man7/namespaces.7.html
-  - Capabilities: https://man7.org/linux/man-pages/man7/capabilities.7.html
+When implementation details are needed:
+- runc: https://github.com/opencontainers/runc
+- containerd: https://github.com/containerd/containerd
+- Kubernetes components: https://github.com/kubernetes/kubernetes
+- CNI plugins: https://github.com/containernetworking/plugins
+- Cilium: https://github.com/cilium/cilium
 
-- [ ] **CNI & Networking**
-  - CNI spec: https://github.com/containernetworking/cni
-  - Cilium docs: https://docs.cilium.io/
-  - Calico docs: https://docs.tigera.io/calico/latest/about/
-  - Istio docs: https://istio.io/latest/docs/
+**Use for:** Understanding low-level mechanics, not for general explanations
 
-- [ ] **Secure Runtimes**
-  - Kata Containers: https://katacontainers.io/docs/
-  - gVisor: https://gvisor.dev/docs/
+### Test Environment Tutorials
 
-### 1.2 Technical Books & Deep Dives
+**For Examples & Validation:**
 
-**Recommended Reading:**
-- [ ] **"Kubernetes in Action" (2nd Edition)** - Marko Lukša
-  - Comprehensive K8s coverage
-  - Practical examples
-  - Good for understanding pod patterns
+**Local Kubernetes:**
+- minikube: https://minikube.sigs.k8s.io/docs/start/
+- kind (Kubernetes in Docker): https://kind.sigs.k8s.io/
+- k3s (lightweight): https://k3s.io/
 
-- [ ] **"Container Security"** - Liz Rice
-  - Security fundamentals
-  - Linux primitives deep dive
-  - Runtime security practices
+**Container Runtimes:**
+- Docker Desktop: https://docs.docker.com/get-docker/
+- containerd + nerdctl: https://github.com/containerd/containerd/blob/main/docs/getting-started.md
+- Podman: https://podman.io/getting-started/
 
-- [ ] **"Kubernetes Patterns"** - Bilgin Ibryam & Roland Huß
-  - Production patterns
-  - Design principles
-  - Best practices
+**Kata Containers:**
+- Installation guide: https://github.com/kata-containers/kata-containers/blob/main/docs/install/README.md
 
-- [ ] **"Docker Deep Dive"** - Nigel Poulton
-  - Container fundamentals
-  - Image building
-  - Networking basics
-
-- [ ] **"Programming Kubernetes"** - Michael Hausenblas & Stefan Schimanski
-  - API internals
-  - Controller patterns
-  - Extension mechanisms
-
-### 1.3 Academic & Research Papers
-
-**Key Papers:**
-- [ ] **"My VM is Lighter (and Safer) than your Container"** - Kata Containers whitepaper
-- [ ] **"gVisor: Building and Battle Testing a Userspace OS in Go"** - Google
-- [ ] **"Borg, Omega, and Kubernetes"** - Google (CACM 2016)
-- [ ] **"Large-scale cluster management at Google with Borg"** - EuroSys 2015
-- [ ] **Performance studies**:
-  - Container networking performance comparisons
-  - Storage overhead studies
-  - Security isolation benchmarks
-
-### 1.4 Industry Blogs & Engineering Posts
-
-**Authoritative Sources:**
-- [ ] **CNCF Blog** - Cloud Native Computing Foundation
-- [ ] **Kubernetes Blog** - Official K8s engineering posts
-- [ ] **Google Cloud Blog** - GKE, container internals
-- [ ] **Red Hat Blog** - OpenShift, container security
-- [ ] **Cilium Blog** - eBPF networking deep dives
-- [ ] **Isovalent Blog** - eBPF, service mesh
-- [ ] **Aqua Security Blog** - Container security research
-
-### 1.5 Source Code Review (When Needed)
-
-**Critical Codebases:**
-- [ ] runc - https://github.com/opencontainers/runc
-- [ ] containerd - https://github.com/containerd/containerd
-- [ ] kubernetes - https://github.com/kubernetes/kubernetes (specific components)
-- [ ] CNI plugins - https://github.com/containernetworking/plugins
-- [ ] Cilium - https://github.com/cilium/cilium
-
-**Focus:** Understanding implementation details for deep-dive sections, not general explanations.
+**gVisor:**
+- Quick start: https://gvisor.dev/docs/user_guide/quick_start/docker/
 
 ---
 
-## Phase 2: Content Analysis & Gap Mapping (Week 2)
+## Topic Breakdown & Learning Objectives
 
-### Objective
-Analyze existing curriculum, identify integration points, and map out precise content requirements.
+### 01_fundamentals/ (3 documents)
 
-### 2.1 Existing Content Audit
+**01_cgroups_namespaces.md**
+- Linux process isolation primitives
+- cgroups v1 vs v2 (resource limiting)
+- 7 namespace types (pid, net, mnt, uts, ipc, user, cgroup)
+- How containers use these primitives
+- Security boundaries and limitations
+- Integration: Links to 01_foundations/01_virtualization_basics (compare to VM isolation)
 
-**Task:** Review all existing documents for container-related content
+**02_union_filesystems.md**
+- Copy-on-write filesystems
+- OverlayFS mechanics (lower/upper/merged directories)
+- Image layering (how layers stack)
+- Storage drivers comparison (overlay2, devicemapper, etc.)
+- Performance implications
 
-- [ ] **Search existing docs** for container mentions
-- [ ] **Identify integration points**:
-  - Virtualization fundamentals (isolation comparison)
-  - Networking overlays (CNI integration)
-  - RDMA (storage backends)
-  - Firecracker (Kata Containers connection)
-- [ ] **Document cross-reference opportunities**
-- [ ] **Identify content to avoid duplicating**
+**03_container_vs_vm.md**
+- Isolation comparison (process vs hardware)
+- Performance characteristics
+- Security boundaries
+- When to use each
+- Hybrid approaches (Kata Containers preview)
+- Integration: Deep cross-reference to existing VM content
 
-### 2.2 Learning Objectives Definition
+### 02_runtimes/ (4 documents)
 
-**For Each Subsection, Define:**
+**01_runtime_landscape.md**
+- Runtime hierarchy: CRI → high-level → low-level
+- OCI runtime spec overview
+- CRI (Container Runtime Interface)
+- Runtime responsibilities at each layer
 
-**01_fundamentals/**
-- [ ] After reading, learner should understand:
-  - How cgroups limit resources (CPU, memory, I/O)
-  - How namespaces provide isolation (6+ types)
-  - How union filesystems enable layering
-  - Difference between container and VM isolation
-  - Security boundaries and limitations
+**02_docker_containerd.md**
+- Docker architecture evolution
+- containerd as standalone runtime
+- containerd vs Docker Engine
+- runc (reference OCI implementation)
+- Alternative low-level runtimes (crun)
 
-**02_runtimes/**
-- [ ] After reading, learner should understand:
-  - Runtime hierarchy (CRI → high-level → low-level)
-  - When to use which runtime
-  - How Kata/gVisor provide stronger isolation
-  - Performance vs security tradeoffs
-  - Integration with orchestrators
+**03_kata_gvisor.md**
+- Why stronger isolation is needed
+- Kata Containers: containers in lightweight VMs
+- gVisor: userspace kernel approach
+- Performance vs security tradeoffs
+- Integration: Links to 03_specialized/03_serverless (Firecracker)
 
-**03_orchestration/**
-- [ ] After reading, learner should understand:
-  - K8s architecture and component roles
-  - Pod design patterns and lifecycle
-  - How services provide stable networking
-  - Scheduling decisions and constraints
-  - Storage provisioning and persistence
-  - Production deployment patterns
+**04_runtime_comparison.md**
+- Decision matrix for runtime selection
+- Performance benchmarks
+- Security isolation levels
+- Use case alignment
+- Quick reference table
 
-**04_networking/**
-- [ ] After reading, learner should understand:
-  - CNI plugin architecture
-  - How eBPF accelerates networking
-  - Service mesh value proposition
-  - Network policy enforcement
-  - Integration with underlay (VXLAN, BGP)
+### 03_orchestration/ (6 documents)
 
-**05_security/**
-- [ ] After reading, learner should understand:
-  - Image security pipeline
-  - Runtime security controls
-  - Pod security standards
-  - RBAC and least privilege
-  - Supply chain security
+**01_kubernetes_architecture.md**
+- Control plane components (API server, etcd, scheduler, controller manager)
+- Node components (kubelet, kube-proxy, container runtime)
+- How components interact
+- Request flow (kubectl → API → scheduler → kubelet)
 
-### 2.3 Prerequisites Mapping
+**02_pods_workloads.md**
+- Pod: fundamental unit
+- Pod design patterns (sidecar, adapter, ambassador)
+- Deployments (replica management, rolling updates)
+- StatefulSets (stable network identity, ordered deployment)
+- DaemonSets (one pod per node)
+- Jobs and CronJobs
 
-**Create dependency graph:**
+**03_services_networking.md**
+- Service types (ClusterIP, NodePort, LoadBalancer, ExternalName)
+- Service discovery (DNS)
+- kube-proxy modes (iptables, ipvs, eBPF)
+- Ingress and Gateway API
+- Integration: Links to 02_intermediate networking content
 
-```
-Container Fundamentals
-  ← Prerequisites: 01_foundations/01_virtualization_basics (isolation concepts)
-  ← Prerequisites: Basic Linux knowledge (assumed)
-      ↓
-Container Runtimes
-  ← Prerequisites: Container Fundamentals
-      ↓
-Kubernetes Orchestration
-  ← Prerequisites: Container Runtimes
-  ← Prerequisites: 01_foundations/02_datacenter_topology (networking basics)
-      ↓
-Container Networking
-  ← Prerequisites: Kubernetes Orchestration
-  ← Prerequisites: 02_intermediate/01_advanced_networking (VXLAN, overlays)
-      ↓
-Container Security
-  ← Prerequisites: Container Fundamentals
-  ← Prerequisites: Kubernetes Orchestration
-  ← Can be read in parallel with Container Networking
-```
+**04_scheduling_resources.md**
+- Scheduler algorithm
+- Node affinity and anti-affinity
+- Taints and tolerations
+- Resource requests and limits
+- Quality of Service (QoS) classes
+- Topology spread constraints
 
-### 2.4 Time Estimates & Complexity Grading
+**05_storage_volumes.md**
+- Volume types (emptyDir, hostPath, configMap, secret)
+- PersistentVolumes and PersistentVolumeClaims
+- StorageClasses and dynamic provisioning
+- CSI (Container Storage Interface)
+- StatefulSet storage patterns
+- Integration: Can reference RDMA storage backends from existing content
 
-**Assign to each document:**
-- [ ] Estimated reading time (20-90 min)
-- [ ] Difficulty level (foundational/intermediate/specialized)
-- [ ] Prerequisites list
-- [ ] Next recommended reading
-- [ ] Relevant tags
+**06_production_patterns.md**
+- Rolling updates and rollbacks
+- Blue-green deployments
+- Canary deployments
+- Health checks (liveness, readiness, startup probes)
+- Resource quotas and limits
+- HorizontalPodAutoscaler
+- Production readiness checklist
+
+### 04_networking/ (5 documents)
+
+**01_cni_overview.md**
+- CNI specification
+- Plugin architecture
+- How CNI integrates with kubelet
+- Network plugin categories (overlay, routed, etc.)
+
+**02_calico_vs_cilium.md**
+- Calico architecture (BGP-based)
+- Cilium architecture (eBPF-based)
+- Feature comparison
+- Performance characteristics
+- When to use each
+
+**03_ebpf_networking.md**
+- What is eBPF (extended Berkeley Packet Filter)
+- eBPF in kernel networking
+- How Cilium uses eBPF
+- Performance benefits
+- Observability capabilities
+
+**04_service_mesh.md**
+- Service mesh value proposition
+- Istio architecture (control plane, data plane)
+- Linkerd comparison
+- Sidecar proxy pattern (Envoy)
+- When you need a service mesh
+
+**05_network_policies.md**
+- NetworkPolicy API
+- Default deny / allow patterns
+- Ingress and egress rules
+- Namespace-based isolation
+- Micro-segmentation
+- Integration: Links to VXLAN/overlay content from existing docs
+
+### 05_security/ (4 documents)
+
+**01_image_security.md**
+- Image scanning (vulnerability detection)
+- Image signing and verification
+- Trusted registries
+- Admission controllers (validating/mutating webhooks)
+- Supply chain attacks on images
+
+**02_runtime_security.md**
+- seccomp profiles
+- AppArmor and SELinux
+- Runtime security tools
+- Detecting container escapes
+- Principle of least privilege
+
+**03_pod_security.md**
+- Pod Security Standards (Privileged, Baseline, Restricted)
+- Security contexts (runAsNonRoot, capabilities, etc.)
+- RBAC (Role-Based Access Control)
+- Service accounts
+- Network policies (cross-ref to 04_networking/05)
+
+**04_supply_chain.md**
+- SBOM (Software Bill of Materials)
+- SLSA framework (Supply-chain Levels for Software Artifacts)
+- Provenance and attestation
+- Sigstore and cosign
+- Policy enforcement (OPA/Gatekeeper)
 
 ---
 
-## Phase 3: Curriculum Design & Structuring (Week 3)
+## Integration with Existing Content
 
-### Objective
-Design pedagogical structure, create outlines, and plan document flow.
+### Prerequisites Mapping
 
-### 3.1 Structural Decision
+**Container Fundamentals** ← 01_foundations/01_virtualization_basics
+- Builds on understanding of isolation concepts
+- Compares process isolation to hardware virtualization
 
-**DECISION POINT:** Choose structure option:
+**Container Networking** ← 02_intermediate/01_advanced_networking
+- CNI overlays use VXLAN (existing overlay networking content)
+- Service mesh integrates with datacenter networking
 
-**Option A: Specialized Section** (03_specialized/06_containers/)
-- Pros: Aligns with current "specialized topics" pattern
-- Cons: Implies containers are "advanced" when they're now fundamental
+**Kubernetes Storage** ← 02_intermediate/02_rdma
+- Can use RDMA-backed storage for distributed systems
+- NVMe-oF as CSI driver
 
-**Option B: Top-Level Section** (04_containers/, renumber existing)
-- Pros: Recognizes containers as major infrastructure category
-- Cons: Requires renumbering 03_specialized → 05_specialized, 04_reference → 06_reference
+**Kata Containers** ← 03_specialized/03_serverless
+- Firecracker used as Kata runtime option
+- Security isolation comparison
 
-**RECOMMENDATION: Option B** - Containers are too fundamental and widely-used to be buried in "specialized."
+**Container Networking** ← 05_specialized/02_overlay_networking (renumbered)
+- Cilium/Calico use BGP EVPN
+- Deep integration with existing overlay content
 
-### 3.2 Document Outlines
+### Cross-References to Add
 
-**For each of 22 documents, create:**
+**In existing documents:**
+- 01_foundations/01_virtualization_basics/03_vm_exit_basics.md → Add note comparing to container syscall overhead
+- 02_intermediate/01_advanced_networking/01_vlan_vs_vxlan.md → Add Kubernetes CNI as VXLAN use case
+- 03_specialized/03_serverless/02_firecracker_deep_dive.md → Add Kata Containers integration section
 
-- [ ] **Working title**
-- [ ] **Learning objectives** (3-5 bullet points)
-- [ ] **Section outline** (H2/H3 structure)
-- [ ] **Key diagrams needed** (ASCII art placeholders)
-- [ ] **Integration points** (links to other docs)
-- [ ] **Examples to include**
-- [ ] **Common pitfalls to address**
-- [ ] **Estimated word count** (3000-6000 words per doc)
+**New learning path:**
+- Path 5: Container Platform Engineer (20-25 hours)
 
-**Example Outline Template:**
+---
+
+## New Learning Path: Path 5
+
+**Container Platform Engineer (20-25 hours)**
+
+**Prerequisites:**
+- Basic Linux knowledge (assumed)
+- 01_foundations/01_virtualization_basics (1.5 hours) - understand isolation
+
+**Path:**
+```
+Start: 04_containers/01_fundamentals/ (2.5 hours)
+  ↓
+04_containers/02_runtimes/ (3 hours)
+  ↓
+04_containers/03_orchestration/ (6 hours)
+  ↓
+04_containers/04_networking/ (5 hours)
+  + Read: 02_intermediate/01_advanced_networking/ (for VXLAN context)
+  ↓
+04_containers/05_security/ (3.5 hours)
+  ↓
+Optional: 05_specialized/03_serverless/ (Kata/Firecracker integration)
+```
+
+**Outcome:** Deploy and operate production Kubernetes clusters with understanding of underlying container mechanics, networking, and security.
+
+---
+
+## Quick Start Guide
+
+**quick_start_containers.md (2-3 hours)**
+
+**Structure:**
+- Container fundamentals (30 min): cgroups, namespaces, images
+- Docker/containerd basics (20 min): Running containers, image building
+- Kubernetes essentials (60 min): Pods, deployments, services
+- Networking overview (20 min): CNI, service mesh intro
+- Security basics (20 min): Image scanning, pod security
+
+**Purpose:** Rapid overview for developers familiar with VMs or experienced engineers needing container crash course.
+
+---
+
+## Content Creation Standards
+
+**Every document must include:**
+- YAML frontmatter (level, estimated_time, prerequisites, next_recommended, tags)
+- Clear learning objectives (3-5 bullet points)
+- Progressive complexity (simple concepts first)
+- Minimum 2 diagrams (ASCII art)
+- Practical examples (code snippets, configurations)
+- "What You've Learned" summary
+- "Next Steps" with cross-references
+- Quick reference section (commands, key concepts)
+
+**Quality standards:**
+- Technical accuracy verified against official docs
+- No assumptions beyond stated prerequisites
+- Gender-neutral language
+- Consistent terminology with existing curriculum
+- Code examples tested (where applicable)
+
+**Diagram standards:**
+- ASCII art for architecture (matches existing style)
+- Clear component relationships
+- Minimal but sufficient detail
+
+**Example quality:**
+- Use recent versions (K8s 1.29+, containerd 1.7+)
+- Include comments for non-obvious parts
+- Provide context (what problem does this solve?)
+
+---
+
+## Document Template
+
 ```markdown
+---
+level: foundational | intermediate | specialized
+estimated_time: XX min
+prerequisites:
+  - path/to/prerequisite.md
+next_recommended:
+  - path/to/next.md
+tags: [containers, kubernetes, etc.]
+---
+
 # [Document Title]
 
-## Learning Objectives
+**Learning Objectives:**
 - Understand X
 - Explain Y
-- Compare Z vs W
-- Apply pattern P
+- Apply Z
 
-## Section 1: Introduction
-- What problem does this solve?
-- Historical context (brief)
+---
 
-## Section 2: Fundamental Concepts
-- Core mechanism
-- How it works (step-by-step)
-- Diagram
+## Introduction
 
-## Section 3: Deep Dive
-- Implementation details
-- Performance considerations
-- Tradeoffs
+[What problem does this solve? Brief context.]
 
-## Section 4: Practical Usage
-- Common patterns
-- Anti-patterns
-- Examples
+## Core Concepts
 
-## Section 5: Integration & Context
-- How it fits in the stack
-- Related technologies
-- Cross-references
+[Fundamental explanation, build from first principles]
+
+### Diagram: [Component Architecture]
+
+[ASCII art diagram]
+
+## Deep Dive
+
+[Implementation details, how it works]
+
+## Practical Examples
+
+[Code, configurations, real-world usage]
+
+## Integration & Context
+
+[How this fits in the stack, related technologies, cross-references]
 
 ## Quick Reference
-- Key commands
-- Configuration examples
-- Decision matrix
+
+[Key commands, decision matrix, common patterns]
+
+---
 
 ## What You've Learned
-- Summary checklist
+
+✅ [Summary checklist]
 
 ## Next Steps
-- Next recommended reading
+
+→ Continue: [Next recommended reading]
 ```
 
-### 3.3 Learning Path Integration
+---
 
-**Update 00_START_HERE.md outline:**
+## Structural Changes Required
 
-- [ ] Add "Path 5: Container Platform Engineer (20-25 hours)"
-- [ ] Define entry points for different backgrounds:
-  - Complete beginners → Start with virtualization foundations first
-  - Developers familiar with Docker → Skip fundamentals, start with orchestration
-  - Network engineers → Focus on container networking
-  - Security engineers → Focus on container security
-- [ ] Create "hybrid paths":
-  - Full Stack + Containers (complete datacenter + cloud native)
-  - Network Engineer + Container Networking
-  - Security Engineer + Container Security
+**Renumber existing directories:**
+```bash
+git mv docs/03_specialized docs/05_specialized
+git mv docs/04_reference docs/06_reference
+```
 
-### 3.4 Quick Start Guide
+**Create new structure:**
+```bash
+mkdir -p docs/04_containers/{01_fundamentals,02_runtimes,03_orchestration,04_networking,05_security}
+```
 
-- [ ] **Create: quick_start_containers.md** (2-3 hours)
-  - Container fundamentals (30 min)
-  - Docker/containerd basics (20 min)
-  - Kubernetes essentials (60 min)
-  - Networking overview (20 min)
-  - Security basics (20 min)
+**Update files:**
+- docs/00_START_HERE.md (add Path 5)
+- README.md (update topics covered, stats)
+- All links in 03_specialized → update to 05_specialized
+- All links in 04_reference → update to 06_reference
 
 ---
 
-## Phase 4: Content Creation Workflow (Weeks 4-10)
-
-### Objective
-Write high-quality, pedagogically-structured content following established patterns.
-
-### 4.1 Writing Methodology
-
-**For Each Document:**
-
-1. **Research & Notes** (2-3 hours)
-   - Review all sources
-   - Take structured notes
-   - Identify gaps in understanding
-   - Research specific edge cases
-
-2. **First Draft** (4-6 hours)
-   - Follow outline structure
-   - Focus on clarity over completeness
-   - Include diagrams (ASCII art)
-   - Add examples and code snippets
-   - Write naturally, edit later
-
-3. **Technical Review** (1-2 hours)
-   - Verify technical accuracy
-   - Test code examples
-   - Check for outdated information
-   - Validate against official docs
-
-4. **Pedagogical Edit** (1-2 hours)
-   - Ensure progressive complexity
-   - Check for assumed knowledge
-   - Verify prerequisites are clear
-   - Improve explanations
-   - Add analogies where helpful
-
-5. **Integration** (1 hour)
-   - Add YAML frontmatter
-   - Create cross-references
-   - Update directory README
-   - Add to learning paths
-
-6. **Final Polish** (1 hour)
-   - Grammar and style
-   - Formatting consistency
-   - Link validation
-   - Generate HTML test
-
-**Total per document: 10-15 hours** × 22 documents = **220-330 hours**
-
-### 4.2 Content Creation Order
-
-**PHASE 4A: Fundamentals (Week 4-5)**
-- [ ] 01_cgroups_namespaces.md
-- [ ] 02_union_filesystems.md
-- [ ] 03_container_vs_vm.md
-- Update: 01_fundamentals/README.md
-
-**PHASE 4B: Runtimes (Week 5-6)**
-- [ ] 01_runtime_landscape.md
-- [ ] 02_docker_containerd.md
-- [ ] 03_kata_gvisor.md
-- [ ] 04_runtime_comparison.md
-- Update: 02_runtimes/README.md
-
-**PHASE 4C: Orchestration Part 1 (Week 6-7)**
-- [ ] 01_kubernetes_architecture.md
-- [ ] 02_pods_workloads.md
-- [ ] 03_services_networking.md
-
-**PHASE 4D: Orchestration Part 2 (Week 7-8)**
-- [ ] 04_scheduling_resources.md
-- [ ] 05_storage_volumes.md
-- [ ] 06_production_patterns.md
-- Update: 03_orchestration/README.md
-
-**PHASE 4E: Networking (Week 8-9)**
-- [ ] 01_cni_overview.md
-- [ ] 02_calico_vs_cilium.md
-- [ ] 03_ebpf_networking.md
-- [ ] 04_service_mesh.md
-- [ ] 05_network_policies.md
-- Update: 04_networking/README.md
-
-**PHASE 4F: Security (Week 9-10)**
-- [ ] 01_image_security.md
-- [ ] 02_runtime_security.md
-- [ ] 03_pod_security.md
-- [ ] 04_supply_chain.md
-- Update: 05_security/README.md
-
-**PHASE 4G: Top-level Integration (Week 10)**
-- [ ] Create: docs/04_containers/README.md
-- [ ] Create: quick_start_containers.md
-- [ ] Update: 00_START_HERE.md (add Path 5)
-- [ ] Update: README.md (mention container content)
-
-### 4.3 Quality Standards Checklist
-
-**Every document must have:**
-- [ ] YAML frontmatter (level, time, prerequisites, next_recommended, tags)
-- [ ] Clear learning objectives at top
-- [ ] Progressive complexity (simple → complex)
-- [ ] At least 2 diagrams (ASCII art minimum)
-- [ ] Practical examples
-- [ ] "What You've Learned" summary at end
-- [ ] "Next Steps" with cross-references
-- [ ] Quick reference section
-- [ ] No assumptions of prior knowledge beyond prerequisites
-- [ ] Gender-neutral language
-- [ ] Consistent terminology with existing docs
-
-### 4.4 Example Code & Diagrams
-
-**Standards:**
-- [ ] All code examples must be tested
-- [ ] Use recent versions (K8s 1.29+, containerd 1.7+)
-- [ ] Include comments explaining non-obvious parts
-- [ ] Provide context (what this achieves)
-- [ ] ASCII diagrams for architecture
-- [ ] Consider SVG for complex flows (optional enhancement)
-
----
-
-## Phase 5: Review & Integration (Week 11)
-
-### Objective
-Ensure quality, consistency, and proper integration with existing content.
-
-### 5.1 Technical Review
-
-- [ ] **Self-review checklist** (all 22 documents)
-  - Technical accuracy verified
-  - Code examples tested
-  - No broken links
-  - Consistent with official docs
-
-- [ ] **Cross-reference validation**
-  - All prerequisites exist
-  - All "next recommended" links valid
-  - Integration points with existing content work
-
-- [ ] **Terminology consistency**
-  - Consistent with existing docs
-  - Glossary terms aligned
-  - Acronyms expanded on first use
-
-### 5.2 Pedagogical Review
-
-- [ ] **Learning flow validation**
-  - Can a beginner follow Path 5 successfully?
-  - Are prerequisites actually sufficient?
-  - Is complexity progression smooth?
-
-- [ ] **Time estimate validation**
-  - Read each document, time it
-  - Adjust estimates if needed
-  - Total path time reasonable?
-
-- [ ] **Compare to existing content quality**
-  - Same depth and clarity?
-  - Similar structure and style?
-  - Matching pedagogical approach?
-
-### 5.3 Integration Testing
-
-- [ ] **Generate HTML** for all new documents
-  - Run scripts/convert_to_html.sh
-  - Check formatting
-  - Validate all links work in HTML
-
-- [ ] **Test all learning paths**
-  - Follow Path 5 start to finish (reading key sections)
-  - Test hybrid paths
-  - Verify cross-references to existing content
-
-- [ ] **Update master documents**
-  - 00_START_HERE.md updated
-  - README.md mentions container content
-  - REORGANIZATION_SUMMARY.md updated with new stats
-
----
-
-## Phase 6: Publication & Refinement (Week 12)
-
-### Objective
-Publish content and gather initial feedback for improvements.
-
-### 6.1 Git Workflow
-
-- [ ] **Create feature branch**
-  ```bash
-  git checkout -b feature/container-curriculum
-  ```
-
-- [ ] **Commit structure changes**
-  - Renumber existing directories (03→05, 04→06)
-  - Create 04_containers/ structure
-  - Commit: "Prepare structure for container curriculum"
-
-- [ ] **Commit content in logical chunks**
-  - Commit: "Add container fundamentals (3 docs)"
-  - Commit: "Add container runtimes (4 docs)"
-  - Commit: "Add Kubernetes orchestration (6 docs)"
-  - Commit: "Add container networking (5 docs)"
-  - Commit: "Add container security (4 docs)"
-  - Commit: "Add container learning path and quick start"
-
-- [ ] **Test full build**
-  ```bash
-  ./scripts/convert_to_html.sh
-  xdg-open html/00_START_HERE.html
-  ```
-
-- [ ] **Push to GitHub**
-  ```bash
-  git push -u origin feature/container-curriculum
-  ```
-
-- [ ] **Create pull request**
-  - Comprehensive description
-  - Document count and hours added
-  - Links to key new documents
-  - Request feedback
-
-### 6.2 Documentation Updates
-
-- [ ] **Update ONGOING_TASKS.md**
-  - Mark container curriculum as [x] Completed
-  - Add any new ideas that emerged
-
-- [ ] **Update README.md**
-  - Add container topics to "Topics Covered"
-  - Update stats (49→71 documents, +20-25 hours)
-  - Mention Path 5 in learning paths
-
-- [ ] **Create CONTAINER_CURRICULUM_SUMMARY.md**
-  - Similar to REORGANIZATION_SUMMARY.md
-  - Document the addition process
-  - List all new files
-  - Provide usage examples
-
-### 6.3 Announcement & Feedback
-
-- [ ] **Merge pull request** (after review)
-- [ ] **Tag release** (optional)
-  ```bash
-  git tag -a v2.0.0 -m "Added comprehensive container & orchestration curriculum"
-  git push origin v2.0.0
-  ```
-
-- [ ] **Update GitHub repo description**
-  - Add "containers" and "kubernetes" to topics
-
-- [ ] **Solicit feedback**
-  - GitHub Discussions post
-  - Share with relevant communities
-  - Gather improvement suggestions
-
-### 6.4 Iterative Improvements
-
-- [ ] **Monitor for issues**
-  - Technical errors
-  - Unclear explanations
-  - Missing prerequisites
-
-- [ ] **Rapid iteration** (first 2 weeks post-launch)
-  - Fix any critical issues immediately
-  - Improve clarity based on feedback
-  - Add missing examples
-
-- [ ] **Schedule review** (3 months post-launch)
-  - Check for outdated information
-  - Update K8s versions
-  - Refresh examples
-
----
-
-## Success Metrics
+## Success Criteria
 
 **Quantitative:**
-- [ ] 22 documents created (20-25 hours content)
-- [ ] All documents have YAML frontmatter
-- [ ] 100% of internal links work
-- [ ] 0 broken links in HTML generation
-- [ ] Path 5 completable in stated time (±20%)
+- 22 core documents created
+- All YAML frontmatter complete
+- 100% internal links valid
+- HTML generation successful
 
 **Qualitative:**
-- [ ] Content quality matches existing curriculum
-- [ ] Pedagogical structure maintained
-- [ ] Positive community feedback
-- [ ] Used as learning resource by others
-- [ ] Contributions from community
+- Technical accuracy matches official docs
+- Pedagogical quality matches existing content
+- Clear learning progression
+- Useful as standalone resource
 
 ---
 
-## Risk Management
+## Content Creation Order
 
-### Risk 1: Scope Creep
-**Mitigation:** Strict outline adherence, time-box each document to 10-15 hours max
+**Suggested sequence (not timeline-based):**
 
-### Risk 2: Outdated Information
-**Mitigation:** Use official docs as source of truth, document K8s version (1.29+), plan quarterly updates
+1. **Fundamentals** (3 docs) - Foundation for everything else
+2. **Runtimes** (4 docs) - Builds on fundamentals
+3. **Orchestration Part 1** (docs 1-3) - Core K8s concepts
+4. **Orchestration Part 2** (docs 4-6) - Advanced K8s
+5. **Networking** (5 docs) - Requires orchestration understanding
+6. **Security** (4 docs) - Applies across all layers
+7. **Integration** (quick start, Path 5, updates)
 
-### Risk 3: Inconsistent Quality
-**Mitigation:** Use checklist for every document, maintain same structure, self-review before committing
-
-### Risk 4: Poor Integration
-**Mitigation:** Plan integration points upfront, test cross-references thoroughly, update master index
-
-### Risk 5: Time Overrun
-**Mitigation:** Track time per document, adjust scope if needed, prioritize core content over edge cases
+**Rationale:** Each section builds on previous, enabling progressive learning.
 
 ---
 
-## Resource Requirements
+## Ready to Begin
 
-**Time Investment:**
-- Research: 40 hours
-- Analysis: 20 hours
-- Design: 30 hours
-- Writing: 220-330 hours
-- Review: 30 hours
-- **Total: 340-450 hours** (8-12 weeks part-time, 3-4 weeks full-time)
-
-**Tools Needed:**
-- [ ] Access to Kubernetes cluster (for testing examples) - minikube/kind/k3s sufficient
-- [ ] Container runtime (Docker Desktop or containerd+nerdctl)
-- [ ] Text editor with markdown support
-- [ ] pandoc (already required for HTML generation)
-- [ ] Git / GitHub account (already have)
-
-**Optional:**
-- [ ] Draw.io or Excalidraw (for complex diagrams)
-- [ ] Kubernetes books (listed in Phase 1)
-- [ ] CNCF landscape familiarity
-
----
-
-## Timeline Summary
-
-| Week | Phase | Deliverable |
-|------|-------|-------------|
-| 1 | Research | Source list, reading notes |
-| 2 | Analysis | Gap map, prerequisites graph, learning objectives |
-| 3 | Design | 22 document outlines, learning path design |
-| 4-5 | Writing | Fundamentals (3 docs) + Runtimes (4 docs) |
-| 6-7 | Writing | Orchestration Part 1 (3 docs) |
-| 7-8 | Writing | Orchestration Part 2 (3 docs) |
-| 8-9 | Writing | Networking (5 docs) |
-| 9-10 | Writing | Security (4 docs) + Integration docs |
-| 11 | Review | Quality checks, integration testing |
-| 12 | Publication | Git workflow, PR, announcement |
-
-**TOTAL: 12 weeks part-time (15-20 hours/week) OR 3-4 weeks full-time**
-
----
-
-## Next Immediate Steps
-
-1. [ ] **Decide on structure** (Option A vs B) - RECOMMENDED: Option B
-2. [ ] **Begin Phase 1 research** - Start with OCI and K8s official docs
-3. [ ] **Set up test environment** - Install minikube or kind for examples
-4. [ ] **Create tracking system** - Use GitHub project or simple checklist
-5. [ ] **Block calendar time** - Schedule dedicated writing sessions
-
----
-
-**Ready to proceed?** Start with Phase 1: Research & Source Identification.
+**First steps:**
+1. Start with OCI and Kubernetes official documentation
+2. Read "Container Security" by Liz Rice for fundamentals
+3. Review existing virtualization docs to ensure complementary coverage
+4. Begin with 01_cgroups_namespaces.md (foundational document)
