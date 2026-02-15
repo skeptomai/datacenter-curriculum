@@ -9,12 +9,15 @@
 
 ## 📚 What This Is
 
-This repository contains **44 comprehensive, interconnected documents** covering the complete stack of modern datacenter infrastructure, from CPU virtualization fundamentals to advanced overlay networking. Unlike typical technical documentation that assumes expert knowledge, this curriculum is **structured for learning**, with clear entry points, explicit prerequisites, and progressive complexity.
+This repository contains **66 comprehensive, interconnected documents** covering the complete stack of modern datacenter infrastructure, from CPU virtualization fundamentals to container orchestration and security. Unlike typical technical documentation that assumes expert knowledge, this curriculum is **structured for learning**, with clear entry points, explicit prerequisites, and progressive complexity.
 
 ### Topics Covered
 
 - **Virtualization**: Ring-0 problem, VT-x/AMD-V, VM exits, EPT/NPT, KVM, QEMU, virtio, SR-IOV, VFIO
-- **Networking**: Spine-leaf architecture, ECMP, VLAN vs VXLAN, overlay networks, BGP EVPN
+- **Containers**: cgroups/namespaces, runtimes (Docker, containerd, Kata, gVisor), Kubernetes orchestration
+- **Container Networking**: CNI deep dive, Calico vs Cilium, eBPF, service mesh (Istio, Linkerd)
+- **Container Security**: Image scanning/signing, runtime security, Pod Security Standards, supply chain (SBOM, SLSA)
+- **Datacenter Networking**: Spine-leaf architecture, ECMP, VLAN vs VXLAN, overlay networks, BGP EVPN
 - **High-Performance I/O**: RDMA (RoCEv2, InfiniBand, iWARP), PFC, DCB, NUMA considerations
 - **Specialized Topics**: Firecracker/serverless, CPU/memory deep dives, compatibility layers
 - **Practical Guides**: KVM development, environment setup, technology selection frameworks
@@ -38,7 +41,7 @@ This repository contains **44 comprehensive, interconnected documents** covering
 
 This master index explains:
 - How to use this guide based on your background
-- Four curated learning paths with complete roadmaps
+- Five curated learning paths with complete roadmaps
 - Time estimates for each path (10-40 hours)
 - What to expect from each section
 
@@ -47,13 +50,14 @@ This master index explains:
 Choose a fast-track guide:
 - **[Virtualization Essentials](docs/quick_start_virtualization.md)** (2 hours) - Ring-0 problem through SR-IOV
 - **[Networking Essentials](docs/quick_start_networking.md)** (2 hours) - Spine-leaf through RDMA
+- **[Container Essentials](docs/quick_start_containers.md)** (2.5 hours) - Containers through Kubernetes
 - **[Full Stack Overview](docs/quick_start_full_stack.md)** (5 hours) - Complete datacenter infrastructure
 
 ### For Experienced Engineers
 
 Jump directly to specialized topics:
-- [Specialized Documentation](docs/03_specialized/) - Deep dives by area
-- [Reference Materials](docs/04_reference/) - Setup guides and decision frameworks
+- [Specialized Documentation](docs/05_specialized/) - Deep dives by area
+- [Reference Materials](docs/06_reference/) - Setup guides and decision frameworks
 
 ---
 
@@ -129,6 +133,28 @@ Follow all paths sequentially, prioritizing:
 
 ---
 
+### Path 5: Container Platform Engineer (20-25 hours)
+
+**Goal:** Master container technologies from fundamentals through Kubernetes production deployment
+
+```
+Foundations → Container Fundamentals (2.5h)
+    ↓
+Container Runtimes (3h)
+    ↓
+Kubernetes Orchestration (4.5h)
+    ↓
+Container Networking (5h)
+    ↓
+Container Security (3h)
+```
+
+**Outcome:** Deploy and secure production Kubernetes clusters with deep understanding of container mechanics
+
+**Quick Start Available:** [Container Quick Start](docs/quick_start_containers.md) (2.5 hours)
+
+---
+
 ## 📁 Repository Structure
 
 ```
@@ -145,13 +171,20 @@ datacenter_virt/
 │   │   ├── 01_advanced_networking/      (2 documents, 1.5h)
 │   │   ├── 02_rdma/                     (4 documents, 2.5h)
 │   │   └── 03_complete_virtualization/  (4 documents, 4h)
-│   ├── 03_specialized/         ← Deep dives by area
+│   ├── 03_foundations_containers/    ← Container fundamentals
+│   │   └── 01_container_fundamentals/   (3 documents, 2.5h)
+│   ├── 04_containers/          ← Container technologies
+│   │   ├── 02_runtimes/                 (4 documents, 3h)
+│   │   ├── 03_orchestration/            (6 documents, 4.5h)
+│   │   ├── 04_networking/               (5 documents, 5h)
+│   │   └── 05_security/                 (4 documents, 3h)
+│   ├── 05_specialized/         ← Deep dives by area
 │   │   ├── 01_storage/                  (1 document)
 │   │   ├── 02_overlay_networking/       (7 documents)
 │   │   ├── 03_serverless/               (3 documents)
 │   │   ├── 04_cpu_memory/               (2 documents)
 │   │   └── 05_compatibility/            (3 documents)
-│   └── 04_reference/           ← Practical guides
+│   └── 06_reference/           ← Practical guides
 │       ├── setup_guides/                (2 documents)
 │       ├── learning_resources/          (2 documents)
 │       └── decision_frameworks/         (1 document)
@@ -206,8 +239,8 @@ xdg-open html/00_START_HERE.html
 
 ### As a Reference
 
-- Jump to **03_specialized/** for specific deep dives
-- Use **04_reference/** for setup guides and glossaries
+- Jump to **05_specialized/** for specific deep dives
+- Use **06_reference/** for setup guides and glossaries
 - Search within **docs/** for specific technologies or concepts
 
 ---
@@ -254,6 +287,14 @@ After completing this curriculum, you will understand:
 - ✅ RDMA fundamentals (host optimization, not network!)
 - ✅ Making Ethernet lossless (PFC, DCB, priority classes)
 - ✅ SDN architecture (OVS, Cilium, eBPF)
+
+### Containers & Orchestration
+- ✅ Container isolation fundamentals (cgroups, namespaces, union filesystems)
+- ✅ Runtime architectures (Docker, containerd, CRI-O, Kata, gVisor)
+- ✅ Kubernetes architecture (control plane, worker nodes, reconciliation loops)
+- ✅ Container networking (CNI, Calico, Cilium, eBPF data plane)
+- ✅ Service mesh patterns (Istio, Linkerd, mTLS, traffic management)
+- ✅ Container security (image scanning, Pod Security Standards, supply chain)
 
 ### Integration
 - ✅ Complete packet flow (VM → virtio → vhost → NIC → network)
@@ -339,10 +380,10 @@ Special recognition to the **KVM, QEMU, Open vSwitch, and Cilium communities** w
 
 ## 📊 Repository Stats
 
-- **44 comprehensive documents** covering complete datacenter stack
-- **85+ total files** including READMEs and navigation aids
-- **28,000+ lines** of technical documentation
-- **30-40 hours** of learning content for full curriculum
+- **66 comprehensive documents** covering complete datacenter stack
+- **90+ total files** including READMEs and navigation aids
+- **35,000+ lines** of technical documentation
+- **45-55 hours** of learning content for full curriculum
 - **2-5 hours** for quick-start paths
 
 **Last updated:** 2026-02-14

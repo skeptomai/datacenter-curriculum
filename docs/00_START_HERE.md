@@ -2,7 +2,7 @@
 
 **Welcome to a comprehensive guide to modern datacenter infrastructure!**
 
-This documentation set contains **37 high-quality documents** covering datacenter networking, RDMA, virtualization, and KVM development. These documents have been reorganized pedagogically to support structured learning rather than random exploration.
+This documentation set contains **59 high-quality documents** covering datacenter networking, RDMA, virtualization, containers, and infrastructure development. These documents have been reorganized pedagogically to support structured learning rather than random exploration.
 
 ---
 
@@ -18,6 +18,9 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 **💻 Know virtualization basics but not datacenter networking?**
 → Skip to **[Part 2.3: Complete Virtualization](#23-complete-virtualization-understanding)** or start with **[Part 1.2: Datacenter Topology](#12-understanding-the-datacenter-topology)**
+
+**📦 Interested in containers and Kubernetes?**
+→ Start with **[Part 1.3: Container Fundamentals](#13-container-fundamentals)** or **[Path 5: Container Platform Engineer](#path-5-container-platform-engineer)**
 
 **🎯 Solving a specific problem?**
 → Jump to **[Part 4: Reference & Practical Guides](#part-4-reference--practical-guides)**
@@ -150,6 +153,50 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 ---
 
+### Path 5: Container Platform Engineer
+
+**Goal:** Master container technologies from fundamentals through Kubernetes production deployment
+
+**Curriculum:**
+1. **Foundations/Container Fundamentals** (2.5 hours)
+   - [Isolation Fundamentals](03_foundations_containers/01_container_fundamentals/01_isolation_fundamentals.md) (50 min)
+   - [Images and Filesystems](03_foundations_containers/01_container_fundamentals/02_images_filesystems.md) (45 min)
+   - [Container vs VM Comparison](03_foundations_containers/01_container_fundamentals/03_container_vs_vm.md) (50 min)
+
+2. **Container Runtimes** (3 hours)
+   - [OCI and CRI Standards](04_containers/02_runtimes/01_oci_cri_standards.md) (45 min)
+   - [Docker and containerd](04_containers/02_runtimes/02_docker_containerd.md) (50 min)
+   - [Alternative Runtimes (CRI-O)](04_containers/02_runtimes/03_alternative_runtimes.md) (40 min)
+   - [Isolation-Enhanced Runtimes](04_containers/02_runtimes/04_isolation_runtimes.md) (55 min)
+
+3. **Kubernetes Orchestration** (4.5 hours)
+   - [Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md) (45 min)
+   - [Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md) (50 min)
+   - [Services and Networking](04_containers/03_orchestration/03_services_networking.md) (55 min)
+   - [Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md) (45 min)
+   - [Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md) (40 min)
+   - [Production Patterns](04_containers/03_orchestration/06_production_patterns.md) (50 min)
+
+4. **Container Networking** (5 hours)
+   - [CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md) (60 min)
+   - [Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md) (55 min)
+   - [eBPF Networking](04_containers/04_networking/03_ebpf_networking.md) (65 min)
+   - [Service Mesh](04_containers/04_networking/04_service_mesh.md) (60 min)
+   - [Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md) (50 min)
+
+5. **Container Security** (3 hours)
+   - [Image Security](04_containers/05_security/01_image_security.md) (45 min)
+   - [Runtime Security](04_containers/05_security/02_runtime_security.md) (50 min)
+   - [Pod Security Standards](04_containers/05_security/03_pod_security.md) (45 min)
+   - [Supply Chain Security](04_containers/05_security/04_supply_chain.md) (50 min)
+
+**Total Time:** 20-25 hours
+**Outcome:** Deploy and secure production Kubernetes clusters with deep understanding of container mechanics
+
+**Quick Start Available:** [Container Quick Start](quick_start_containers.md) (2.5 hours)
+
+---
+
 ## Detailed Curriculum
 
 ### **Part 1: FOUNDATIONS (Start Here)**
@@ -206,8 +253,31 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 **Part 1.2 Total: ~2 hours**
 
-**Part 1 Complete Total: ~3.5 hours**
-**Outcome:** Understand virtualization mechanics AND modern datacenter topology
+---
+
+#### **1.3 Container Fundamentals** 📦
+
+**Why learn this:** Modern infrastructure relies on containers alongside VMs
+
+8. **[Isolation Fundamentals](03_foundations_containers/01_container_fundamentals/01_isolation_fundamentals.md)** (50 min)
+   - **What you'll learn:** cgroups, namespaces, container isolation
+   - **Prerequisites:** None
+   - **Next:** Images and Filesystems
+
+9. **[Images and Filesystems](03_foundations_containers/01_container_fundamentals/02_images_filesystems.md)** (45 min)
+   - **What you'll learn:** Container images, layers, OverlayFS
+   - **Prerequisites:** Isolation Fundamentals
+   - **Next:** Container vs VM Comparison
+
+10. **[Container vs VM Comparison](03_foundations_containers/01_container_fundamentals/03_container_vs_vm.md)** (50 min)
+    - **What you'll learn:** When to use containers vs VMs
+    - **Prerequisites:** Images and Filesystems, virtualization basics
+    - **Next:** Container runtimes or continue with VM track
+
+**Part 1.3 Total: ~2.5 hours**
+
+**Part 1 Complete Total: ~6 hours**
+**Outcome:** Understand virtualization mechanics, modern datacenter topology, AND container fundamentals
 
 ---
 
@@ -281,8 +351,109 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 **Part 2.3 Total: ~3.5 hours**
 
-**Part 2 Complete Total: ~7.5 hours**
-**Outcome:** Deep understanding of modern networking, RDMA, and complete virtualization stack
+---
+
+#### **2.4 Container Technologies**
+
+18. **[OCI and CRI Standards](04_containers/02_runtimes/01_oci_cri_standards.md)** (45 min)
+    - **What you'll learn:** Container runtime standards and interfaces
+    - **Prerequisites:** Container fundamentals (Part 1.3)
+    - **Next:** Docker and containerd
+
+19. **[Docker and containerd Architecture](04_containers/02_runtimes/02_docker_containerd.md)** (50 min)
+    - **What you'll learn:** How Docker works, containerd role
+    - **Prerequisites:** OCI and CRI Standards
+    - **Next:** Alternative runtimes
+
+20. **[Alternative Runtimes (CRI-O)](04_containers/02_runtimes/03_alternative_runtimes.md)** (40 min)
+    - **What you'll learn:** CRI-O, runc, runtime ecosystem
+    - **Prerequisites:** Docker and containerd
+    - **Next:** Isolation-enhanced runtimes
+
+21. **[Isolation-Enhanced Runtimes (Kata, gVisor)](04_containers/02_runtimes/04_isolation_runtimes.md)** (55 min)
+    - **What you'll learn:** VM-isolated containers, userspace kernels
+    - **Prerequisites:** Alternative runtimes, virtualization knowledge
+    - **Next:** Kubernetes orchestration
+
+22. **[Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md)** (45 min)
+    - **What you'll learn:** Control plane, worker nodes, reconciliation
+    - **Prerequisites:** Container runtimes
+    - **Next:** Pods and Workloads
+
+23. **[Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md)** (50 min)
+    - **What you'll learn:** Pods, Deployments, StatefulSets, DaemonSets
+    - **Prerequisites:** Kubernetes Architecture
+    - **Next:** Services and Networking
+
+24. **[Kubernetes Services and Networking](04_containers/03_orchestration/03_services_networking.md)** (55 min)
+    - **What you'll learn:** Services, kube-proxy, DNS, Ingress
+    - **Prerequisites:** Pods and Workloads
+    - **Next:** Scheduling and Resources
+
+25. **[Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md)** (45 min)
+    - **What you'll learn:** Scheduler, affinity, autoscaling, QoS
+    - **Prerequisites:** Services and Networking
+    - **Next:** Storage and Volumes
+
+26. **[Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md)** (40 min)
+    - **What you'll learn:** PersistentVolumes, StorageClasses, CSI
+    - **Prerequisites:** Scheduling and Resources
+    - **Next:** Production Patterns
+
+27. **[Production Patterns](04_containers/03_orchestration/06_production_patterns.md)** (50 min)
+    - **What you'll learn:** HA, deployment safety, observability
+    - **Prerequisites:** Storage and Volumes
+    - **Next:** Container networking deep dive
+
+28. **[CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md)** (60 min)
+    - **What you'll learn:** CNI specification, plugin implementation
+    - **Prerequisites:** Kubernetes networking basics
+    - **Next:** Calico vs Cilium
+
+29. **[Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md)** (55 min)
+    - **What you'll learn:** BGP vs eBPF networking architectures
+    - **Prerequisites:** CNI Deep Dive, datacenter networking knowledge
+    - **Next:** eBPF Networking
+
+30. **[eBPF Networking](04_containers/04_networking/03_ebpf_networking.md)** (65 min)
+    - **What you'll learn:** XDP, TC, eBPF maps, high-performance networking
+    - **Prerequisites:** Calico vs Cilium
+    - **Next:** Service Mesh
+
+31. **[Service Mesh (Istio, Linkerd)](04_containers/04_networking/04_service_mesh.md)** (60 min)
+    - **What you'll learn:** mTLS, traffic management, observability
+    - **Prerequisites:** Kubernetes networking
+    - **Next:** Network Policies
+
+32. **[Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md)** (50 min)
+    - **What you'll learn:** Multi-tenancy, egress control, L7 policies
+    - **Prerequisites:** Service Mesh
+    - **Next:** Container security
+
+33. **[Image Security](04_containers/05_security/01_image_security.md)** (45 min)
+    - **What you'll learn:** Scanning, signing, admission control
+    - **Prerequisites:** Container runtimes
+    - **Next:** Runtime Security
+
+34. **[Runtime Security](04_containers/05_security/02_runtime_security.md)** (50 min)
+    - **What you'll learn:** seccomp, AppArmor, Falco, capabilities
+    - **Prerequisites:** Image Security
+    - **Next:** Pod Security
+
+35. **[Pod Security Standards](04_containers/05_security/03_pod_security.md)** (45 min)
+    - **What you'll learn:** PSS, RBAC, service accounts
+    - **Prerequisites:** Runtime Security
+    - **Next:** Supply Chain Security
+
+36. **[Supply Chain Security](04_containers/05_security/04_supply_chain.md)** (50 min)
+    - **What you'll learn:** SBOM, SLSA, Sigstore, provenance
+    - **Prerequisites:** Pod Security
+    - **Next:** Specialized topics or production deployment
+
+**Part 2.4 Total: ~15 hours**
+
+**Part 2 Complete Total: ~22.5 hours**
+**Outcome:** Deep understanding of modern networking, RDMA, complete virtualization stack, AND container technologies
 
 ---
 
@@ -292,7 +463,7 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 #### **3.1 Storage & RDMA Applications**
 
-18. **[PFC, DCB, and Storage](05_specialized/01_storage/01_pfc_dcb_storage.md)** (55 min)
+37. **[PFC, DCB, and Storage](05_specialized/01_storage/01_pfc_dcb_storage.md)** (55 min)
     - **What you'll learn:** Why RDMA is critical for modern storage
     - **Prerequisites:** RDMA complete (Part 2.2)
 
@@ -300,62 +471,62 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 #### **3.2 Advanced Networking Deep-Dives**
 
-19. **[VXLAN + BGP EVPN Deep Dive](05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md)** (90 min)
+38. **[VXLAN + BGP EVPN Deep Dive](05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md)** (90 min)
     - **Prerequisites:** Advanced networking (Part 2.1)
 
-20. **[BGP Communities vs Route Reflectors](05_specialized/02_overlay_networking/02_bgp_communities_rr.md)** (45 min)
-    - **Prerequisites:** Doc #19
+39. **[BGP Communities vs Route Reflectors](05_specialized/02_overlay_networking/02_bgp_communities_rr.md)** (45 min)
+    - **Prerequisites:** Doc #38
 
-21. **[Route Reflector Session Cardinality](05_specialized/02_overlay_networking/03_rr_session_cardinality.md)** (35 min)
-    - **Prerequisites:** Doc #20
+40. **[Route Reflector Session Cardinality](05_specialized/02_overlay_networking/03_rr_session_cardinality.md)** (35 min)
+    - **Prerequisites:** Doc #39
 
-22. **[OVS Control vs Data Plane](05_specialized/02_overlay_networking/04_ovs_control_data.md)** (50 min)
+41. **[OVS Control vs Data Plane](05_specialized/02_overlay_networking/04_ovs_control_data.md)** (50 min)
     - **Prerequisites:** Advanced networking
 
-23. **[OVS Cilium Geneve](05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md)** (55 min)
-    - **Prerequisites:** Docs #9, #22
+42. **[OVS Cilium Geneve](05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md)** (55 min)
+    - **Prerequisites:** Overlay mechanics, Kubernetes networking
 
-24. **[OpenFlow Precompile Model](05_specialized/02_overlay_networking/06_openflow_precompile.md)** (45 min)
+43. **[OpenFlow Precompile Model](05_specialized/02_overlay_networking/06_openflow_precompile.md)** (45 min)
     - **Prerequisites:** OVS knowledge
 
-25. **[Prepopulated vs Learning](05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md)** (30 min)
-    - **Prerequisites:** Doc #24
+44. **[Prepopulated vs Learning](05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md)** (30 min)
+    - **Prerequisites:** Doc #43
 
 ---
 
 #### **3.3 Microservices & Serverless**
 
-26. **[Firecracker KVM Relationship](05_specialized/03_serverless/01_firecracker_relationship.md)** (40 min)
+45. **[Firecracker KVM Relationship](05_specialized/03_serverless/01_firecracker_relationship.md)** (40 min)
     - **What you'll learn:** What Firecracker is (not a hypervisor replacement)
 
-27. **[Firecracker Deep Dive](05_specialized/03_serverless/02_firecracker_deep_dive.md)** (70 min)
-    - **Prerequisites:** Doc #26
+46. **[Firecracker Deep Dive](05_specialized/03_serverless/02_firecracker_deep_dive.md)** (70 min)
+    - **Prerequisites:** Doc #45
 
-28. **[Firecracker virtio Devices](05_specialized/03_serverless/03_firecracker_virtio.md)** (90 min)
-    - **Prerequisites:** Doc #27
+47. **[Firecracker virtio Devices](05_specialized/03_serverless/03_firecracker_virtio.md)** (90 min)
+    - **Prerequisites:** Doc #46
 
 ---
 
 #### **3.4 CPU & Memory Virtualization Deep-Dives**
 
-29. **[TLB, EPT, VPID Explained](05_specialized/04_cpu_memory/01_tlb_ept_explained.md)** (90 min)
+48. **[TLB, EPT, VPID Explained](05_specialized/04_cpu_memory/01_tlb_ept_explained.md)** (90 min)
     - **Prerequisites:** Complete virtualization (Part 2.3)
 
-30. **[TLB Capacity Limits](05_specialized/04_cpu_memory/02_tlb_capacity_limits.md)** (50 min)
-    - **Prerequisites:** Doc #29
+49. **[TLB Capacity Limits](05_specialized/04_cpu_memory/02_tlb_capacity_limits.md)** (50 min)
+    - **Prerequisites:** Doc #48
 
 ---
 
 #### **3.5 Compatibility & Legacy Systems**
 
-31. **[KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md)** (70 min)
+50. **[KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md)** (70 min)
     - **What you'll learn:** 32-bit/64-bit compatibility
 
-32. **[CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md)** (50 min)
-    - **Prerequisites:** Doc #31
+51. **[CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md)** (50 min)
+    - **Prerequisites:** Doc #50
 
-33. **[Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md)** (40 min)
-    - **Prerequisites:** Doc #32
+52. **[Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md)** (40 min)
+    - **Prerequisites:** Doc #51
 
 ---
 
@@ -365,27 +536,27 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 #### **4.1 Development Environment Setup**
 
-34. **[macOS Kernel Development Setup](06_reference/setup_guides/01_macos_case_sensitivity.md)**
+53. **[macOS Kernel Development Setup](06_reference/setup_guides/01_macos_case_sensitivity.md)**
     - **When:** Setting up Linux kernel development on macOS
 
-35. **[External Drive for Kernel Work](06_reference/setup_guides/02_external_drive_setup.md)**
+54. **[External Drive for Kernel Work](06_reference/setup_guides/02_external_drive_setup.md)**
     - **When:** Choosing storage for kernel work
 
 ---
 
 #### **4.2 Learning Resources**
 
-36. **[Learning KVM Comprehensive Guide](06_reference/learning_resources/01_learning_kvm_guide.md)**
+55. **[Learning KVM Comprehensive Guide](06_reference/learning_resources/01_learning_kvm_guide.md)**
     - **When:** Starting KVM source code study
 
-37. **[Networking Acronyms Glossary](06_reference/learning_resources/02_networking_acronyms.md)**
+56. **[Networking Acronyms Glossary](06_reference/learning_resources/02_networking_acronyms.md)**
     - **When:** Need quick reference for acronyms
 
 ---
 
 #### **4.3 Technology Selection**
 
-38. **[Virtualization Technology Primer](06_reference/decision_frameworks/01_virtualization_primer.md)**
+57. **[Virtualization Technology Primer](06_reference/decision_frameworks/01_virtualization_primer.md)**
     - **When:** Choosing virtualization technology
     - **NOTE:** Read AFTER understanding fundamentals (Part 2.3)
 
@@ -397,6 +568,7 @@ For those who want rapid overviews before deep dives:
 
 - **[Quick Start: Virtualization](quick_start_virtualization.md)** (2 hours) - Essential virtualization concepts
 - **[Quick Start: Networking](quick_start_networking.md)** (2 hours) - Essential networking concepts
+- **[Quick Start: Containers](quick_start_containers.md)** (2.5 hours) - Container fundamentals through Kubernetes
 - **[Quick Start: Full Stack](quick_start_full_stack.md)** (5 hours) - Complete overview of all topics
 
 ---
@@ -426,4 +598,7 @@ All original documents are preserved in `original_docs/` for reference.
 
 ---
 
-**Ready to begin? Start with [The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md)!** 🎯
+**Ready to begin?**
+- **Virtualization track:** Start with [The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md) 🎯
+- **Container track:** Start with [Isolation Fundamentals](03_foundations_containers/01_container_fundamentals/01_isolation_fundamentals.md) 📦
+- **Quick overview:** Try a [Quick Start Guide](#quick-start-guides)
