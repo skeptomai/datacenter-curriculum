@@ -42,42 +42,42 @@ This documentation set contains **59 high-quality documents** covering datacente
 **Goal:** Master container technologies from fundamentals through Kubernetes production deployment
 
 **Curriculum:**
-1. **Foundations/Container Fundamentals** (2.5 hours)
-   - [Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md) (50 min)
-   - [Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md) (45 min)
-   - [Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md) (50 min)
+1. **Foundations/Container Fundamentals**
+   - [Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md)
+   - [Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md)
+   - [Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md)
 
-2. **Container Runtimes** (3 hours)
-   - [Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md) (45 min)
-   - [Docker and containerd](04_containers/02_runtimes/02_docker_containerd.md) (50 min)
-   - [Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md) (40 min)
-   - [Runtime Comparison](04_containers/02_runtimes/04_runtime_comparison.md) (55 min)
+2. **Container Runtimes**
+   - [Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md)
+   - [Docker and containerd](04_containers/02_runtimes/02_docker_containerd.md)
+   - [Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md)
+   - [Runtime Comparison](04_containers/02_runtimes/04_runtime_comparison.md)
 
-3. **Kubernetes Orchestration** (4.5 hours)
-   - [Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md) (45 min)
-   - [Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md) (50 min)
-   - [Services and Networking](04_containers/03_orchestration/03_services_networking.md) (55 min)
-   - [Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md) (45 min)
-   - [Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md) (40 min)
-   - [Production Patterns](04_containers/03_orchestration/06_production_patterns.md) (50 min)
+3. **Kubernetes Orchestration**
+   - [Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md)
+   - [Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md)
+   - [Services and Networking](04_containers/03_orchestration/03_services_networking.md)
+   - [Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md)
+   - [Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md)
+   - [Production Patterns](04_containers/03_orchestration/06_production_patterns.md)
 
-4. **Container Networking** (5 hours)
-   - [CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md) (60 min)
-   - [Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md) (55 min)
-   - [eBPF Networking](04_containers/04_networking/03_ebpf_networking.md) (65 min)
-   - [Service Mesh](04_containers/04_networking/04_service_mesh.md) (60 min)
-   - [Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md) (50 min)
+4. **Container Networking**
+   - [CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md)
+   - [Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md)
+   - [eBPF Networking](04_containers/04_networking/03_ebpf_networking.md)
+   - [Service Mesh](04_containers/04_networking/04_service_mesh.md)
+   - [Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md)
 
-5. **Container Security** (3 hours)
-   - [Image Security](04_containers/05_security/01_image_security.md) (45 min)
-   - [Runtime Security](04_containers/05_security/02_runtime_security.md) (50 min)
-   - [Pod Security Standards](04_containers/05_security/03_pod_security.md) (45 min)
-   - [Supply Chain Security](04_containers/05_security/04_supply_chain.md) (50 min)
+5. **Container Security**
+   - [Image Security](04_containers/05_security/01_image_security.md)
+   - [Runtime Security](04_containers/05_security/02_runtime_security.md)
+   - [Pod Security Standards](04_containers/05_security/03_pod_security.md)
+   - [Supply Chain Security](04_containers/05_security/04_supply_chain.md)
 
-**Total Time:** 20-25 hours
+**Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
 **Outcome:** Deploy and secure production Kubernetes clusters with deep understanding of container mechanics
 
-**Quick Start Available:** [Container Quick Start](quick_start_containers.md) (2.5 hours)
+**Quick Start Available:** [Container Quick Start](quick_start_containers.md)
 
 ---
 
@@ -89,32 +89,32 @@ This documentation set contains **59 high-quality documents** covering datacente
 **Goal:** Deep expertise in CPU/memory virtualization and hypervisor technologies
 
 **Curriculum:**
-1. **Foundations/Virtualization** (1.5 hours)
-   - [The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md) (20 min)
-   - [Hardware Solution](01_foundations/01_virtualization_basics/02_hardware_solution.md) (30 min)
-   - [VM Exit Basics](01_foundations/01_virtualization_basics/03_vm_exit_basics.md) (25 min)
+1. **Foundations/Virtualization**
+   - [The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md)
+   - [Hardware Solution](01_foundations/01_virtualization_basics/02_hardware_solution.md)
+   - [VM Exit Basics](01_foundations/01_virtualization_basics/03_vm_exit_basics.md)
 
-2. **Intermediate/Complete Virtualization** (3 hours)
-   - [Complete Evolution](02_intermediate/03_complete_virtualization/01_evolution_complete.md) (90 min)
-   - [Exit Minimization](02_intermediate/03_complete_virtualization/02_exit_minimization.md) (40 min)
-   - [Hardware Optimizations](02_intermediate/03_complete_virtualization/03_hardware_optimizations.md) (40 min)
-   - [Device Passthrough](02_intermediate/03_complete_virtualization/04_device_passthrough.md) (50 min)
+2. **Intermediate/Complete Virtualization**
+   - [Complete Evolution](02_intermediate/03_complete_virtualization/01_evolution_complete.md)
+   - [Exit Minimization](02_intermediate/03_complete_virtualization/02_exit_minimization.md)
+   - [Hardware Optimizations](02_intermediate/03_complete_virtualization/03_hardware_optimizations.md)
+   - [Device Passthrough](02_intermediate/03_complete_virtualization/04_device_passthrough.md)
 
-3. **Specialized/CPU & Memory** (2.5 hours)
-   - [TLB, EPT, VPID Explained](05_specialized/04_cpu_memory/01_tlb_ept_explained.md) (90 min)
-   - [TLB Capacity Limits](05_specialized/04_cpu_memory/02_tlb_capacity_limits.md) (50 min)
+3. **Specialized/CPU & Memory**
+   - [TLB, EPT, VPID Explained](05_specialized/04_cpu_memory/01_tlb_ept_explained.md)
+   - [TLB Capacity Limits](05_specialized/04_cpu_memory/02_tlb_capacity_limits.md)
 
-4. **Specialized/Serverless** (2.5 hours)
-   - [Firecracker KVM Relationship](05_specialized/03_serverless/01_firecracker_relationship.md) (40 min)
-   - [Firecracker Deep Dive](05_specialized/03_serverless/02_firecracker_deep_dive.md) (70 min)
-   - [Firecracker virtio Devices](05_specialized/03_serverless/03_firecracker_virtio.md) (90 min)
+4. **Specialized/Serverless**
+   - [Firecracker KVM Relationship](05_specialized/03_serverless/01_firecracker_relationship.md)
+   - [Firecracker Deep Dive](05_specialized/03_serverless/02_firecracker_deep_dive.md)
+   - [Firecracker virtio Devices](05_specialized/03_serverless/03_firecracker_virtio.md)
 
 5. **Specialized/Compatibility** (Optional, 2.5 hours)
-   - [KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md) (70 min)
-   - [CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md) (50 min)
-   - [Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md) (40 min)
+   - [KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md)
+   - [CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md)
+   - [Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md)
 
-**Total Time:** 15-20 hours
+**Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
 **Outcome:** Production-ready understanding of modern virtualization stack
 
 ---
@@ -127,32 +127,32 @@ This documentation set contains **59 high-quality documents** covering datacente
 **Goal:** Master datacenter networking from physical topology to software overlays
 
 **Curriculum:**
-1. **Foundations/Datacenter Topology** (2 hours)
-   - [Modern Datacenter Network Topology](01_foundations/02_datacenter_topology/01_modern_topology.md) (40 min)
-   - [Spine-Leaf Server Hierarchy](01_foundations/02_datacenter_topology/02_server_hierarchy.md) (30 min)
-   - [3-Tier vs Spine-Leaf](01_foundations/02_datacenter_topology/03_3tier_vs_spine_leaf.md) (30 min)
-   - [ECMP Load Balancing](01_foundations/02_datacenter_topology/04_ecmp_load_balancing.md) (50 min)
+1. **Foundations/Datacenter Topology**
+   - [Modern Datacenter Network Topology](01_foundations/02_datacenter_topology/01_modern_topology.md)
+   - [Spine-Leaf Server Hierarchy](01_foundations/02_datacenter_topology/02_server_hierarchy.md)
+   - [3-Tier vs Spine-Leaf](01_foundations/02_datacenter_topology/03_3tier_vs_spine_leaf.md)
+   - [ECMP Load Balancing](01_foundations/02_datacenter_topology/04_ecmp_load_balancing.md)
 
-2. **Intermediate/Advanced Networking** (1.5 hours)
-   - [VLAN vs VXLAN Comparison](02_intermediate/01_advanced_networking/01_vlan_vs_vxlan.md) (40 min)
-   - [Overlay Mechanics](02_intermediate/01_advanced_networking/02_overlay_mechanics.md) (55 min)
+2. **Intermediate/Advanced Networking**
+   - [VLAN vs VXLAN Comparison](02_intermediate/01_advanced_networking/01_vlan_vs_vxlan.md)
+   - [Overlay Mechanics](02_intermediate/01_advanced_networking/02_overlay_mechanics.md)
 
-3. **Intermediate/RDMA** (2.5 hours)
-   - [RDMA Fundamentals](02_intermediate/02_rdma/01_rdma_fundamentals.md) (35 min)
-   - [Protocol Variants](02_intermediate/02_rdma/02_protocol_variants.md) (45 min)
-   - [Converged Ethernet](02_intermediate/02_rdma/03_converged_ethernet.md) (50 min)
-   - [NUMA Considerations](02_intermediate/02_rdma/04_numa_considerations.md) (40 min)
+3. **Intermediate/RDMA**
+   - [RDMA Fundamentals](02_intermediate/02_rdma/01_rdma_fundamentals.md)
+   - [Protocol Variants](02_intermediate/02_rdma/02_protocol_variants.md)
+   - [Converged Ethernet](02_intermediate/02_rdma/03_converged_ethernet.md)
+   - [NUMA Considerations](02_intermediate/02_rdma/04_numa_considerations.md)
 
-4. **Specialized/Overlay Networking** (5 hours)
-   - [VXLAN + BGP EVPN](05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md) (90 min)
-   - [BGP Communities & Route Reflectors](05_specialized/02_overlay_networking/02_bgp_communities_rr.md) (45 min)
-   - [RR Session Cardinality](05_specialized/02_overlay_networking/03_rr_session_cardinality.md) (35 min)
-   - [OVS Control vs Data Plane](05_specialized/02_overlay_networking/04_ovs_control_data.md) (50 min)
-   - [OVS Cilium Geneve](05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md) (55 min)
-   - [OpenFlow Precompile Model](05_specialized/02_overlay_networking/06_openflow_precompile.md) (45 min)
-   - [Prepopulated vs Learning](05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md) (30 min)
+4. **Specialized/Overlay Networking**
+   - [VXLAN + BGP EVPN](05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md)
+   - [BGP Communities & Route Reflectors](05_specialized/02_overlay_networking/02_bgp_communities_rr.md)
+   - [RR Session Cardinality](05_specialized/02_overlay_networking/03_rr_session_cardinality.md)
+   - [OVS Control vs Data Plane](05_specialized/02_overlay_networking/04_ovs_control_data.md)
+   - [OVS Cilium Geneve](05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md)
+   - [OpenFlow Precompile Model](05_specialized/02_overlay_networking/06_openflow_precompile.md)
+   - [Prepopulated vs Learning](05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md)
 
-**Total Time:** 12-16 hours
+**Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
 **Outcome:** Expert-level understanding of modern datacenter networks
 
 ---
@@ -165,32 +165,32 @@ This documentation set contains **59 high-quality documents** covering datacente
 **Goal:** High-performance storage networking with RDMA
 
 **Curriculum:**
-1. **Foundations/Virtualization** (1.5 hours)
-   - [The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md) (20 min)
-   - [Hardware Solution](01_foundations/01_virtualization_basics/02_hardware_solution.md) (30 min)
-   - [VM Exit Basics](01_foundations/01_virtualization_basics/03_vm_exit_basics.md) (25 min)
+1. **Foundations/Virtualization**
+   - [The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md)
+   - [Hardware Solution](01_foundations/01_virtualization_basics/02_hardware_solution.md)
+   - [VM Exit Basics](01_foundations/01_virtualization_basics/03_vm_exit_basics.md)
    - **Why:** Understanding virtualization is essential for modern storage systems
 
-2. **Foundations/Datacenter Topology** (2 hours)
-   - [Modern Datacenter Network Topology](01_foundations/02_datacenter_topology/01_modern_topology.md) (40 min)
-   - [Spine-Leaf Server Hierarchy](01_foundations/02_datacenter_topology/02_server_hierarchy.md) (30 min)
-   - [3-Tier vs Spine-Leaf](01_foundations/02_datacenter_topology/03_3tier_vs_spine_leaf.md) (30 min)
-   - [ECMP Load Balancing](01_foundations/02_datacenter_topology/04_ecmp_load_balancing.md) (50 min)
+2. **Foundations/Datacenter Topology**
+   - [Modern Datacenter Network Topology](01_foundations/02_datacenter_topology/01_modern_topology.md)
+   - [Spine-Leaf Server Hierarchy](01_foundations/02_datacenter_topology/02_server_hierarchy.md)
+   - [3-Tier vs Spine-Leaf](01_foundations/02_datacenter_topology/03_3tier_vs_spine_leaf.md)
+   - [ECMP Load Balancing](01_foundations/02_datacenter_topology/04_ecmp_load_balancing.md)
 
-3. **Intermediate/RDMA** (2.5 hours)
-   - [RDMA Fundamentals](02_intermediate/02_rdma/01_rdma_fundamentals.md) (35 min)
-   - [Protocol Variants](02_intermediate/02_rdma/02_protocol_variants.md) (45 min)
-   - [Converged Ethernet](02_intermediate/02_rdma/03_converged_ethernet.md) (50 min)
-   - [NUMA Considerations](02_intermediate/02_rdma/04_numa_considerations.md) (40 min)
+3. **Intermediate/RDMA**
+   - [RDMA Fundamentals](02_intermediate/02_rdma/01_rdma_fundamentals.md)
+   - [Protocol Variants](02_intermediate/02_rdma/02_protocol_variants.md)
+   - [Converged Ethernet](02_intermediate/02_rdma/03_converged_ethernet.md)
+   - [NUMA Considerations](02_intermediate/02_rdma/04_numa_considerations.md)
 
-4. **Specialized/Storage** (1 hour)
-   - [PFC, DCB, and Storage](05_specialized/01_storage/01_pfc_dcb_storage.md) (55 min)
+4. **Specialized/Storage**
+   - [PFC, DCB, and Storage](05_specialized/01_storage/01_pfc_dcb_storage.md)
 
 5. **Intermediate/Virtualization** (Optional, 3 hours)
-   - [Device Passthrough](02_intermediate/03_complete_virtualization/04_device_passthrough.md) (50 min)
+   - [Device Passthrough](02_intermediate/03_complete_virtualization/04_device_passthrough.md)
    - **Why:** SR-IOV critical for storage performance
 
-**Total Time:** 10-14 hours
+**Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
 **Outcome:** Deep understanding of storage networking and RDMA
 
 ---
@@ -205,12 +205,12 @@ This documentation set contains **59 high-quality documents** covering datacente
 **Approach:** Complete all foundational and intermediate topics, then select specialized areas
 
 **Curriculum:**
-1. Complete **Part 1: Foundations** (6 hours)
+1. Complete **Part 1: Foundations**
    - Virtualization basics (1.5h)
    - Datacenter topology (2h)
    - Container fundamentals (2.5h)
 
-2. Complete **Part 2: Intermediate** (22.5 hours)
+2. Complete **Part 2: Intermediate**
    - Advanced networking (1.5h)
    - RDMA (2.5h)
    - Complete virtualization (3.5h)
@@ -221,7 +221,7 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 4. Reference **Part 4** as needed
 
-**Total Time:** 45-55 hours
+**Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
 **Outcome:** Architect and operate complete datacenter infrastructure with deep understanding of VMs, containers, networking, and storage
 
 **Recommended approach:** Start with either Container (Path 1) or Virtualization (Path 2) based on immediate needs, then complete the other
@@ -233,42 +233,42 @@ This documentation set contains **59 high-quality documents** covering datacente
 **Goal:** Master container technologies from fundamentals through Kubernetes production deployment
 
 **Curriculum:**
-1. **Foundations/Container Fundamentals** (2.5 hours)
-   - [Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md) (50 min)
-   - [Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md) (45 min)
-   - [Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md) (50 min)
+1. **Foundations/Container Fundamentals**
+   - [Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md)
+   - [Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md)
+   - [Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md)
 
-2. **Container Runtimes** (3 hours)
-   - [Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md) (45 min)
-   - [Docker and containerd](04_containers/02_runtimes/02_docker_containerd.md) (50 min)
-   - [Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md) (40 min)
-   - [Runtime Comparison](04_containers/02_runtimes/04_runtime_comparison.md) (55 min)
+2. **Container Runtimes**
+   - [Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md)
+   - [Docker and containerd](04_containers/02_runtimes/02_docker_containerd.md)
+   - [Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md)
+   - [Runtime Comparison](04_containers/02_runtimes/04_runtime_comparison.md)
 
-3. **Kubernetes Orchestration** (4.5 hours)
-   - [Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md) (45 min)
-   - [Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md) (50 min)
-   - [Services and Networking](04_containers/03_orchestration/03_services_networking.md) (55 min)
-   - [Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md) (45 min)
-   - [Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md) (40 min)
-   - [Production Patterns](04_containers/03_orchestration/06_production_patterns.md) (50 min)
+3. **Kubernetes Orchestration**
+   - [Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md)
+   - [Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md)
+   - [Services and Networking](04_containers/03_orchestration/03_services_networking.md)
+   - [Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md)
+   - [Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md)
+   - [Production Patterns](04_containers/03_orchestration/06_production_patterns.md)
 
-4. **Container Networking** (5 hours)
-   - [CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md) (60 min)
-   - [Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md) (55 min)
-   - [eBPF Networking](04_containers/04_networking/03_ebpf_networking.md) (65 min)
-   - [Service Mesh](04_containers/04_networking/04_service_mesh.md) (60 min)
-   - [Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md) (50 min)
+4. **Container Networking**
+   - [CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md)
+   - [Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md)
+   - [eBPF Networking](04_containers/04_networking/03_ebpf_networking.md)
+   - [Service Mesh](04_containers/04_networking/04_service_mesh.md)
+   - [Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md)
 
-5. **Container Security** (3 hours)
-   - [Image Security](04_containers/05_security/01_image_security.md) (45 min)
-   - [Runtime Security](04_containers/05_security/02_runtime_security.md) (50 min)
-   - [Pod Security Standards](04_containers/05_security/03_pod_security.md) (45 min)
-   - [Supply Chain Security](04_containers/05_security/04_supply_chain.md) (50 min)
+5. **Container Security**
+   - [Image Security](04_containers/05_security/01_image_security.md)
+   - [Runtime Security](04_containers/05_security/02_runtime_security.md)
+   - [Pod Security Standards](04_containers/05_security/03_pod_security.md)
+   - [Supply Chain Security](04_containers/05_security/04_supply_chain.md)
 
-**Total Time:** 20-25 hours
+**Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
 **Outcome:** Deploy and secure production Kubernetes clusters with deep understanding of container mechanics
 
-**Quick Start Available:** [Container Quick Start](quick_start_containers.md) (2.5 hours)
+**Quick Start Available:** [Container Quick Start](quick_start_containers.md)
 
 ---
 
@@ -282,17 +282,17 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 **Why learn this:** Essential for understanding how VMs work, cloud internals, and hypervisor performance
 
-1. **[The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md)** (20 min)
+1. **[The Ring-0 Problem](01_foundations/01_virtualization_basics/01_the_ring0_problem.md)**
    - **What you'll learn:** Why virtualization is hard on x86
    - **Prerequisites:** None
    - **Next:** Hardware Solution
 
-2. **[Hardware Solution (VT-x/AMD-V)](01_foundations/01_virtualization_basics/02_hardware_solution.md)** (30 min)
+2. **[Hardware Solution (VT-x/AMD-V)](01_foundations/01_virtualization_basics/02_hardware_solution.md)**
    - **What you'll learn:** How hardware enables virtualization
    - **Prerequisites:** Ring-0 Problem
    - **Next:** VM Exit Basics
 
-3. **[VM Exit Basics](01_foundations/01_virtualization_basics/03_vm_exit_basics.md)** (25 min)
+3. **[VM Exit Basics](01_foundations/01_virtualization_basics/03_vm_exit_basics.md)**
    - **What you'll learn:** The fundamental virtualization mechanism
    - **Prerequisites:** Hardware Solution
    - **Next:** Either complete virtualization OR datacenter topology
@@ -305,22 +305,22 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 **Why learn this:** Essential for understanding modern datacenter networks, applies to both VM and container infrastructure
 
-4. **[Modern Datacenter Network Topology](01_foundations/02_datacenter_topology/01_modern_topology.md)** (40 min)
+4. **[Modern Datacenter Network Topology](01_foundations/02_datacenter_topology/01_modern_topology.md)**
    - **What you'll learn:** Link speeds, 3-tier vs spine-leaf, oversubscription
    - **Prerequisites:** None
    - **Next:** Server Hierarchy
 
-5. **[Spine-Leaf Server Hierarchy](01_foundations/02_datacenter_topology/02_server_hierarchy.md)** (30 min)
+5. **[Spine-Leaf Server Hierarchy](01_foundations/02_datacenter_topology/02_server_hierarchy.md)**
    - **What you'll learn:** Three-layer structure (servers → leafs → spines)
    - **Prerequisites:** Modern Topology
    - **Next:** 3-Tier vs Spine-Leaf
 
-6. **[3-Tier vs Spine-Leaf Differences](01_foundations/02_datacenter_topology/03_3tier_vs_spine_leaf.md)** (30 min)
+6. **[3-Tier vs Spine-Leaf Differences](01_foundations/02_datacenter_topology/03_3tier_vs_spine_leaf.md)**
    - **What you'll learn:** Why spine-leaf is fundamentally different
    - **Prerequisites:** Server Hierarchy
    - **Next:** ECMP Load Balancing
 
-7. **[ECMP Load Balancing](01_foundations/02_datacenter_topology/04_ecmp_load_balancing.md)** (50 min)
+7. **[ECMP Load Balancing](01_foundations/02_datacenter_topology/04_ecmp_load_balancing.md)**
    - **What you'll learn:** How traffic distributes across multiple paths
    - **Prerequisites:** 3-Tier vs Spine-Leaf
    - **Next:** Advanced networking concepts
@@ -333,24 +333,23 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 **Why learn this:** Modern infrastructure relies on containers alongside VMs
 
-8. **[Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md)** (50 min)
+8. **[Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md)**
    - **What you'll learn:** cgroups, namespaces, container isolation
    - **Prerequisites:** None
    - **Next:** Union Filesystems
 
-9. **[Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md)** (45 min)
+9. **[Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md)**
    - **What you'll learn:** Container images, layers, OverlayFS
    - **Prerequisites:** Linux Container Primitives
    - **Next:** Container vs VM Comparison
 
-10. **[Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md)** (50 min)
+10. **[Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md)**
     - **What you'll learn:** When to use containers vs VMs
     - **Prerequisites:** Union Filesystems, virtualization basics
     - **Next:** Container runtimes or continue with VM track
 
 **Part 1.3 Total: ~2.5 hours**
 
-**Part 1 Complete Total: ~6 hours**
 **Outcome:** Understand virtualization mechanics, modern datacenter topology, AND container fundamentals
 
 ---
@@ -361,12 +360,12 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 #### **2.1 Advanced Networking Concepts**
 
-8. **[VLAN vs VXLAN Comparison](02_intermediate/01_advanced_networking/01_vlan_vs_vxlan.md)** (40 min)
+8. **[VLAN vs VXLAN Comparison](02_intermediate/01_advanced_networking/01_vlan_vs_vxlan.md)**
    - **What you'll learn:** Overlay networking for multi-tenancy
    - **Prerequisites:** Foundation networking
    - **Next:** Overlay Mechanics
 
-9. **[Overlay Mechanics (VXLAN/Geneve)](02_intermediate/01_advanced_networking/02_overlay_mechanics.md)** (55 min)
+9. **[Overlay Mechanics (VXLAN/Geneve)](02_intermediate/01_advanced_networking/02_overlay_mechanics.md)**
    - **What you'll learn:** How overlays actually work
    - **Prerequisites:** VLAN vs VXLAN
    - **Next:** RDMA or specialized overlay networking
@@ -377,22 +376,22 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 #### **2.2 High-Performance Networking (RDMA)**
 
-10. **[RDMA Fundamentals](02_intermediate/02_rdma/01_rdma_fundamentals.md)** (35 min)
+10. **[RDMA Fundamentals](02_intermediate/02_rdma/01_rdma_fundamentals.md)**
     - **What you'll learn:** RDMA is a HOST optimization
     - **Prerequisites:** Foundation networking
     - **Next:** Protocol Variants
 
-11. **[Protocol Variants (RoCEv2, iWARP, InfiniBand)](02_intermediate/02_rdma/02_protocol_variants.md)** (45 min)
+11. **[Protocol Variants (RoCEv2, iWARP, InfiniBand)](02_intermediate/02_rdma/02_protocol_variants.md)**
     - **What you'll learn:** RDMA protocol differences
     - **Prerequisites:** RDMA Fundamentals
     - **Next:** Converged Ethernet
 
-12. **[Converged Ethernet](02_intermediate/02_rdma/03_converged_ethernet.md)** (50 min)
+12. **[Converged Ethernet](02_intermediate/02_rdma/03_converged_ethernet.md)**
     - **What you'll learn:** How to make Ethernet lossless
     - **Prerequisites:** Protocol Variants
     - **Next:** NUMA Considerations
 
-13. **[NUMA Considerations](02_intermediate/02_rdma/04_numa_considerations.md)** (40 min)
+13. **[NUMA Considerations](02_intermediate/02_rdma/04_numa_considerations.md)**
     - **What you'll learn:** Hardware topology for RDMA performance
     - **Prerequisites:** Converged Ethernet
     - **Next:** Storage applications or complete virtualization
@@ -403,22 +402,22 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 #### **2.3 Complete Virtualization Understanding**
 
-14. **[Complete Virtualization Evolution](02_intermediate/03_complete_virtualization/01_evolution_complete.md)** (90 min)
+14. **[Complete Virtualization Evolution](02_intermediate/03_complete_virtualization/01_evolution_complete.md)**
     - **What you'll learn:** All approaches (paravirt, KVM, virtio, SR-IOV)
     - **Prerequisites:** Foundation virtualization (Part 1.1)
     - **Next:** Exit Minimization
 
-15. **[Exit Minimization Strategies](02_intermediate/03_complete_virtualization/02_exit_minimization.md)** (40 min)
+15. **[Exit Minimization Strategies](02_intermediate/03_complete_virtualization/02_exit_minimization.md)**
     - **What you'll learn:** Performance optimization techniques
     - **Prerequisites:** Complete Evolution, VM Exit Basics
     - **Next:** Hardware Optimizations
 
-16. **[Hardware Optimizations (VPID, Posted Interrupts)](02_intermediate/03_complete_virtualization/03_hardware_optimizations.md)** (40 min)
+16. **[Hardware Optimizations (VPID, Posted Interrupts)](02_intermediate/03_complete_virtualization/03_hardware_optimizations.md)**
     - **What you'll learn:** Modern VT-x features
     - **Prerequisites:** Hardware Solution, Exit Minimization
     - **Next:** Device Passthrough
 
-17. **[Device Passthrough (SR-IOV, VFIO, IOMMU)](02_intermediate/03_complete_virtualization/04_device_passthrough.md)** (50 min)
+17. **[Device Passthrough (SR-IOV, VFIO, IOMMU)](02_intermediate/03_complete_virtualization/04_device_passthrough.md)**
     - **What you'll learn:** Near-native I/O performance
     - **Prerequisites:** Hardware Optimizations
     - **Next:** Specialized topics
@@ -429,104 +428,103 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 #### **2.4 Container Technologies**
 
-18. **[Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md)** (45 min)
+18. **[Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md)**
     - **What you'll learn:** OCI/CRI standards, runtime ecosystem overview
     - **Prerequisites:** Container fundamentals (Part 1.3)
     - **Next:** Docker and containerd
 
-19. **[Docker and containerd Architecture](04_containers/02_runtimes/02_docker_containerd.md)** (50 min)
+19. **[Docker and containerd Architecture](04_containers/02_runtimes/02_docker_containerd.md)**
     - **What you'll learn:** How Docker works, containerd role, runc
     - **Prerequisites:** Container Runtime Landscape
     - **Next:** Secure runtimes
 
-20. **[Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md)** (40 min)
+20. **[Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md)**
     - **What you'll learn:** VM-isolated containers, userspace kernels
     - **Prerequisites:** Docker and containerd, virtualization knowledge
     - **Next:** Runtime comparison
 
-21. **[Runtime Comparison and Selection](04_containers/02_runtimes/04_runtime_comparison.md)** (55 min)
+21. **[Runtime Comparison and Selection](04_containers/02_runtimes/04_runtime_comparison.md)**
     - **What you'll learn:** When to use each runtime, tradeoffs
     - **Prerequisites:** All runtime documents
     - **Next:** Kubernetes orchestration
 
-22. **[Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md)** (45 min)
+22. **[Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md)**
     - **What you'll learn:** Control plane, worker nodes, reconciliation
     - **Prerequisites:** Container runtimes
     - **Next:** Pods and Workloads
 
-23. **[Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md)** (50 min)
+23. **[Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md)**
     - **What you'll learn:** Pods, Deployments, StatefulSets, DaemonSets
     - **Prerequisites:** Kubernetes Architecture
     - **Next:** Services and Networking
 
-24. **[Kubernetes Services and Networking](04_containers/03_orchestration/03_services_networking.md)** (55 min)
+24. **[Kubernetes Services and Networking](04_containers/03_orchestration/03_services_networking.md)**
     - **What you'll learn:** Services, kube-proxy, DNS, Ingress
     - **Prerequisites:** Pods and Workloads
     - **Next:** Scheduling and Resources
 
-25. **[Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md)** (45 min)
+25. **[Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md)**
     - **What you'll learn:** Scheduler, affinity, autoscaling, QoS
     - **Prerequisites:** Services and Networking
     - **Next:** Storage and Volumes
 
-26. **[Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md)** (40 min)
+26. **[Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md)**
     - **What you'll learn:** PersistentVolumes, StorageClasses, CSI
     - **Prerequisites:** Scheduling and Resources
     - **Next:** Production Patterns
 
-27. **[Production Patterns](04_containers/03_orchestration/06_production_patterns.md)** (50 min)
+27. **[Production Patterns](04_containers/03_orchestration/06_production_patterns.md)**
     - **What you'll learn:** HA, deployment safety, observability
     - **Prerequisites:** Storage and Volumes
     - **Next:** Container networking deep dive
 
-28. **[CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md)** (60 min)
+28. **[CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md)**
     - **What you'll learn:** CNI specification, plugin implementation
     - **Prerequisites:** Kubernetes networking basics
     - **Next:** Calico vs Cilium
 
-29. **[Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md)** (55 min)
+29. **[Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md)**
     - **What you'll learn:** BGP vs eBPF networking architectures
     - **Prerequisites:** CNI Deep Dive, datacenter networking knowledge
     - **Next:** eBPF Networking
 
-30. **[eBPF Networking](04_containers/04_networking/03_ebpf_networking.md)** (65 min)
+30. **[eBPF Networking](04_containers/04_networking/03_ebpf_networking.md)**
     - **What you'll learn:** XDP, TC, eBPF maps, high-performance networking
     - **Prerequisites:** Calico vs Cilium
     - **Next:** Service Mesh
 
-31. **[Service Mesh (Istio, Linkerd)](04_containers/04_networking/04_service_mesh.md)** (60 min)
+31. **[Service Mesh (Istio, Linkerd)](04_containers/04_networking/04_service_mesh.md)**
     - **What you'll learn:** mTLS, traffic management, observability
     - **Prerequisites:** Kubernetes networking
     - **Next:** Network Policies
 
-32. **[Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md)** (50 min)
+32. **[Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md)**
     - **What you'll learn:** Multi-tenancy, egress control, L7 policies
     - **Prerequisites:** Service Mesh
     - **Next:** Container security
 
-33. **[Image Security](04_containers/05_security/01_image_security.md)** (45 min)
+33. **[Image Security](04_containers/05_security/01_image_security.md)**
     - **What you'll learn:** Scanning, signing, admission control
     - **Prerequisites:** Container runtimes
     - **Next:** Runtime Security
 
-34. **[Runtime Security](04_containers/05_security/02_runtime_security.md)** (50 min)
+34. **[Runtime Security](04_containers/05_security/02_runtime_security.md)**
     - **What you'll learn:** seccomp, AppArmor, Falco, capabilities
     - **Prerequisites:** Image Security
     - **Next:** Pod Security
 
-35. **[Pod Security Standards](04_containers/05_security/03_pod_security.md)** (45 min)
+35. **[Pod Security Standards](04_containers/05_security/03_pod_security.md)**
     - **What you'll learn:** PSS, RBAC, service accounts
     - **Prerequisites:** Runtime Security
     - **Next:** Supply Chain Security
 
-36. **[Supply Chain Security](04_containers/05_security/04_supply_chain.md)** (50 min)
+36. **[Supply Chain Security](04_containers/05_security/04_supply_chain.md)**
     - **What you'll learn:** SBOM, SLSA, Sigstore, provenance
     - **Prerequisites:** Pod Security
     - **Next:** Specialized topics or production deployment
 
 **Part 2.4 Total: ~15 hours**
 
-**Part 2 Complete Total: ~22.5 hours**
 **Outcome:** Deep understanding of modern networking, RDMA, complete virtualization stack, AND container technologies
 
 ---
@@ -537,7 +535,7 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 #### **3.1 Storage & RDMA Applications**
 
-37. **[PFC, DCB, and Storage](05_specialized/01_storage/01_pfc_dcb_storage.md)** (55 min)
+37. **[PFC, DCB, and Storage](05_specialized/01_storage/01_pfc_dcb_storage.md)**
     - **What you'll learn:** Why RDMA is critical for modern storage
     - **Prerequisites:** RDMA complete (Part 2.2)
 
@@ -545,61 +543,61 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 #### **3.2 Advanced Networking Deep-Dives**
 
-38. **[VXLAN + BGP EVPN Deep Dive](05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md)** (90 min)
+38. **[VXLAN + BGP EVPN Deep Dive](05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md)**
     - **Prerequisites:** Advanced networking (Part 2.1)
 
-39. **[BGP Communities vs Route Reflectors](05_specialized/02_overlay_networking/02_bgp_communities_rr.md)** (45 min)
+39. **[BGP Communities vs Route Reflectors](05_specialized/02_overlay_networking/02_bgp_communities_rr.md)**
     - **Prerequisites:** Doc #38
 
-40. **[Route Reflector Session Cardinality](05_specialized/02_overlay_networking/03_rr_session_cardinality.md)** (35 min)
+40. **[Route Reflector Session Cardinality](05_specialized/02_overlay_networking/03_rr_session_cardinality.md)**
     - **Prerequisites:** Doc #39
 
-41. **[OVS Control vs Data Plane](05_specialized/02_overlay_networking/04_ovs_control_data.md)** (50 min)
+41. **[OVS Control vs Data Plane](05_specialized/02_overlay_networking/04_ovs_control_data.md)**
     - **Prerequisites:** Advanced networking
 
-42. **[OVS Cilium Geneve](05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md)** (55 min)
+42. **[OVS Cilium Geneve](05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md)**
     - **Prerequisites:** Overlay mechanics, Kubernetes networking
 
-43. **[OpenFlow Precompile Model](05_specialized/02_overlay_networking/06_openflow_precompile.md)** (45 min)
+43. **[OpenFlow Precompile Model](05_specialized/02_overlay_networking/06_openflow_precompile.md)**
     - **Prerequisites:** OVS knowledge
 
-44. **[Prepopulated vs Learning](05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md)** (30 min)
+44. **[Prepopulated vs Learning](05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md)**
     - **Prerequisites:** Doc #43
 
 ---
 
 #### **3.3 Microservices & Serverless**
 
-45. **[Firecracker KVM Relationship](05_specialized/03_serverless/01_firecracker_relationship.md)** (40 min)
+45. **[Firecracker KVM Relationship](05_specialized/03_serverless/01_firecracker_relationship.md)**
     - **What you'll learn:** What Firecracker is (not a hypervisor replacement)
 
-46. **[Firecracker Deep Dive](05_specialized/03_serverless/02_firecracker_deep_dive.md)** (70 min)
+46. **[Firecracker Deep Dive](05_specialized/03_serverless/02_firecracker_deep_dive.md)**
     - **Prerequisites:** Doc #45
 
-47. **[Firecracker virtio Devices](05_specialized/03_serverless/03_firecracker_virtio.md)** (90 min)
+47. **[Firecracker virtio Devices](05_specialized/03_serverless/03_firecracker_virtio.md)**
     - **Prerequisites:** Doc #46
 
 ---
 
 #### **3.4 CPU & Memory Virtualization Deep-Dives**
 
-48. **[TLB, EPT, VPID Explained](05_specialized/04_cpu_memory/01_tlb_ept_explained.md)** (90 min)
+48. **[TLB, EPT, VPID Explained](05_specialized/04_cpu_memory/01_tlb_ept_explained.md)**
     - **Prerequisites:** Complete virtualization (Part 2.3)
 
-49. **[TLB Capacity Limits](05_specialized/04_cpu_memory/02_tlb_capacity_limits.md)** (50 min)
+49. **[TLB Capacity Limits](05_specialized/04_cpu_memory/02_tlb_capacity_limits.md)**
     - **Prerequisites:** Doc #48
 
 ---
 
 #### **3.5 Compatibility & Legacy Systems**
 
-50. **[KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md)** (70 min)
+50. **[KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md)**
     - **What you'll learn:** 32-bit/64-bit compatibility
 
-51. **[CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md)** (50 min)
+51. **[CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md)**
     - **Prerequisites:** Doc #50
 
-52. **[Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md)** (40 min)
+52. **[Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md)**
     - **Prerequisites:** Doc #51
 
 ---
@@ -640,10 +638,10 @@ This documentation set contains **59 high-quality documents** covering datacente
 
 For those who want rapid overviews before deep dives:
 
-- **[Quick Start: Virtualization](quick_start_virtualization.md)** (2 hours) - Essential virtualization concepts
-- **[Quick Start: Networking](quick_start_networking.md)** (2 hours) - Essential networking concepts
-- **[Quick Start: Containers](quick_start_containers.md)** (2.5 hours) - Container fundamentals through Kubernetes
-- **[Quick Start: Full Stack](quick_start_full_stack.md)** (5 hours) - Complete overview of all topics
+- **[Quick Start: Virtualization](quick_start_virtualization.md)** - Essential virtualization concepts
+- **[Quick Start: Networking](quick_start_networking.md)** - Essential networking concepts
+- **[Quick Start: Containers](quick_start_containers.md)** - Container fundamentals through Kubernetes
+- **[Quick Start: Full Stack](quick_start_full_stack.md)** - Complete overview of all topics
 
 ---
 
@@ -651,7 +649,7 @@ For those who want rapid overviews before deep dives:
 
 All documents include YAML frontmatter with:
 - **level:** foundational | intermediate | specialized | reference
-- **estimated_time:** Reading time estimate
+- **estimated_time:** Individual document estimate (for reference, not path planning)
 - **prerequisites:** What to read first
 - **next_recommended:** Suggested next documents
 - **tags:** Topical categorization
