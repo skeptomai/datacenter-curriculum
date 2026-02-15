@@ -2,7 +2,7 @@
 
 **Welcome to a comprehensive guide to modern datacenter infrastructure!**
 
-This documentation set contains **59 high-quality documents** covering datacenter networking, RDMA, virtualization, containers, and infrastructure development. These documents have been reorganized pedagogically to support structured learning rather than random exploration.
+This documentation set contains **59 documents** covering containers, virtualization, datacenter networking, RDMA, and infrastructure development. These documents have been organized pedagogically to support structured learning rather than random exploration.
 
 ---
 
