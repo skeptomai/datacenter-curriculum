@@ -38,6 +38,8 @@
   - Updated README.md with new paths and depth indicators
   - Updated 00_START_HERE.md with complete container curriculum
   - Cleaner introduction text (removed "high-quality", reordered topics)
+  - Expanded all acronyms at first use across 22 container documents (33 unique acronyms)
+  - Enhanced veth pair explanations with TAP/TUN comparisons and namespace boundary diagrams
 
 ---
 
