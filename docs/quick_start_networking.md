@@ -239,11 +239,11 @@ Benefits:
 
 **Go Deeper:**
 - Complete [Network Engineer Path](00_START_HERE.md#path-2-network-engineer)
-- Specialize in [Overlay Networking](03_specialized/02_overlay_networking/) (BGP EVPN, OVS)
+- Specialize in [Overlay Networking](05_specialized/02_overlay_networking/) (BGP EVPN, OVS)
 
 **Related Topics:**
 - [Storage Engineering](00_START_HERE.md#path-3-storage-engineer) - RDMA for storage (NVMe-oF)
 - [Quick Start: Virtualization](quick_start_virtualization.md) - Where networks connect to VMs
 
 **Reference:**
-- [Networking Acronyms Glossary](04_reference/learning_resources/02_networking_acronyms.md) - Quick lookups
+- [Networking Acronyms Glossary](06_reference/learning_resources/02_networking_acronyms.md) - Quick lookups

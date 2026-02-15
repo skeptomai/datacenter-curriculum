@@ -2,9 +2,9 @@
 level: specialized
 estimated_time: 50 min
 prerequisites:
-  - 03_specialized/04_cpu_memory/01_tlb_ept_explained.md
+  - 05_specialized/04_cpu_memory/01_tlb_ept_explained.md
 next_recommended:
-  - 03_specialized/05_compatibility/01_kvm_compat.md
+  - 05_specialized/05_compatibility/01_kvm_compat.md
 tags: [virtualization, tlb, vpid, capacity, performance, limits]
 ---
 

@@ -2,9 +2,9 @@
 level: specialized
 estimated_time: 50 min
 prerequisites:
-  - 03_specialized/05_compatibility/01_kvm_compat.md
+  - 05_specialized/05_compatibility/01_kvm_compat.md
 next_recommended:
-  - 03_specialized/05_compatibility/03_compat_examples.md
+  - 05_specialized/05_compatibility/03_compat_examples.md
 tags: [virtualization, kvm, compatibility, kernel-config, compat]
 ---
 

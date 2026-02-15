@@ -2,9 +2,9 @@
 level: specialized
 estimated_time: 45 min
 prerequisites:
-  - 03_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md
+  - 05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md
 next_recommended:
-  - 03_specialized/02_overlay_networking/03_rr_session_cardinality.md
+  - 05_specialized/02_overlay_networking/03_rr_session_cardinality.md
 tags: [networking, bgp, route-reflectors, communities, scaling]
 ---
 

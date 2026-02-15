@@ -2,9 +2,9 @@
 level: specialized
 estimated_time: 30 min
 prerequisites:
-  - 03_specialized/02_overlay_networking/06_openflow_precompile.md
+  - 05_specialized/02_overlay_networking/06_openflow_precompile.md
 next_recommended:
-  - 03_specialized/03_serverless/01_firecracker_relationship.md
+  - 05_specialized/03_serverless/01_firecracker_relationship.md
 tags: [networking, sdn, openflow, flow-tables, learning]
 ---
 

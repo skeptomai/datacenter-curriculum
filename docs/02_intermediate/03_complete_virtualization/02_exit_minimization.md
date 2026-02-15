@@ -386,8 +386,8 @@ Device Passthrough:        <1% overhead
 - [Complete Virtualization Evolution](01_evolution_complete.md) - Historical context
 
 **Related Topics:**
-- [TLB and EPT Mechanics](../../03_specialized/04_cpu_memory/01_tlb_ept_explained.md) - Memory virtualization details
-- [virtio Architecture](../../03_specialized/03_serverless/03_firecracker_virtio.md) - virtio implementation
+- [TLB and EPT Mechanics](../../05_specialized/04_cpu_memory/01_tlb_ept_explained.md) - Memory virtualization details
+- [virtio Architecture](../../05_specialized/03_serverless/03_firecracker_virtio.md) - virtio implementation
 
 **Return to:**
 - [Master Index](../../00_START_HERE.md) - All learning paths

@@ -4,7 +4,7 @@ estimated_time: 40 min
 prerequisites:
   - 02_intermediate/03_complete_virtualization/01_evolution_complete.md
 next_recommended:
-  - 03_specialized/03_serverless/02_firecracker_deep_dive.md
+  - 05_specialized/03_serverless/02_firecracker_deep_dive.md
 tags: [virtualization, firecracker, kvm, microvms, serverless]
 ---
 

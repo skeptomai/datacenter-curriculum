@@ -3,7 +3,7 @@ level: reference
 estimated_time: 20 min
 prerequisites: []
 next_recommended:
-  - 04_reference/learning_resources/01_learning_kvm_guide.md
+  - 06_reference/learning_resources/01_learning_kvm_guide.md
 tags: [setup, macos, kernel-development, storage, howto]
 ---
 

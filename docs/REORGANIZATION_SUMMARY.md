@@ -21,13 +21,13 @@ datacenter_virt/
 │   ├── 01_advanced_networking/    (2 documents)
 │   ├── 02_rdma/                   (4 documents)
 │   └── 03_complete_virtualization/(4 documents)
-├── 03_specialized/             ← Deep dives by area
+├── 05_specialized/             ← Deep dives by area
 │   ├── 01_storage/                (1 document)
 │   ├── 02_overlay_networking/     (7 documents)
 │   ├── 03_serverless/             (3 documents)
 │   ├── 04_cpu_memory/             (2 documents)
 │   └── 05_compatibility/          (3 documents)
-├── 04_reference/               ← Practical guides
+├── 06_reference/               ← Practical guides
 │   ├── setup_guides/              (2 documents)
 │   ├── learning_resources/        (2 documents)
 │   └── decision_frameworks/       (1 document)
@@ -107,8 +107,8 @@ tags: [relevant, tags, here]
 - `01_foundations/01_virtualization_basics/README.md` - The essential trilogy
 - `02_intermediate/README.md` - Three specializations overview
 - `02_intermediate/03_complete_virtualization/README.md` - Complete virt story
-- `03_specialized/README.md` - Five specialization areas
-- `04_reference/README.md` - Practical guides
+- `05_specialized/README.md` - Five specialization areas
+- `06_reference/README.md` - Practical guides
 
 **3. Quick Start Guides (3 created)**
 - `quick_start_virtualization.md` (2 hours) - Essential virtualization
@@ -214,8 +214,8 @@ Total Time Investment:
 6. `01_foundations/01_virtualization_basics/README.md`
 7. `02_intermediate/README.md`
 8. `02_intermediate/03_complete_virtualization/README.md`
-9. `03_specialized/README.md`
-10. `04_reference/README.md`
+9. `05_specialized/README.md`
+10. `06_reference/README.md`
 
 ### Updated Files:
 - `convert_to_html.sh` (now processes directory structure)
@@ -252,9 +252,9 @@ Total Time Investment:
    - `quick_start_full_stack.md` (5 hours)
 
 ### User Solving Specific Problem:
-1. Jump to `04_reference/` for setup guides
-2. Use `04_reference/learning_resources/02_networking_acronyms.md` for lookups
-3. Use `04_reference/decision_frameworks/01_virtualization_primer.md` for tech selection
+1. Jump to `06_reference/` for setup guides
+2. Use `06_reference/learning_resources/02_networking_acronyms.md` for lookups
+3. Use `06_reference/decision_frameworks/01_virtualization_primer.md` for tech selection
 
 ---
 

@@ -45,18 +45,18 @@ This documentation set contains **37 high-quality documents** covering datacente
    - [Device Passthrough](02_intermediate/03_complete_virtualization/04_device_passthrough.md) (50 min)
 
 3. **Specialized/CPU & Memory** (2.5 hours)
-   - [TLB, EPT, VPID Explained](03_specialized/04_cpu_memory/01_tlb_ept_explained.md) (90 min)
-   - [TLB Capacity Limits](03_specialized/04_cpu_memory/02_tlb_capacity_limits.md) (50 min)
+   - [TLB, EPT, VPID Explained](05_specialized/04_cpu_memory/01_tlb_ept_explained.md) (90 min)
+   - [TLB Capacity Limits](05_specialized/04_cpu_memory/02_tlb_capacity_limits.md) (50 min)
 
 4. **Specialized/Serverless** (2.5 hours)
-   - [Firecracker KVM Relationship](03_specialized/03_serverless/01_firecracker_relationship.md) (40 min)
-   - [Firecracker Deep Dive](03_specialized/03_serverless/02_firecracker_deep_dive.md) (70 min)
-   - [Firecracker virtio Devices](03_specialized/03_serverless/03_firecracker_virtio.md) (90 min)
+   - [Firecracker KVM Relationship](05_specialized/03_serverless/01_firecracker_relationship.md) (40 min)
+   - [Firecracker Deep Dive](05_specialized/03_serverless/02_firecracker_deep_dive.md) (70 min)
+   - [Firecracker virtio Devices](05_specialized/03_serverless/03_firecracker_virtio.md) (90 min)
 
 5. **Specialized/Compatibility** (Optional, 2.5 hours)
-   - [KVM Compat Explained](03_specialized/05_compatibility/01_kvm_compat.md) (70 min)
-   - [CONFIG_COMPAT vs CONFIG_KVM_COMPAT](03_specialized/05_compatibility/02_compat_vs_kvm_compat.md) (50 min)
-   - [Real Examples with QEMU](03_specialized/05_compatibility/03_compat_examples.md) (40 min)
+   - [KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md) (70 min)
+   - [CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md) (50 min)
+   - [Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md) (40 min)
 
 **Total Time:** 15-20 hours
 **Outcome:** Production-ready understanding of modern virtualization stack
@@ -85,13 +85,13 @@ This documentation set contains **37 high-quality documents** covering datacente
    - [NUMA Considerations](02_intermediate/02_rdma/04_numa_considerations.md) (40 min)
 
 4. **Specialized/Overlay Networking** (5 hours)
-   - [VXLAN + BGP EVPN](03_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md) (90 min)
-   - [BGP Communities & Route Reflectors](03_specialized/02_overlay_networking/02_bgp_communities_rr.md) (45 min)
-   - [RR Session Cardinality](03_specialized/02_overlay_networking/03_rr_session_cardinality.md) (35 min)
-   - [OVS Control vs Data Plane](03_specialized/02_overlay_networking/04_ovs_control_data.md) (50 min)
-   - [OVS Cilium Geneve](03_specialized/02_overlay_networking/05_ovs_cilium_geneve.md) (55 min)
-   - [OpenFlow Precompile Model](03_specialized/02_overlay_networking/06_openflow_precompile.md) (45 min)
-   - [Prepopulated vs Learning](03_specialized/02_overlay_networking/07_prepopulated_vs_learning.md) (30 min)
+   - [VXLAN + BGP EVPN](05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md) (90 min)
+   - [BGP Communities & Route Reflectors](05_specialized/02_overlay_networking/02_bgp_communities_rr.md) (45 min)
+   - [RR Session Cardinality](05_specialized/02_overlay_networking/03_rr_session_cardinality.md) (35 min)
+   - [OVS Control vs Data Plane](05_specialized/02_overlay_networking/04_ovs_control_data.md) (50 min)
+   - [OVS Cilium Geneve](05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md) (55 min)
+   - [OpenFlow Precompile Model](05_specialized/02_overlay_networking/06_openflow_precompile.md) (45 min)
+   - [Prepopulated vs Learning](05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md) (30 min)
 
 **Total Time:** 12-16 hours
 **Outcome:** Expert-level understanding of modern datacenter networks
@@ -122,7 +122,7 @@ This documentation set contains **37 high-quality documents** covering datacente
    - [NUMA Considerations](02_intermediate/02_rdma/04_numa_considerations.md) (40 min)
 
 4. **Specialized/Storage** (1 hour)
-   - [PFC, DCB, and Storage](03_specialized/01_storage/01_pfc_dcb_storage.md) (55 min)
+   - [PFC, DCB, and Storage](05_specialized/01_storage/01_pfc_dcb_storage.md) (55 min)
 
 5. **Intermediate/Virtualization** (Optional, 3 hours)
    - [Device Passthrough](02_intermediate/03_complete_virtualization/04_device_passthrough.md) (50 min)
@@ -292,7 +292,7 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 #### **3.1 Storage & RDMA Applications**
 
-18. **[PFC, DCB, and Storage](03_specialized/01_storage/01_pfc_dcb_storage.md)** (55 min)
+18. **[PFC, DCB, and Storage](05_specialized/01_storage/01_pfc_dcb_storage.md)** (55 min)
     - **What you'll learn:** Why RDMA is critical for modern storage
     - **Prerequisites:** RDMA complete (Part 2.2)
 
@@ -300,61 +300,61 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 #### **3.2 Advanced Networking Deep-Dives**
 
-19. **[VXLAN + BGP EVPN Deep Dive](03_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md)** (90 min)
+19. **[VXLAN + BGP EVPN Deep Dive](05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md)** (90 min)
     - **Prerequisites:** Advanced networking (Part 2.1)
 
-20. **[BGP Communities vs Route Reflectors](03_specialized/02_overlay_networking/02_bgp_communities_rr.md)** (45 min)
+20. **[BGP Communities vs Route Reflectors](05_specialized/02_overlay_networking/02_bgp_communities_rr.md)** (45 min)
     - **Prerequisites:** Doc #19
 
-21. **[Route Reflector Session Cardinality](03_specialized/02_overlay_networking/03_rr_session_cardinality.md)** (35 min)
+21. **[Route Reflector Session Cardinality](05_specialized/02_overlay_networking/03_rr_session_cardinality.md)** (35 min)
     - **Prerequisites:** Doc #20
 
-22. **[OVS Control vs Data Plane](03_specialized/02_overlay_networking/04_ovs_control_data.md)** (50 min)
+22. **[OVS Control vs Data Plane](05_specialized/02_overlay_networking/04_ovs_control_data.md)** (50 min)
     - **Prerequisites:** Advanced networking
 
-23. **[OVS Cilium Geneve](03_specialized/02_overlay_networking/05_ovs_cilium_geneve.md)** (55 min)
+23. **[OVS Cilium Geneve](05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md)** (55 min)
     - **Prerequisites:** Docs #9, #22
 
-24. **[OpenFlow Precompile Model](03_specialized/02_overlay_networking/06_openflow_precompile.md)** (45 min)
+24. **[OpenFlow Precompile Model](05_specialized/02_overlay_networking/06_openflow_precompile.md)** (45 min)
     - **Prerequisites:** OVS knowledge
 
-25. **[Prepopulated vs Learning](03_specialized/02_overlay_networking/07_prepopulated_vs_learning.md)** (30 min)
+25. **[Prepopulated vs Learning](05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md)** (30 min)
     - **Prerequisites:** Doc #24
 
 ---
 
 #### **3.3 Microservices & Serverless**
 
-26. **[Firecracker KVM Relationship](03_specialized/03_serverless/01_firecracker_relationship.md)** (40 min)
+26. **[Firecracker KVM Relationship](05_specialized/03_serverless/01_firecracker_relationship.md)** (40 min)
     - **What you'll learn:** What Firecracker is (not a hypervisor replacement)
 
-27. **[Firecracker Deep Dive](03_specialized/03_serverless/02_firecracker_deep_dive.md)** (70 min)
+27. **[Firecracker Deep Dive](05_specialized/03_serverless/02_firecracker_deep_dive.md)** (70 min)
     - **Prerequisites:** Doc #26
 
-28. **[Firecracker virtio Devices](03_specialized/03_serverless/03_firecracker_virtio.md)** (90 min)
+28. **[Firecracker virtio Devices](05_specialized/03_serverless/03_firecracker_virtio.md)** (90 min)
     - **Prerequisites:** Doc #27
 
 ---
 
 #### **3.4 CPU & Memory Virtualization Deep-Dives**
 
-29. **[TLB, EPT, VPID Explained](03_specialized/04_cpu_memory/01_tlb_ept_explained.md)** (90 min)
+29. **[TLB, EPT, VPID Explained](05_specialized/04_cpu_memory/01_tlb_ept_explained.md)** (90 min)
     - **Prerequisites:** Complete virtualization (Part 2.3)
 
-30. **[TLB Capacity Limits](03_specialized/04_cpu_memory/02_tlb_capacity_limits.md)** (50 min)
+30. **[TLB Capacity Limits](05_specialized/04_cpu_memory/02_tlb_capacity_limits.md)** (50 min)
     - **Prerequisites:** Doc #29
 
 ---
 
 #### **3.5 Compatibility & Legacy Systems**
 
-31. **[KVM Compat Explained](03_specialized/05_compatibility/01_kvm_compat.md)** (70 min)
+31. **[KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md)** (70 min)
     - **What you'll learn:** 32-bit/64-bit compatibility
 
-32. **[CONFIG_COMPAT vs CONFIG_KVM_COMPAT](03_specialized/05_compatibility/02_compat_vs_kvm_compat.md)** (50 min)
+32. **[CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md)** (50 min)
     - **Prerequisites:** Doc #31
 
-33. **[Real Examples with QEMU](03_specialized/05_compatibility/03_compat_examples.md)** (40 min)
+33. **[Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md)** (40 min)
     - **Prerequisites:** Doc #32
 
 ---
@@ -365,27 +365,27 @@ This documentation set contains **37 high-quality documents** covering datacente
 
 #### **4.1 Development Environment Setup**
 
-34. **[macOS Kernel Development Setup](04_reference/setup_guides/01_macos_case_sensitivity.md)**
+34. **[macOS Kernel Development Setup](06_reference/setup_guides/01_macos_case_sensitivity.md)**
     - **When:** Setting up Linux kernel development on macOS
 
-35. **[External Drive for Kernel Work](04_reference/setup_guides/02_external_drive_setup.md)**
+35. **[External Drive for Kernel Work](06_reference/setup_guides/02_external_drive_setup.md)**
     - **When:** Choosing storage for kernel work
 
 ---
 
 #### **4.2 Learning Resources**
 
-36. **[Learning KVM Comprehensive Guide](04_reference/learning_resources/01_learning_kvm_guide.md)**
+36. **[Learning KVM Comprehensive Guide](06_reference/learning_resources/01_learning_kvm_guide.md)**
     - **When:** Starting KVM source code study
 
-37. **[Networking Acronyms Glossary](04_reference/learning_resources/02_networking_acronyms.md)**
+37. **[Networking Acronyms Glossary](06_reference/learning_resources/02_networking_acronyms.md)**
     - **When:** Need quick reference for acronyms
 
 ---
 
 #### **4.3 Technology Selection**
 
-38. **[Virtualization Technology Primer](04_reference/decision_frameworks/01_virtualization_primer.md)**
+38. **[Virtualization Technology Primer](06_reference/decision_frameworks/01_virtualization_primer.md)**
     - **When:** Choosing virtualization technology
     - **NOTE:** Read AFTER understanding fundamentals (Part 2.3)
 
@@ -421,7 +421,7 @@ All original documents are preserved in `original_docs/` for reference.
 ## Need Help?
 
 - **Stuck on a concept?** Check prerequisites and read foundational documents first
-- **Can't find something?** Use the [Networking Acronyms Glossary](04_reference/learning_resources/02_networking_acronyms.md)
+- **Can't find something?** Use the [Networking Acronyms Glossary](06_reference/learning_resources/02_networking_acronyms.md)
 - **Want to go deeper?** Each document has "Next Recommended" links
 
 ---

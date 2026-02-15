@@ -220,11 +220,11 @@ Tradeoff: Reduces VM mobility (tied to specific hardware)
 
 **Go Deeper:**
 - Complete [Virtualization Engineer Path](00_START_HERE.md#path-1-virtualization-engineer-highest-priority)
-- Specialize in [CPU & Memory](03_specialized/04_cpu_memory/) or [Serverless](03_specialized/03_serverless/)
+- Specialize in [CPU & Memory](05_specialized/04_cpu_memory/) or [Serverless](05_specialized/03_serverless/)
 
 **Switch Topics:**
 - [Quick Start: Networking](quick_start_networking.md) for datacenter infrastructure
 - [Quick Start: Full Stack](quick_start_full_stack.md) for complete overview
 
 **Start Implementing:**
-- [Learning KVM Guide](04_reference/learning_resources/01_learning_kvm_guide.md) for hands-on work
+- [Learning KVM Guide](06_reference/learning_resources/01_learning_kvm_guide.md) for hands-on work

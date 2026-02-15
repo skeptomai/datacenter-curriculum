@@ -4,7 +4,7 @@ estimated_time: 90 min
 prerequisites:
   - 02_intermediate/03_complete_virtualization/03_hardware_optimizations.md
 next_recommended:
-  - 03_specialized/04_cpu_memory/02_tlb_capacity_limits.md
+  - 05_specialized/04_cpu_memory/02_tlb_capacity_limits.md
 tags: [virtualization, tlb, ept, npt, vpid, memory, performance]
 ---
 

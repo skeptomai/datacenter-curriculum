@@ -6,7 +6,7 @@ prerequisites:
   - 01_foundations/01_virtualization_basics/03_vm_exit_basics.md
 next_recommended:
   - 02_intermediate/03_complete_virtualization/04_device_passthrough.md
-  - 03_specialized/04_cpu_memory/01_tlb_ept_explained.md
+  - 05_specialized/04_cpu_memory/01_tlb_ept_explained.md
 tags: [virtualization, vtx, vpid, posted-interrupts, tlb, optimization, performance]
 part_of_series: true
 series_info: "Part 2 of 2 - Advanced VT-x optimizations. You should have read Part 1 (basic mechanisms) first."
@@ -252,7 +252,7 @@ Hardware virtualization:
 
 **Deep Dives:**
 - [Device Passthrough (VFIO/SR-IOV)](04_device_passthrough.md) - Eliminating device virtualization overhead
-- [TLB and EPT Deep Dive](../../03_specialized/04_cpu_memory/01_tlb_ept_explained.md) - Complete understanding of address translation
+- [TLB and EPT Deep Dive](../../05_specialized/04_cpu_memory/01_tlb_ept_explained.md) - Complete understanding of address translation
 
 **Related Topics:**
 - [VM Exit Minimization](02_exit_minimization.md) - Software techniques to reduce exit frequency

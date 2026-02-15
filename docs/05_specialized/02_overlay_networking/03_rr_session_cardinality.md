@@ -2,9 +2,9 @@
 level: specialized
 estimated_time: 35 min
 prerequisites:
-  - 03_specialized/02_overlay_networking/02_bgp_communities_rr.md
+  - 05_specialized/02_overlay_networking/02_bgp_communities_rr.md
 next_recommended:
-  - 03_specialized/02_overlay_networking/04_ovs_control_data.md
+  - 05_specialized/02_overlay_networking/04_ovs_control_data.md
 tags: [networking, bgp, route-reflectors, scaling, topology]
 ---
 

@@ -4,7 +4,7 @@ estimated_time: 50 min
 prerequisites:
   - 02_intermediate/01_advanced_networking/02_overlay_mechanics.md
 next_recommended:
-  - 03_specialized/02_overlay_networking/05_ovs_cilium_geneve.md
+  - 05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md
 tags: [networking, ovs, sdn, control-plane, data-plane, openflow]
 ---
 

@@ -4,7 +4,7 @@ estimated_time: 70 min
 prerequisites:
   - 02_intermediate/03_complete_virtualization/01_evolution_complete.md
 next_recommended:
-  - 03_specialized/05_compatibility/02_compat_vs_kvm_compat.md
+  - 05_specialized/05_compatibility/02_compat_vs_kvm_compat.md
 tags: [virtualization, kvm, compatibility, 32-bit, 64-bit, ioctl]
 ---
 

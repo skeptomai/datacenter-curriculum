@@ -2,9 +2,9 @@
 level: specialized
 estimated_time: 40 min
 prerequisites:
-  - 03_specialized/05_compatibility/02_compat_vs_kvm_compat.md
+  - 05_specialized/05_compatibility/02_compat_vs_kvm_compat.md
 next_recommended:
-  - 04_reference/learning_resources/01_learning_kvm_guide.md
+  - 06_reference/learning_resources/01_learning_kvm_guide.md
 tags: [virtualization, kvm, compatibility, qemu, examples]
 ---
 

@@ -4,7 +4,7 @@ estimated_time: 40 min
 prerequisites:
   - 02_intermediate/02_rdma/03_converged_ethernet.md
 next_recommended:
-  - 03_specialized/01_storage/01_pfc_dcb_storage.md
+  - 05_specialized/01_storage/01_pfc_dcb_storage.md
   - 02_intermediate/03_complete_virtualization/04_device_passthrough.md
 tags: [networking, rdma, numa, pcie, performance, tlb]
 ---

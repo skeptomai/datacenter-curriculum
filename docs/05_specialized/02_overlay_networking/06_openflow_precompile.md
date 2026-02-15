@@ -2,9 +2,9 @@
 level: specialized
 estimated_time: 45 min
 prerequisites:
-  - 03_specialized/02_overlay_networking/04_ovs_control_data.md
+  - 05_specialized/02_overlay_networking/04_ovs_control_data.md
 next_recommended:
-  - 03_specialized/02_overlay_networking/07_prepopulated_vs_learning.md
+  - 05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md
 tags: [networking, openflow, sdn, flow-tables, compiler-model]
 ---
 

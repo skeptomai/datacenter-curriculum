@@ -1362,8 +1362,8 @@ Now that you understand the complete evolution of virtualization, continue your 
 - [SR-IOV and IOMMU Deep Dive](04_device_passthrough.md) - Complete device passthrough guide
 
 **Specialized Topics:**
-- [Firecracker's Minimal VMM Approach](../../03_specialized/03_serverless/01_firecracker_relationship.md) - Microservices and serverless
-- [TLB and EPT Mechanics](../../03_specialized/04_cpu_memory/01_tlb_ept_explained.md) - CPU and memory deep dive
+- [Firecracker's Minimal VMM Approach](../../05_specialized/03_serverless/01_firecracker_relationship.md) - Microservices and serverless
+- [TLB and EPT Mechanics](../../05_specialized/04_cpu_memory/01_tlb_ept_explained.md) - CPU and memory deep dive
 
 **Return to Learning Paths:**
 - [Master Index](../../00_START_HERE.md) - All learning paths and curriculum

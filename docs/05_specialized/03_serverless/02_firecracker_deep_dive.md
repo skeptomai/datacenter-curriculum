@@ -2,9 +2,9 @@
 level: specialized
 estimated_time: 70 min
 prerequisites:
-  - 03_specialized/03_serverless/01_firecracker_relationship.md
+  - 05_specialized/03_serverless/01_firecracker_relationship.md
 next_recommended:
-  - 03_specialized/03_serverless/03_firecracker_virtio.md
+  - 05_specialized/03_serverless/03_firecracker_virtio.md
 tags: [virtualization, firecracker, microvms, serverless, aws-lambda]
 ---
 

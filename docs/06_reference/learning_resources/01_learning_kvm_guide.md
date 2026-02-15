@@ -4,7 +4,7 @@ estimated_time: 30 min
 prerequisites:
   - 02_intermediate/03_complete_virtualization/01_evolution_complete.md
 next_recommended:
-  - 04_reference/learning_resources/02_networking_acronyms.md
+  - 06_reference/learning_resources/02_networking_acronyms.md
 tags: [learning, kvm, virtualization, resources, roadmap]
 ---
 

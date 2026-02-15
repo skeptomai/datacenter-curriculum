@@ -3,7 +3,7 @@ level: reference
 estimated_time: 30 min
 prerequisites: []
 next_recommended:
-  - 04_reference/setup_guides/02_external_drive_setup.md
+  - 06_reference/setup_guides/02_external_drive_setup.md
 tags: [setup, macos, kernel-development, case-sensitivity, howto]
 ---
 

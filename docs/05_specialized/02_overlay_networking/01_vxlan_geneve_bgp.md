@@ -4,7 +4,7 @@ estimated_time: 90 min
 prerequisites:
   - 02_intermediate/01_advanced_networking/02_overlay_mechanics.md
 next_recommended:
-  - 03_specialized/02_overlay_networking/02_bgp_communities_rr.md
+  - 05_specialized/02_overlay_networking/02_bgp_communities_rr.md
 tags: [networking, vxlan, geneve, bgp, evpn, route-reflectors, overlay]
 ---
 

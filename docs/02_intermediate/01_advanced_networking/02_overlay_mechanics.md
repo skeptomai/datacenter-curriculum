@@ -4,7 +4,7 @@ estimated_time: 55 min
 prerequisites:
   - 02_intermediate/01_advanced_networking/01_vlan_vs_vxlan.md
 next_recommended:
-  - 03_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md
+  - 05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md
   - 02_intermediate/02_rdma/01_rdma_fundamentals.md
 tags: [networking, vxlan, geneve, overlay, tunneling, encapsulation]
 ---

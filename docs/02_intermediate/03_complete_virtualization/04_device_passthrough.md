@@ -5,8 +5,8 @@ prerequisites:
   - 02_intermediate/03_complete_virtualization/01_evolution_complete.md
   - 02_intermediate/03_complete_virtualization/03_hardware_optimizations.md
 next_recommended:
-  - 03_specialized/04_cpu_memory/01_tlb_ept_explained.md
-  - 03_specialized/03_serverless/01_firecracker_relationship.md
+  - 05_specialized/04_cpu_memory/01_tlb_ept_explained.md
+  - 05_specialized/03_serverless/01_firecracker_relationship.md
 tags: [virtualization, sr-iov, vfio, iommu, passthrough, performance]
 ---
 

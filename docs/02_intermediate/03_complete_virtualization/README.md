@@ -88,13 +88,13 @@ This directory contains the complete evolution of virtualization technology, plu
 **Specialization Options:**
 
 **Deep Performance:**
-→ [TLB & EPT Deep Dive](../../03_specialized/04_cpu_memory/01_tlb_ept_explained.md)
+→ [TLB & EPT Deep Dive](../../05_specialized/04_cpu_memory/01_tlb_ept_explained.md)
 
 **Serverless:**
-→ [Firecracker MicroVMs](../../03_specialized/03_serverless/01_firecracker_relationship.md)
+→ [Firecracker MicroVMs](../../05_specialized/03_serverless/01_firecracker_relationship.md)
 
 **Legacy Systems:**
-→ [KVM Compatibility](../../03_specialized/05_compatibility/01_kvm_compat.md)
+→ [KVM Compatibility](../../05_specialized/05_compatibility/01_kvm_compat.md)
 
 ---
 

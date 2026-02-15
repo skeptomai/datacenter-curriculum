@@ -3,9 +3,9 @@ level: specialized
 estimated_time: 55 min
 prerequisites:
   - 02_intermediate/01_advanced_networking/02_overlay_mechanics.md
-  - 03_specialized/02_overlay_networking/04_ovs_control_data.md
+  - 05_specialized/02_overlay_networking/04_ovs_control_data.md
 next_recommended:
-  - 03_specialized/02_overlay_networking/06_openflow_precompile.md
+  - 05_specialized/02_overlay_networking/06_openflow_precompile.md
 tags: [networking, ovs, cilium, geneve, kubernetes, ebpf]
 ---
 
