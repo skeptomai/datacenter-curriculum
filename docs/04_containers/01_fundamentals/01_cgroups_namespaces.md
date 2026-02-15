@@ -60,11 +60,13 @@ Linux provides seven types of namespaces (as of kernel 5.6+):
 │ PID            │ Process IDs               │ Linux 2.6.24│
 │ NET            │ Network devices, stacks   │ Linux 2.6.29│
 │ MNT            │ Mount points              │ Linux 2.4.19│
-│ UTS            │ Hostname & domain name    │ Linux 2.6.19│
+│ UTS*           │ Hostname & domain name    │ Linux 2.6.19│
 │ IPC            │ Inter-process comm        │ Linux 2.6.19│
 │ USER           │ User and group IDs        │ Linux 3.8   │
 │ CGROUP         │ Cgroup hierarchy view     │ Linux 4.6   │
 └────────────────┴───────────────────────────┴─────────────┘
+
+* UTS = UNIX Time-Sharing (historical name from UNIX Time-Sharing System)
 ```
 
 Let's examine each in detail.
@@ -183,6 +185,8 @@ Container Filesystem (MNT namespace):
 ---
 
 ### UTS Namespace: Hostname Isolation
+
+**UTS** = **UNIX Time-Sharing** (historical name from early UNIX systems)
 
 **What it isolates:** Hostname and domain name
 
