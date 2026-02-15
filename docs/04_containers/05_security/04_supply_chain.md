@@ -16,10 +16,10 @@ tags: [security, supply-chain, sbom, slsa, sigstore, provenance, attestation]
 After reading this document, you will understand:
 - Supply chain attack vectors and risks
 - SBOM (Software Bill of Materials) generation and usage
-- SLSA framework for build provenance
+- SLSA (Supply chain Levels for Software Artifacts) framework for build provenance
 - Sigstore ecosystem (cosign, Fulcio, Rekor)
 - In-toto attestations and policies
-- Policy enforcement with OPA/Gatekeeper
+- Policy enforcement with OPA (Open Policy Agent)/Gatekeeper
 - End-to-end supply chain security
 
 ## Prerequisites
@@ -81,7 +81,7 @@ Before reading this, you should understand:
 ### Defense Strategy
 
 **Zero-trust supply chain**:
-1. **Know what's in your images** (SBOM)
+1. **Know what's in your images** (SBOM - Software Bill of Materials)
 2. **Verify build integrity** (SLSA provenance)
 3. **Sign and verify** (Sigstore)
 4. **Enforce policies** (admission control)
@@ -238,7 +238,7 @@ jq '.artifacts[] | select(.name == "log4j-core")' sbom.json
 
 ### SLSA Framework
 
-**SLSA** (pronounced "salsa"): Framework for ensuring build integrity.
+**SLSA (Supply chain Levels for Software Artifacts)** (pronounced "salsa"): Framework for ensuring build integrity.
 
 **Four levels** (L0 = nothing, L4 = maximum):
 
@@ -719,12 +719,12 @@ kubectl create -f https://github.com/kyverno/kyverno/releases/download/v1.10.0/i
 - Compromised build systems
 - Compromised registries
 
-**SBOM** (Software Bill of Materials):
+**SBOM (Software Bill of Materials)**:
 - Lists all components in an image
 - Enables vulnerability tracking
-- Required for compliance (NTIA, EO 14028)
+- Required for compliance (NTIA, EO (Executive Order) 14028)
 
-**SLSA provenance**:
+**SLSA (Supply chain Levels for Software Artifacts) provenance**:
 - Proves how software was built
 - Four levels (L1-L4)
 - Prevents tampering with build process

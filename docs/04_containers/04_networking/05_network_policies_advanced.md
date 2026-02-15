@@ -460,9 +460,9 @@ production/backend → kube-apiserver ✗
 
 ### Cilium L7 NetworkPolicy
 
-**Standard NetworkPolicy**: L3/L4 only (IP, port, protocol).
+**Standard NetworkPolicy**: L3 (Layer 3)/L4 (Layer 4) only (IP, port, protocol).
 
-**Cilium**: L7-aware (HTTP methods, paths, headers).
+**Cilium**: L7 (Layer 7)-aware (HTTP methods, paths, headers).
 
 ```yaml
 apiVersion: cilium.io/v2

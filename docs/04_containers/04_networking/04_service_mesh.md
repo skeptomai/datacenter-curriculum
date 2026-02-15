@@ -20,7 +20,7 @@ After reading this document, you will understand:
 - Linkerd architecture (simpler alternative)
 - Sidecar vs sidecar-less approaches (Cilium service mesh)
 - Traffic management capabilities
-- mTLS and zero-trust security
+- mTLS (mutual Transport Layer Security) and zero-trust security
 - When you need a service mesh (and when you don't)
 
 ## Prerequisites
@@ -28,7 +28,7 @@ After reading this document, you will understand:
 Before reading this, you should understand:
 - Kubernetes Services and Ingress
 - Container networking basics
-- TLS/certificates fundamentals
+- TLS (Transport Layer Security)/certificates fundamentals
 
 ---
 
@@ -201,7 +201,7 @@ func callServiceB() (*Response, error) {
 - Pushes config to all Envoy sidecars
 - Examples: VirtualService, DestinationRule
 
-**Citadel**: Certificate authority
+**Citadel**: Certificate authority (CA)
 - Issues mTLS certificates to each pod
 - Rotates certificates automatically
 - Implements SPIFFE (Secure Production Identity Framework For Everyone)
@@ -217,7 +217,7 @@ func callServiceB() (*Response, error) {
 
 ### Envoy Proxy (Data Plane)
 
-**Envoy** is a high-performance L7 proxy:
+**Envoy** is a high-performance L7 (Layer 7) proxy:
 - Written in C++
 - Used by: Istio, Ambassador, AWS App Mesh
 - Features: Load balancing, retries, circuit breaking, observability

@@ -14,7 +14,7 @@ tags: [security, runtime, seccomp, apparmor, selinux, capabilities, falco]
 ## Learning Objectives
 
 After reading this document, you will understand:
-- Linux security modules (seccomp, AppArmor, SELinux)
+- Linux security modules (seccomp, AppArmor, SELinux (Security-Enhanced Linux))
 - Capabilities and privilege escalation prevention
 - Runtime security monitoring with Falco
 - Container escape techniques and defenses
@@ -45,7 +45,7 @@ Before reading this, you should understand:
 ├──────────────────────────────────────────┤
 │ Linux Security Modules                   │
 │  - seccomp (syscall filtering)           │
-│  - AppArmor / SELinux (MAC)              │
+│  - AppArmor / SELinux (MAC - Mandatory Access Control) │
 ├──────────────────────────────────────────┤
 │ Kernel Namespaces                        │
 │  - PID, NET, MNT, UTS, IPC, USER         │
@@ -57,7 +57,7 @@ Before reading this, you should understand:
 ```
 
 **Each layer provides different protection**:
-- **seccomp**: Blocks dangerous syscalls
+- **seccomp (Secure Computing Mode)**: Blocks dangerous syscalls
 - **AppArmor/SELinux**: Restricts file access
 - **Capabilities**: Limits privileged operations
 - **Namespaces**: Isolation

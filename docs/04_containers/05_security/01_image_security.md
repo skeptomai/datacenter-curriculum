@@ -45,7 +45,7 @@ Example image (node:16):
   - Total: ~3000+ software components
 
 Each component could have vulnerabilities:
-  - CVE-2023-XXXXX in openssl
+  - CVE (Common Vulnerabilities and Exposures)-2023-XXXXX in openssl
   - CVE-2023-YYYYY in a npm package
   - CVE-2023-ZZZZZ in Debian libc
 ```
@@ -344,6 +344,7 @@ cosign attest --predicate provenance.json --key cosign.key myregistry.io/myapp:v
 
 **1. Kyverno** (Kubernetes-native):
 ```yaml
+```yaml
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
@@ -385,7 +386,7 @@ User tries: kubectl run test --image=signed:v1.0
   → Pod creation ALLOWED
 ```
 
-**2. OPA Gatekeeper** (more flexible, Rego language):
+**2. OPA (Open Policy Agent) Gatekeeper** (more flexible, Rego language):
 ```yaml
 apiVersion: templates.gatekeeper.sh/v1beta1
 kind: ConstraintTemplate
@@ -685,7 +686,7 @@ docker pull myapp@sha256:a1b2c3d4...
 - SBOM and provenance attestations
 
 **Admission control** enforces policies:
-- Kyverno, OPA Gatekeeper
+- Kyverno, OPA (Open Policy Agent) Gatekeeper
 - Block unsigned images
 - Block images with vulnerabilities
 

@@ -14,8 +14,8 @@ tags: [security, pod-security-standards, rbac, service-accounts, admission]
 ## Learning Objectives
 
 After reading this document, you will understand:
-- Pod Security Standards (Privileged, Baseline, Restricted)
-- Pod Security Admission controller
+- Pod Security Standards (PSS: Privileged, Baseline, Restricted)
+- Pod Security Admission (PSA) controller
 - RBAC (Role-Based Access Control) fundamentals
 - Service accounts and pod identity
 - Admission controllers and policy enforcement
@@ -109,7 +109,7 @@ spec:
 - Writable filesystem (should be read-only)
 - Host namespaces, paths, ports
 
-### Pod Security Admission
+### Pod Security Admission (PSA)
 
 **Enforces Pod Security Standards** (built-in since Kubernetes 1.23).
 
@@ -695,12 +695,12 @@ roleRef:
 
 ## Summary
 
-**Pod Security Standards** provide three policy levels:
+**Pod Security Standards (PSS)** provide three policy levels:
 - Privileged: Unrestricted (development only)
 - Baseline: Blocks obvious escalations
 - Restricted: Defense-in-depth hardening (production)
 
-**Pod Security Admission** enforces standards:
+**Pod Security Admission (PSA)** enforces standards:
 - Per-namespace labels
 - Three modes: enforce, audit, warn
 - Built-in since Kubernetes 1.23
