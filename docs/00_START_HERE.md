@@ -109,7 +109,7 @@ This guide consists of **59 documents** covering containers, virtualization, dat
    - [Firecracker Deep Dive](05_specialized/03_serverless/02_firecracker_deep_dive.md)
    - [Firecracker virtio Devices](05_specialized/03_serverless/03_firecracker_virtio.md)
 
-5. **Specialized/Compatibility** (Optional, 2.5 hours)
+5. **Specialized/Compatibility** (Optional)
    - [KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md)
    - [CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md)
    - [Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md)
@@ -186,7 +186,7 @@ This guide consists of **59 documents** covering containers, virtualization, dat
 4. **Specialized/Storage**
    - [PFC, DCB, and Storage](05_specialized/01_storage/01_pfc_dcb_storage.md)
 
-5. **Intermediate/Virtualization** (Optional, 3 hours)
+5. **Intermediate/Virtualization** (Optional)
    - [Device Passthrough](02_intermediate/03_complete_virtualization/04_device_passthrough.md)
    - **Why:** SR-IOV critical for storage performance
 
@@ -206,17 +206,17 @@ This guide consists of **59 documents** covering containers, virtualization, dat
 
 **Curriculum:**
 1. Complete **Part 1: Foundations**
-   - Virtualization basics (1.5h)
-   - Datacenter topology (2h)
-   - Container fundamentals (2.5h)
+   - Virtualization basics
+   - Datacenter topology
+   - Container fundamentals
 
 2. Complete **Part 2: Intermediate**
-   - Advanced networking (1.5h)
-   - RDMA (2.5h)
-   - Complete virtualization (3.5h)
-   - Container technologies (15h)
+   - Advanced networking
+   - RDMA
+   - Complete virtualization
+   - Container technologies
 
-3. Select from **Part 3: Specialized** based on your focus (15-20 hours)
+3. Select from **Part 3: Specialized** based on your focus
    - Storage, overlay networking, serverless, CPU/memory deep dives
 
 4. Reference **Part 4** as needed
@@ -225,50 +225,6 @@ This guide consists of **59 documents** covering containers, virtualization, dat
 **Outcome:** Architect and operate complete datacenter infrastructure with deep understanding of VMs, containers, networking, and storage
 
 **Recommended approach:** Start with either Container (Path 1) or Virtualization (Path 2) based on immediate needs, then complete the other
-
----
-
-### Path 5: Container Platform Engineer
-
-**Goal:** Master container technologies from fundamentals through Kubernetes production deployment
-
-**Curriculum:**
-1. **Foundations/Container Fundamentals**
-   - [Linux Container Primitives](04_containers/01_fundamentals/01_cgroups_namespaces.md)
-   - [Union Filesystems and Images](04_containers/01_fundamentals/02_union_filesystems.md)
-   - [Container vs VM Comparison](04_containers/01_fundamentals/03_container_vs_vm.md)
-
-2. **Container Runtimes**
-   - [Container Runtime Landscape](04_containers/02_runtimes/01_runtime_landscape.md)
-   - [Docker and containerd](04_containers/02_runtimes/02_docker_containerd.md)
-   - [Kata Containers and gVisor](04_containers/02_runtimes/03_kata_gvisor.md)
-   - [Runtime Comparison](04_containers/02_runtimes/04_runtime_comparison.md)
-
-3. **Kubernetes Orchestration**
-   - [Kubernetes Architecture](04_containers/03_orchestration/01_kubernetes_architecture.md)
-   - [Pods and Workloads](04_containers/03_orchestration/02_pods_workloads.md)
-   - [Services and Networking](04_containers/03_orchestration/03_services_networking.md)
-   - [Scheduling and Resources](04_containers/03_orchestration/04_scheduling_resources.md)
-   - [Storage and Volumes](04_containers/03_orchestration/05_storage_volumes.md)
-   - [Production Patterns](04_containers/03_orchestration/06_production_patterns.md)
-
-4. **Container Networking**
-   - [CNI Deep Dive](04_containers/04_networking/01_cni_deep_dive.md)
-   - [Calico vs Cilium](04_containers/04_networking/02_calico_vs_cilium.md)
-   - [eBPF Networking](04_containers/04_networking/03_ebpf_networking.md)
-   - [Service Mesh](04_containers/04_networking/04_service_mesh.md)
-   - [Network Policies Advanced](04_containers/04_networking/05_network_policies_advanced.md)
-
-5. **Container Security**
-   - [Image Security](04_containers/05_security/01_image_security.md)
-   - [Runtime Security](04_containers/05_security/02_runtime_security.md)
-   - [Pod Security Standards](04_containers/05_security/03_pod_security.md)
-   - [Supply Chain Security](04_containers/05_security/04_supply_chain.md)
-
-**Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
-**Outcome:** Deploy and secure production Kubernetes clusters with deep understanding of container mechanics
-
-**Quick Start Available:** [Container Quick Start](quick_start_containers.md)
 
 ---
 
@@ -297,8 +253,6 @@ This guide consists of **59 documents** covering containers, virtualization, dat
    - **Prerequisites:** Hardware Solution
    - **Next:** Either complete virtualization OR datacenter topology
 
-**Part 1.1 Total: ~1.5 hours**
-
 ---
 
 #### **1.2 Understanding the Datacenter Topology** 🌐
@@ -325,8 +279,6 @@ This guide consists of **59 documents** covering containers, virtualization, dat
    - **Prerequisites:** 3-Tier vs Spine-Leaf
    - **Next:** Advanced networking concepts
 
-**Part 1.2 Total: ~2 hours**
-
 ---
 
 #### **1.3 Container Fundamentals** 📦
@@ -348,8 +300,6 @@ This guide consists of **59 documents** covering containers, virtualization, dat
     - **Prerequisites:** Union Filesystems, virtualization basics
     - **Next:** Container runtimes or continue with VM track
 
-**Part 1.3 Total: ~2.5 hours**
-
 **Outcome:** Understand virtualization mechanics, modern datacenter topology, AND container fundamentals
 
 ---
@@ -369,8 +319,6 @@ This guide consists of **59 documents** covering containers, virtualization, dat
    - **What you'll learn:** How overlays actually work
    - **Prerequisites:** VLAN vs VXLAN
    - **Next:** RDMA or specialized overlay networking
-
-**Part 2.1 Total: ~1.5 hours**
 
 ---
 
@@ -396,8 +344,6 @@ This guide consists of **59 documents** covering containers, virtualization, dat
     - **Prerequisites:** Converged Ethernet
     - **Next:** Storage applications or complete virtualization
 
-**Part 2.2 Total: ~2.5 hours**
-
 ---
 
 #### **2.3 Complete Virtualization Understanding**
@@ -421,8 +367,6 @@ This guide consists of **59 documents** covering containers, virtualization, dat
     - **What you'll learn:** Near-native I/O performance
     - **Prerequisites:** Hardware Optimizations
     - **Next:** Specialized topics
-
-**Part 2.3 Total: ~3.5 hours**
 
 ---
 
@@ -522,8 +466,6 @@ This guide consists of **59 documents** covering containers, virtualization, dat
     - **What you'll learn:** SBOM, SLSA, Sigstore, provenance
     - **Prerequisites:** Pod Security
     - **Next:** Specialized topics or production deployment
-
-**Part 2.4 Total: ~15 hours**
 
 **Outcome:** Deep understanding of modern networking, RDMA, complete virtualization stack, AND container technologies
 
