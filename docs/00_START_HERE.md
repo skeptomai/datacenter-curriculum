@@ -1,6 +1,6 @@
 # Datacenter Infrastructure: A Learning Guide
 
-This guide consists of **59 documents** covering containers, virtualization, datacenter networking, RDMA, and infrastructure development organized pedagogically to support structured learning rather than random exploration.
+This guide consists of **59 documents** covering containers, virtualization, datacenter networking, and infrastructure development organized pedagogically to support structured learning rather than random exploration.
 
 **What makes this different:** Instead of a reference manual, this is a structured curriculum with five learning paths designed around what you're actually working with. Each path includes explicit prerequisites, depth indicators (📖 Foundational → 📚 Intermediate → 🔬 Specialized), and a clear progression from fundamentals through production deployment.
 
