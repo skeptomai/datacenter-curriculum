@@ -210,18 +210,37 @@ ip addr add 10.244.0.1/16 dev cni0
 
 **2. Create veth pair**:
 ```bash
-# Generate random name
+# Generate random name for host-side interface
 VETH_NAME=veth$(cat /dev/urandom | tr -dc 'a-f0-9' | head -c 8)
 
-# Create veth pair
+# Create veth pair (both ends initially in host namespace)
+# This creates TWO interfaces: ${VETH_NAME} and eth0, connected like a cable
 ip link add ${VETH_NAME} type veth peer name eth0
 ```
 
+**What is a veth pair?**
+A **virtual ethernet pair** acts like a virtual cable with two ends:
+- Both ends are kernel network devices (not userspace)
+- Packets sent to one end immediately appear at the other end
+- Used to connect different network namespaces
+
+**veth vs TAP/TUN** (used for VMs):
+- TAP/TUN: kernel ↔ userspace process (file descriptor)
+- veth: kernel ↔ kernel (different namespaces)
+- VMs use TAP (QEMU reads packets from file descriptor)
+- Containers use veth (kernel-to-kernel, no userspace overhead)
+
 **3. Move one end into container netns**:
 ```bash
-# CNI_NETNS=/var/run/netns/pod-abc123
+# Move the eth0 end into the container's network namespace
+# The ${VETH_NAME} end stays in the host's network namespace
 ip link set eth0 netns ${CNI_NETNS}
 ```
+
+**Critical point**: After this step:
+- `eth0` is **inside the container** (container namespace)
+- `${VETH_NAME}` is **on the host** (root namespace)
+- They're still connected like a cable through the namespace boundary
 
 **4. Configure container-side interface**:
 ```bash
@@ -244,18 +263,28 @@ iptables -t nat -A POSTROUTING \
   -j MASQUERADE
 ```
 
-**Result**:
+**Result** (namespace boundary clearly shown):
 ```
-Pod network namespace:
-  lo: 127.0.0.1
-  eth0: 10.244.0.5 ───────┐
-                          │ veth pair
-Node root namespace:      │
-  cni0 bridge ←───────────┘
-    ├─ veth12345678 (pod 1)
-    ├─ vethabcdefgh (pod 2)
-    └─ veth98765432 (pod 3)
+┌─────────────────────────────────────────────────┐
+│ Pod Network Namespace (isolated)                │
+│                                                  │
+│   lo: 127.0.0.1                                 │
+│   eth0: 10.244.0.5/16                          │
+│      ↑                                          │
+└──────┼──────────────────────────────────────────┘
+       │ veth pair (crosses namespace boundary)
+       │
+┌──────┼──────────────────────────────────────────┐
+│ Host Network Namespace (root namespace)         │
+│      ↓                                          │
+│   veth12345678 ──┐                             │
+│   vethabcdefgh ──┼─→ cni0 bridge: 10.244.0.1   │
+│   veth98765432 ──┘      ↕                       │
+│                      eth0: 10.0.0.5 (node IP)   │
+└─────────────────────────────────────────────────┘
 ```
+
+**Key insight**: The veth pair is the **only** connection between the isolated container namespace and the host. The container cannot see the host's eth0 or other interfaces - it only sees its own eth0 (which is really one end of the veth pair).
 
 ### Traffic Flow
 
