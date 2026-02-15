@@ -165,8 +165,6 @@ find "$DOCS_DIR" -name "*.md" -type f | while read mdfile; do
         --standalone \
         --css "$css_path" \
         --metadata pagetitle="${relative_path%.md}" \
-        --toc \
-        --toc-depth=3 \
         -o "$htmlfile"
 
     if [ $? -eq 0 ]; then

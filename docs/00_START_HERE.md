@@ -1,32 +1,10 @@
 # Datacenter Infrastructure: A Learning Guide
 
-**Welcome to a comprehensive guide to modern datacenter infrastructure!**
-
 This guide consists of **59 documents** covering containers, virtualization, datacenter networking, RDMA, and infrastructure development organized pedagogically to support structured learning rather than random exploration.
 
----
+**What makes this different:** Instead of a reference manual, this is a structured curriculum with five learning paths designed around what you're actually working with. Each path includes explicit prerequisites, depth indicators (📖 Foundational → 📚 Intermediate → 🔬 Specialized), and a clear progression from fundamentals through production deployment.
 
-## How to Use This Guide
-
-### Choose Your Entry Point:
-
-**🏃 Need it now? (Most common starting point)**
-→ Start with **[Path 1: Container Platform Engineer](#path-1-container-platform-engineer-📦)** - you're probably using containers already
-
-**🏗️ Building infrastructure?**
-→ Start with **[Path 2: Virtualization Engineer](#path-2-virtualization-engineer-🔧)** - understand the foundation
-
-**🌐 Networking focus?**
-→ Start with **[Path 3: Network Engineer](#path-3-network-engineer-🌐)** - applies to both VMs and containers
-
-**💾 Storage specialization?**
-→ Start with **[Path 4: Storage Engineer](#path-4-storage-engineer-💾)** - RDMA and high-performance I/O
-
-**📚 Want everything?**
-→ Follow **[Path 5: Full Stack](#path-5-full-stack-platform-engineer-🎯)** - but pick container or VM track first
-
-**🎯 Solving a specific problem?**
-→ Jump to **[Part 4: Reference & Practical Guides](#part-4-reference--practical-guides)**
+**Most people start with containers** (Path 1) since they're ubiquitous in modern infrastructure. Infrastructure engineers building the underlying platform typically start with virtualization (Path 2). Network and storage engineers have dedicated paths for their domains. The paths are designed to stand alone or combine—senior engineers often complete multiple paths to build complete platform expertise.
 
 ---
 
