@@ -856,3 +856,16 @@ Firecracker: Strong isolation + fast + dense
 **Inside this edge:** Firecracker is 10-20x better than alternatives.
 
 That's the sweet spot: Serverless/FaaS where you need VM isolation but at container-like speed and density.
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for Firecracker internals and microVMs:**
+
+- **[Firecracker Source Code](https://github.com/firecracker-microvm/firecracker)** - Explore the Rust implementation of Firecracker's minimal VMM
+- **["Firecracker: Lightweight Virtualization for Serverless Applications" (NSDI 2020)](https://www.usenix.org/conference/nsdi20/presentation/agache)** - Academic paper detailing Firecracker's design and performance

@@ -377,6 +377,28 @@ Device Passthrough:        <1% overhead
 
 ---
 
+## Key Takeaways
+
+**📊 Progress Check:**
+✅ You understand: What VM exits are (Part 1)
+✅ You understand: Why minimizing exits is critical (Part 2)
+➡️ Next: Learn how modern hardware optimizations further reduce overhead
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for VM exit minimization and performance:**
+
+- **[KVM Performance Analysis with perf](https://www.linux-kvm.org/page/Perf_events)** - Using Linux perf tools to measure and analyze VM exit overhead
+- **[Intel Processor Trace for VM Exit Analysis](https://software.intel.com/content/www/us/en/develop/blogs/processor-tracing.html)** - Hardware tracing for detailed VM exit analysis
+
+---
+
 ## What's Next?
 
 **Continue Learning:**
@@ -391,10 +413,3 @@ Device Passthrough:        <1% overhead
 
 **Return to:**
 - [Master Index](../../00_START_HERE.md) - All learning paths
-
----
-
-**📊 Progress Check:**
-✅ You understand: What VM exits are (Part 1)
-✅ You understand: Why minimizing exits is critical (Part 2)
-➡️ Next: Learn how modern hardware optimizations further reduce overhead

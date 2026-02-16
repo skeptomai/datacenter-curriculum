@@ -627,3 +627,16 @@ With EPT huge pages:
 - Both reduce page walk overhead
 
 **The innovation:** VPID allows multiple virtual address spaces (different VMs) to have TLB entries simultaneously, eliminating the need for flushes on context switches. This is critical for virtualization performance!
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for TLB, EPT, and memory virtualization:**
+
+- **[Intel SDM on EPT and TLB](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html)** - Chapters 28-29: EPT and TLB management in virtualization
+- **[KVM MMU Documentation](https://www.kernel.org/doc/html/latest/virt/kvm/mmu.html)** - Linux KVM memory management unit implementation details

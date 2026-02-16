@@ -621,3 +621,19 @@ CPU reduction for clients: 99.8%
    - RRs still have high load
    - But RRs are dedicated, beefy servers
    - Clients (worker nodes) are freed up
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**BGP Scaling Documentation:**
+- [BGP Scalability and Performance](https://www.cisco.com/c/en/us/support/docs/ip/border-gateway-protocol-bgp/13753-25.html) - Cisco BGP scaling guide
+- [Large-Scale BGP Design Patterns](https://www.juniper.net/documentation/us/en/software/junos/bgp/topics/topic-map/bgp-scalability.html) - Juniper scalability best practices
+
+**Route Reflector Hierarchy Design:**
+- [Hierarchical Route Reflector Design](https://packetpushers.net/bgp-route-reflectors-route-reflector-clusters/) - Practical hierarchy design guide
+- [BGP Route Reflector Deployment](https://blog.ipspace.net/2008/08/bgp-route-reflector-details.html) - Ivan Pepelnjak's RR deployment guide

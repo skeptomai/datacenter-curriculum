@@ -720,3 +720,19 @@ router bgp 65001
 - ✓ Perfect for RDMA lossless traffic
 
 **Without ECMP:** Would need to choose single spine per destination, wasting 75% of infrastructure!
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**ECMP Deep Dives:**
+- [Equal-Cost Multi-Path Routing (ECMP) Explained](https://www.juniper.net/documentation/us/en/software/junos/routing-policy/topics/topic-map/policy-configuring-ecmp.html) - Juniper's comprehensive ECMP guide
+- [Understanding ECMP Load Balancing](https://packetpushers.net/understanding-ecmp-load-balancing/) - Practical explanation with real-world examples
+
+**5-Tuple Hashing:**
+- [ECMP Hashing Algorithms](https://blog.ipspace.net/2013/04/virtual-appliance-performance-is.html) - Deep dive into hash-based load balancing
+- [Flow-Based Load Balancing](https://docs.nvidia.com/networking/display/mlnxofedv54110lts/ecmp+routing) - NVIDIA guide to ECMP and hash configuration

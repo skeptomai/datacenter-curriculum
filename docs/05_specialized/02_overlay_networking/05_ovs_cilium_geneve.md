@@ -1342,3 +1342,19 @@ Both use Geneve to solve the same fundamental problem:
 - Cilium: Carries security identity
 
 This enables **stateful, distributed processing** at scale.
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**Cilium Project:**
+- [Cilium GitHub Repository](https://github.com/cilium/cilium) - Official Cilium source code and documentation
+- [Cilium Documentation](https://docs.cilium.io/) - Comprehensive Cilium guides and reference
+
+**OVS with Geneve:**
+- [OVS Geneve Tunneling](https://docs.openvswitch.org/en/latest/howto/tunneling/) - Official OVS Geneve configuration guide
+- [Geneve Tunnel Configuration Examples](https://www.openvswitch.org/support/dist-docs/ovs-vswitchd.conf.db.5.html) - Detailed Geneve setup examples

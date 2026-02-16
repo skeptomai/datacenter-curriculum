@@ -986,3 +986,19 @@ Switch Execution (Hardware)
 ```
 
 This is why SDN is revolutionary - it makes networks **programmable** in the same way compilers made computers programmable. You write high-level intent, the "compiler" (controller) translates to low-level flows, and the "CPU" (switches) execute them.
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**OpenFlow Specification:**
+- [OpenFlow Switch Specification](https://opennetworking.org/software-defined-standards/specifications/) - Official OpenFlow protocol specifications
+- [OpenFlow 1.3 Tutorial](https://github.com/mininet/openflow-tutorial/wiki) - Hands-on OpenFlow learning
+
+**OpenFlow Controllers:**
+- [Ryu SDN Framework](https://ryu-sdn.org/) - Python-based OpenFlow controller with tutorials
+- [ONOS SDN Controller](https://onosproject.org/) - Production-grade OpenFlow controller platform

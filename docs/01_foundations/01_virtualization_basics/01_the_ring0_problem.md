@@ -86,9 +86,29 @@ Dilemma: Need isolation but OS needs privileges!
 
 ---
 
-## What's Next?
+## What You've Learned
 
 You now understand **the core problem** that virtualization must solve: the Ring-0 dilemma.
+
+✅ You understand: Why two OSes can't both be in Ring 0
+➡️ Next up: How VT-x creates two separate Ring 0 environments
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for CPU privilege levels and the Ring-0 problem:**
+
+- **[Intel Software Developer Manual Volume 3C](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html)** - Section 5: Protection (describes privilege levels, rings, and VT-x specification)
+- **[OSDev Wiki: x86 Privilege Levels](https://wiki.osdev.org/Security#Rings)** - Tutorial on how x86 privilege rings work and their security implications
+
+---
+
+## What's Next?
 
 **Continue your learning:**
 
@@ -99,9 +119,3 @@ You now understand **the core problem** that virtualization must solve: the Ring
    - Paravirtualization (Xen's hypercalls)
    - Hardware-assisted virtualization (KVM)
    - Device virtualization (virtio, SR-IOV)
-
----
-
-**📊 Progress Check:**
-✅ You understand: Why two OSes can't both be in Ring 0
-➡️ Next up: How VT-x creates two separate Ring 0 environments

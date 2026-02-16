@@ -30,7 +30,7 @@ This repository contains **66 comprehensive, interconnected documents** covering
 ✅ **Depth indicators** - Know what you're getting into (Foundational → Intermediate → Specialized)
 ✅ **Progressive difficulty** - Build from basics to advanced topics at your own pace
 ✅ **Complete coverage** - From fundamental concepts to production deployment
-✅ **Hands-on resources** - 📚 [External tutorials, code repositories, and interactive labs](docs/04_containers/00_LEARNING_RESOURCES.md)
+✅ **Hands-on resources** - 📚 External tutorials, code repositories, and interactive labs for [Virtualization](docs/01_foundations/00_VIRTUALIZATION_RESOURCES.md), [Networking & Storage](docs/02_intermediate/00_NETWORKING_RESOURCES.md), and [Containers](docs/04_containers/00_LEARNING_RESOURCES.md)
 
 ---
 
@@ -113,6 +113,8 @@ This curriculum supports five main learning paths. **Choose based on what you're
 
 **Outcome:** Understand virtualization from Ring-0 problem through Firecracker microVMs
 
+**Hands-On Resources:** 📚 [Complete Virtualization Learning Resources](docs/01_foundations/00_VIRTUALIZATION_RESOURCES.md) - KVM, QEMU, specs, and tools
+
 ---
 
 ### Path 3: Network Engineer 🌐
@@ -134,6 +136,8 @@ This curriculum supports five main learning paths. **Choose based on what you're
 ```
 
 **Outcome:** Design and troubleshoot spine-leaf networks with VXLAN overlays
+
+**Hands-On Resources:** 📚 [Complete Networking & Storage Learning Resources](docs/02_intermediate/00_NETWORKING_RESOURCES.md) - RDMA, SDN, specs, and tools
 
 ---
 

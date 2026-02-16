@@ -534,3 +534,19 @@ OVN is the same:
 - No runtime dependency on ovn-northd
 
 The Geneve options are like **function parameters** - they carry the context needed for distributed execution.
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**Open vSwitch Documentation:**
+- [Open vSwitch Official Documentation](https://docs.openvswitch.org/) - Complete OVS reference and guides
+- [OVS Architecture Overview](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/what-is-ovs.rst) - Understanding OVS internals
+
+**OVN Architecture:**
+- [OVN Architecture Guide](https://www.ovn.org/support/dist-docs/ovn-architecture.7.html) - Official OVN architecture documentation
+- [Deep Dive into OVN](https://developers.redhat.com/blog/2018/11/08/introduction-to-ovn) - Red Hat's comprehensive OVN introduction

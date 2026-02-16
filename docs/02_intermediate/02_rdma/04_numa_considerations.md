@@ -836,3 +836,19 @@ Performance = Minimize distance data travels
 ```
 
 **Modern datacenter:** Multi-socket NUMA servers with RDMA NICs, running dozens of VMs, each NUMA-pinned and potentially with RDMA passthrough. All optimized for maximum locality and minimum overhead!
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../00_NETWORKING_RESOURCES.md)**
+
+**NUMA Architecture:**
+- [NUMA Deep Dive Series](https://frankdenneman.nl/2016/07/06/introduction-2016-numa-deep-dive-series/) - Comprehensive NUMA architecture guide
+- [Understanding NUMA](https://www.kernel.org/doc/html/latest/vm/numa.html) - Linux kernel NUMA documentation
+
+**RDMA and NUMA Affinity:**
+- [NUMA-aware RDMA Programming](https://www.rdmamojo.com/2014/05/24/cpu-affinity-rdma-applications/) - Best practices for RDMA affinity tuning
+- [Mellanox Performance Tuning Guide](https://community.mellanox.com/s/article/performance-tuning-for-mellanox-adapters) - NUMA and RDMA optimization techniques

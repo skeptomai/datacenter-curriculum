@@ -504,3 +504,16 @@ Firecracker:
 **Firecracker = Minimal QEMU replacement built on top of KVM**
 
 The innovation isn't removing KVM - it's removing QEMU bloat while keeping KVM's solid CPU/memory virtualization.
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for Firecracker and its relationship to KVM:**
+
+- **[Firecracker GitHub Repository](https://github.com/firecracker-microvm/firecracker)** - Official Firecracker source code with examples and documentation
+- **[Firecracker Design Document](https://github.com/firecracker-microvm/firecracker/blob/main/docs/design.md)** - Detailed technical design explaining how Firecracker uses KVM

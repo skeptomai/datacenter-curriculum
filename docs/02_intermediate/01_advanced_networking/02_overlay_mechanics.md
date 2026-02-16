@@ -962,3 +962,19 @@ Pod on Node1 (10.244.0.5) → Pod on Node2 (10.244.1.10):
    - Future of overlays
 
 The key insight: **VXLAN/Geneve are "virtual wires"** that make a distributed system look like one big Ethernet switch, with all the dynamic learning properties that implies.
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../00_NETWORKING_RESOURCES.md)**
+
+**Geneve Protocol:**
+- [RFC 8926 - Geneve: Generic Network Virtualization Encapsulation](https://datatracker.ietf.org/doc/html/rfc8926) - Official Geneve specification
+- [Geneve Protocol Overview](https://tools.ietf.org/html/rfc8926) - IETF standardization details
+
+**OVS VXLAN Tutorials:**
+- [Open vSwitch VXLAN Tutorial](https://docs.openvswitch.org/en/latest/howto/tunneling/) - Official OVS tunneling guide
+- [OVS and VXLAN Deep Dive](https://www.openvswitch.org/support/dist-docs/ovs-vswitchd.conf.db.5.html) - Configuration reference and examples

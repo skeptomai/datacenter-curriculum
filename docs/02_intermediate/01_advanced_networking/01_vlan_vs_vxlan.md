@@ -643,3 +643,19 @@ VXLAN is like creating encrypted VPN tunnels
 VXLAN isn't "VLAN on steroids" - it's a completely different approach to networking that solves problems VLANs fundamentally cannot solve, most importantly: **creating Layer 2 networks that span Layer 3 infrastructure**.
 
 The bigger ID space (24 bits vs 12 bits) is just a nice bonus.
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../00_NETWORKING_RESOURCES.md)**
+
+**VXLAN Specification:**
+- [RFC 7348 - Virtual eXtensible Local Area Network (VXLAN)](https://datatracker.ietf.org/doc/html/rfc7348) - Official IETF VXLAN specification
+- [VXLAN Overview (IETF)](https://www.rfc-editor.org/rfc/rfc7348.html) - Detailed protocol documentation
+
+**Linux VXLAN Configuration:**
+- [Linux VXLAN Tutorial](https://vincent.bernat.ch/en/blog/2017-vxlan-linux) - Comprehensive guide to VXLAN on Linux
+- [iproute2 VXLAN Examples](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vxlan) - Practical configuration examples

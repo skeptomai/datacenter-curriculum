@@ -481,3 +481,19 @@ Not reason: L2 limitation
 ```
 
 **Modern datacenters use RoCEv2 (L3 routable) with lossless Ethernet (PFC + ECN) for scalable, low-latency RDMA across routed networks.**
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../00_NETWORKING_RESOURCES.md)**
+
+**InfiniBand Specification:**
+- [InfiniBand Trade Association](https://www.infinibandta.org/) - Official InfiniBand specifications and documentation
+- [InfiniBand Architecture Specification](https://www.infinibandta.org/ibta-specifications-download/) - Complete technical specification
+
+**RoCE Documentation:**
+- [RoCE Initiative](https://www.roceinitiative.org/) - Official RoCE documentation and best practices
+- [RDMA over Converged Ethernet (RoCE) v2](https://community.mellanox.com/s/article/understanding-rocev2-congestion-management) - Mellanox RoCE congestion management guide

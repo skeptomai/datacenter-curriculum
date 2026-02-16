@@ -1004,3 +1004,22 @@ Perfect for:
 ```
 
 **SR-IOV + IOMMU = How cloud providers achieve bare-metal performance for specialized workloads!**
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for device passthrough, SR-IOV, and IOMMU:**
+
+- **[VFIO Kernel Documentation](https://www.kernel.org/doc/Documentation/vfio.txt)** - Complete guide to VFIO (Virtual Function I/O) for device assignment
+- **[SR-IOV Specification (PCI-SIG)](https://pcisig.com/specifications/iov/single_root/)** - Official PCI-SIG specification for Single Root I/O Virtualization
+
+---
+
+## Next Steps
+
+Continue exploring advanced virtualization topics or return to the main learning path.

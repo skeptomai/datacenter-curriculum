@@ -597,3 +597,18 @@ Spine-Leaf mindset:
 **Your intuition is right:** It's similar bones, but the architectural choices (full mesh, no spine interconnect, 2 tiers) create fundamentally different operational characteristics.
 
 **The "more interconnect" is the key:** Going from partial mesh to full mesh isn't just "more cables" - it's what enables equal-cost paths, consistent latency, and RDMA!
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**Architecture Comparison:**
+- [3-Tier vs Spine-Leaf: A Practical Comparison](https://www.networkworld.com/article/3223427/what-is-a-spine-leaf-network.html) - Detailed analysis of both architectures
+- [Evolution of Data Center Networks](https://blog.ipspace.net/2012/04/what-is-leaf-and-spine-fabric.html) - Ivan Pepelnjak's perspective on the transition
+
+**Migration Guides:**
+- [Migrating from 3-Tier to Spine-Leaf](https://www.cisco.com/c/en/us/td/docs/dcn/whitepapers/migration-from-traditional-to-modern-dc.html) - Cisco migration strategies and best practices

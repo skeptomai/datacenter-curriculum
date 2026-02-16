@@ -615,3 +615,19 @@ The **learning still happens**, but it's implemented **as OpenFlow rules** (usin
 **So:** Rules-based? Yes. Pre-populated? Partially. No learning? No - there IS learning, just implemented differently.
 
 The innovation isn't "no learning" - it's "**programmable learning**" - you can define HOW the switch learns, not just that it learns.
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**SDN Flow Table Management:**
+- [OpenFlow Flow Tables Explained](https://docs.openvswitch.org/en/latest/tutorials/ovs-advanced/) - Advanced OVS flow table tutorial
+- [Understanding OpenFlow Tables](https://www.sdxcentral.com/sdn/definitions/what-is-openflow/) - Comprehensive OpenFlow overview
+
+**OpenFlow Best Practices:**
+- [OVS Flow Management Best Practices](https://github.com/openvswitch/ovs/blob/master/Documentation/topics/design.rst) - OVS design and flow optimization
+- [SDN Flow Programming Patterns](https://www.opendaylight.org/technical-community/getting-started-for-developers/downloads) - OpenDaylight flow programming guides

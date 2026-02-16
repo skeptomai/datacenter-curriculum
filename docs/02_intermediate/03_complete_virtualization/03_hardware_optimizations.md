@@ -248,6 +248,28 @@ Hardware virtualization:
 
 ---
 
+## Key Takeaways
+
+**📊 Progress Check:**
+✅ You understand: Basic VT-x mechanisms (VMCS, EPT)
+✅ You understand: Advanced optimizations (VPID, Posted Interrupts)
+➡️ Next: Eliminate device virtualization overhead with SR-IOV
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for VT-x hardware optimizations:**
+
+- **[Intel SDM on EPT, VPID, and Posted Interrupts](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html)** - Chapters covering Extended Page Tables, Virtual Processor IDs, and interrupt virtualization
+- **[KVM Optimization Commit History](https://git.kernel.org/pub/scm/virt/kvm/kvm.git/log/)** - Real-world commits showing how KVM implements hardware optimizations
+
+---
+
 ## What's Next?
 
 **Deep Dives:**
@@ -260,10 +282,3 @@ Hardware virtualization:
 
 **Return to:**
 - [Master Index](../../00_START_HERE.md) - All learning paths
-
----
-
-**📊 Progress Check:**
-✅ You understand: Basic VT-x mechanisms (VMCS, EPT)
-✅ You understand: Advanced optimizations (VPID, Posted Interrupts)
-➡️ Next: Eliminate device virtualization overhead with SR-IOV

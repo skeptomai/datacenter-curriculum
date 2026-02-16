@@ -599,3 +599,19 @@ Solution: Modern networks use ECN instead of PFC
 - All standardized in Data Center Bridging (DCB)
 
 **The revolution:** Eliminated need for separate Fibre Channel network for storage. Everything over Ethernet!
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../00_NETWORKING_RESOURCES.md)**
+
+**Priority Flow Control (PFC):**
+- [IEEE 802.1Qbb - Priority-based Flow Control](https://1.ieee802.org/dcb/802-1qbb/) - Official PFC standard specification
+- [Understanding Priority Flow Control](https://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/white_paper_c11-542809.html) - Cisco PFC white paper
+
+**Data Center Bridging (DCB) Configuration:**
+- [Linux DCB Tools and Configuration](https://www.kernel.org/doc/html/latest/networking/dcb.html) - Linux kernel DCB documentation
+- [Mellanox PFC Configuration Guide](https://community.mellanox.com/s/article/howto-configure-pfc-on-connectx-4-x) - Practical PFC setup guide

@@ -395,9 +395,31 @@ Jump to handler → Handle exit → Resume guest
 
 ---
 
-## What's Next?
+## Key Takeaways
 
 You now understand **what VM exits are and how they work mechanically**.
+
+**📊 Progress Check:**
+✅ Completed: Virtualization Fundamentals (all 3 documents)
+✅ You understand: Ring-0 problem, VT-x solution, and VM exits
+➡️ Ready for: Intermediate topics (complete virtualization story, exit minimization)
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for VM exits and mechanics:**
+
+- **[Intel SDM Section on VM Exits](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html)** - Chapter 27: VM Exits (complete technical reference)
+- **[vmexit-trace Tool](https://github.com/triplekill/vmexit-trace)** - Tool to trace and analyze VM exit events in KVM
+
+---
+
+## What's Next?
 
 **Recommended Next Steps:**
 
@@ -406,10 +428,3 @@ You now understand **what VM exits are and how they work mechanically**.
 2. **Start Networking Path:** [Modern Datacenter Network Topology](../02_datacenter_topology/01_modern_topology.md) - Understand the physical infrastructure where VMs run
 
 3. **Continue Virtualization Path:** [Complete Virtualization Evolution](../../02_intermediate/03_complete_virtualization/01_evolution_complete.md) - Historical context
-
----
-
-**📊 Progress Check:**
-✅ Completed: Virtualization Fundamentals (all 3 documents)
-✅ You understand: Ring-0 problem, VT-x solution, and VM exits
-➡️ Ready for: Intermediate topics (complete virtualization story, exit minimization)

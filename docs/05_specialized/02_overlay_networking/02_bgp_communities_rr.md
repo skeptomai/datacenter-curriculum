@@ -487,3 +487,19 @@ Result:
   → Less common than route reflectors in modern networks
 
 They solve **different problems** and are often used **together** for powerful, scalable routing!
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**BGP Route Reflectors:**
+- [BGP Route Reflector Tutorial](https://www.cisco.com/c/en/us/support/docs/ip/border-gateway-protocol-bgp/217992-understand-bgp-route-reflector.html) - Cisco comprehensive guide
+- [Route Reflector Design and Best Practices](https://www.juniper.net/documentation/us/en/software/junos/bgp/topics/topic-map/route-reflection.html) - Juniper design guide
+
+**BGP Configuration Guides:**
+- [Cisco BGP Configuration Guide](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_bgp/configuration/xe-16/irg-xe-16-book.html) - Comprehensive Cisco BGP reference
+- [Juniper BGP User Guide](https://www.juniper.net/documentation/us/en/software/junos/bgp/index.html) - Juniper BGP documentation and examples

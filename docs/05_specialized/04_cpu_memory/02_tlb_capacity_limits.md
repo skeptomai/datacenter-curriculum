@@ -514,3 +514,16 @@ than:
 - Cache-aware scheduling
 
 **VPID doesn't solve the capacity problem - it just makes the best use of the limited capacity available.**
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for TLB capacity analysis and performance:**
+
+- **[Performance Analysis Tools (perf)](https://perf.wiki.kernel.org/index.php/Tutorial)** - Linux perf tools for measuring TLB misses and performance counters
+- **[TLB Benchmark Papers](https://scholar.google.com/scholar?q=TLB+performance+virtualization)** - Academic research on TLB behavior in virtualized environments

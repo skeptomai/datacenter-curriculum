@@ -453,3 +453,18 @@ Think of it as:
 - **Core layer:** Spine switches (datacenter-wide)
 
 The "spine-leaf" terminology refers to the **switch-to-switch topology**, not server-to-switch. It's still a 3-layer architecture (servers, leafs, spines), but the leafs and spines form a 2-tier non-blocking fabric for inter-rack traffic.
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**Top-of-Rack (ToR) Switch Documentation:**
+- [Arista 7050X Series Data Sheet](https://www.arista.com/en/products/7050x-series) - Modern leaf switch specifications and capabilities
+- [Cisco Nexus 93180YC-FX](https://www.cisco.com/c/en/us/products/switches/nexus-93180yc-fx-switch/index.html) - Example ToR switch with 25G/100G capabilities
+
+**Server-to-Leaf Connectivity:**
+- [Server Network Architecture Best Practices](https://docs.nvidia.com/networking/display/mlnxofedv54110lts/server+network+architecture) - NVIDIA guide to server NIC and ToR connectivity

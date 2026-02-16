@@ -7,7 +7,9 @@ This guide consists of **59 documents** covering containers, virtualization, dat
 **Most people start with containers** (Path 1) since they're ubiquitous in modern infrastructure. Infrastructure engineers building the underlying platform typically start with virtualization (Path 2). Network and storage engineers have dedicated paths for their domains. The paths are designed to stand alone or combine—senior engineers often complete multiple paths to build complete platform expertise.
 
 > 📚 **Hands-On Learning:** For tutorials, code repositories, and interactive labs to complement the curriculum, see:
-> **→ [Complete Container Learning Resources](04_containers/00_LEARNING_RESOURCES.md)**
+> - **[Virtualization Resources](01_foundations/00_VIRTUALIZATION_RESOURCES.md)** - KVM, QEMU, VT-x, virtio, Firecracker
+> - **[Networking & Storage Resources](02_intermediate/00_NETWORKING_RESOURCES.md)** - RDMA, spine-leaf, VXLAN, SDN, NVMe-oF
+> - **[Container Resources](04_containers/00_LEARNING_RESOURCES.md)** - Docker, Kubernetes, CNI, security, eBPF
 
 ---
 
@@ -99,6 +101,8 @@ This guide consists of **59 documents** covering containers, virtualization, dat
 **Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
 **Outcome:** Production-ready understanding of modern virtualization stack
 
+**Hands-On Resources:** 📚 [Complete Virtualization Learning Resources](01_foundations/00_VIRTUALIZATION_RESOURCES.md) - KVM, QEMU, specs, and tools
+
 ---
 
 ### Path 3: Network Engineer 🌐
@@ -136,6 +140,8 @@ This guide consists of **59 documents** covering containers, virtualization, dat
 
 **Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
 **Outcome:** Expert-level understanding of modern datacenter networks
+
+**Hands-On Resources:** 📚 [Complete Networking & Storage Learning Resources](02_intermediate/00_NETWORKING_RESOURCES.md) - RDMA, SDN, specs, and tools
 
 ---
 

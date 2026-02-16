@@ -568,6 +568,25 @@ The code you saw:
 
 ---
 
+## Key Takeaways
+
+This compat infrastructure is essential for backwards compatibility - allowing old 32-bit virtualization tools to work on modern 64-bit systems!
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for KVM compat and kernel compatibility layers:**
+
+- **[Linux Kernel Compat Layer Documentation](https://www.kernel.org/doc/html/latest/admin-guide/compat.html)** - Documentation on the kernel's 32/64-bit compatibility infrastructure
+- **[KVM Compat ioctl Code](https://github.com/torvalds/linux/blob/master/virt/kvm/kvm_main.c)** - Source code showing compat_ioctl implementation in KVM
+
+---
+
 ## Finding This in the Source
 
 ```bash
@@ -590,5 +609,3 @@ vim arch/x86/kvm/x86.c
 vim include/linux/compat.h
 vim kernel/compat.c
 ```
-
-This compat infrastructure is essential for backwards compatibility - allowing old 32-bit virtualization tools to work on modern 64-bit systems!

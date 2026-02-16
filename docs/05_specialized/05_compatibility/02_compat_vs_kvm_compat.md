@@ -457,3 +457,16 @@ You can have:
 ```
 
 **So yes, your understanding is spot-on! There can be architectures where compat tasks exist and work generally, but KVM specifically doesn't support them.**
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for kernel configuration and compatibility:**
+
+- **[Kernel Configuration Documentation](https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html)** - Understanding CONFIG options and kernel build configuration
+- **[KVM Kconfig Files](https://github.com/torvalds/linux/blob/master/arch/x86/kvm/Kconfig)** - Explore the actual Kconfig definitions for KVM options

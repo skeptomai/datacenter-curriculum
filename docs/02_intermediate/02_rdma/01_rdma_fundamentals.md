@@ -554,3 +554,19 @@ The network still does normal routing.
 **BUT** the network must be configured for lossless operation (PFC/ECN), because RDMA can't tolerate packet loss like TCP can.
 
 **The innovation is in the endpoints, not the network routing!**
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../00_NETWORKING_RESOURCES.md)**
+
+**RDMA Programming:**
+- [RDMA Aware Networks Programming User Manual](https://www.rdmamojo.com/) - Comprehensive RDMA programming guide and tutorials
+- [Introduction to RDMA Programming](https://insujang.github.io/2020-02-09/introduction-to-rdma-programming/) - Practical introduction with code examples
+
+**rdma-core Repository:**
+- [Linux RDMA Core Userspace](https://github.com/linux-rdma/rdma-core) - Official Linux RDMA userspace libraries and tools
+- [RDMA verbs API Documentation](https://www.rdmamojo.com/category/verbs/) - Detailed API reference for RDMA programming

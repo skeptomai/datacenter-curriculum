@@ -1049,3 +1049,19 @@ Memory reduction: 90-95%
 
 **Key Insight:**
 Route reflectors are to BGP what switches are to Ethernet - they enable scaling beyond small deployments by relaxing the "all-to-all" connectivity requirement while preventing loops through careful protocol design.
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**BGP EVPN Specification:**
+- [RFC 7432 - BGP MPLS-Based Ethernet VPN](https://datatracker.ietf.org/doc/html/rfc7432) - Official BGP EVPN specification
+- [BGP EVPN Overview](https://www.juniper.net/documentation/us/en/software/junos/evpn-vxlan/topics/concept/evpn-bgp-overview.html) - Comprehensive EVPN introduction
+
+**VXLAN + BGP Deployment:**
+- [VXLAN BGP EVPN Configuration Guide](https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/102x/configuration/vxlan/cisco-nexus-9000-series-nx-os-vxlan-configuration-guide-release-102x.html) - Cisco deployment guide
+- [Cumulus Linux VXLAN Routing](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/) - Practical VXLAN+BGP examples

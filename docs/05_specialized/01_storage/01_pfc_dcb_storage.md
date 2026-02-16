@@ -735,3 +735,19 @@ Performance:
 **The key insight:** Modern NVMe SSDs are SO fast (10 μs latency) that TCP/IP overhead (30 μs) dominates. RDMA eliminates this overhead, making network storage feel "almost local."
 
 **Network attached storage becomes viable for latency-sensitive workloads only with RDMA!**
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**NVMe over Fabrics (NVMe-oF):**
+- [NVMe-oF Specification](https://nvmexpress.org/specifications/) - Official NVMe over Fabrics specification
+- [NVMe-oF Configuration Guide](https://www.kernel.org/doc/html/latest/nvme/nvme-fc.html) - Linux kernel NVMe-oF documentation
+
+**RDMA for Storage:**
+- [RDMA Storage White Papers](https://www.mellanox.com/related-docs/whitepapers/WP_RDMA_for_Storage.pdf) - Comprehensive guide to RDMA in storage systems
+- [NVMe-oF over RoCE Best Practices](https://community.mellanox.com/s/article/howto-configure-nvme-over-fabrics) - Practical deployment guide

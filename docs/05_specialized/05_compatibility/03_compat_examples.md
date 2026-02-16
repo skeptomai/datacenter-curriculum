@@ -459,7 +459,7 @@ But in practice:
   - The code is "defensive programming"
   - Handles an edge case that rarely happens
   - But good to have for completeness
-  
+
 New architectures might skip it:
   - "Nobody will use 32-bit QEMU on RISC-V"
   - "Not worth the implementation effort"
@@ -467,3 +467,16 @@ New architectures might skip it:
 ```
 
 This is a classic example of code that was essential 15 years ago but is now mostly historical!
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for QEMU architecture and historical compatibility:**
+
+- **[QEMU 32-bit/64-bit Documentation](https://www.qemu.org/docs/master/)** - Official QEMU documentation covering architecture support
+- **[Historical QEMU Releases](https://download.qemu.org/)** - Archive of QEMU versions showing the evolution from 32-bit to 64-bit

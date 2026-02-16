@@ -808,3 +808,18 @@ Bandwidth:
 ✓ **Lossless config** - PFC + ECN throughout
 
 **The spine-leaf topology is what makes modern storage disaggregation, RDMA, and cloud-scale infrastructure possible!**
+
+---
+
+## Hands-On Resources
+
+> Want more? This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all networking and storage topics, see:
+> **→ [Complete Networking & Storage Learning Resources](../../02_intermediate/00_NETWORKING_RESOURCES.md)**
+
+**Datacenter Topology Architecture:**
+- [Cisco Data Center Spine-and-Leaf Architecture](https://www.cisco.com/c/en/us/products/collateral/switches/nexus-7000-series-switches/white-paper-c11-737022.html) - Comprehensive white paper on spine-leaf design principles
+- [Juniper Data Center Architectures](https://www.juniper.net/documentation/us/en/software/junos/evpn-vxlan/topics/concept/data-center-architectures-overview.html) - Overview of modern datacenter network designs
+
+**Practical Tutorials:**
+- [Understanding Modern Data Center Network Topologies](https://packetpushers.net/understanding-modern-data-center-network-topologies/) - In-depth guide to spine-leaf vs traditional architectures

@@ -496,9 +496,31 @@ Virtualization Overhead:
 
 ---
 
-## What's Next?
+## Key Takeaways
 
 You now understand **how hardware makes virtualization practical**.
+
+**📊 Progress Check:**
+✅ You understand: How VT-x creates two Ring-0 environments
+✅ You understand: Why EPT eliminates most VM exits
+➡️ Next up: Understanding all VM exit types and minimization techniques
+
+---
+
+## Hands-On Resources
+
+> 💡 **Want more?** This section shows the most essential resources for this topic.
+> For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
+> **→ [Complete Virtualization Learning Resources](../00_VIRTUALIZATION_RESOURCES.md)** 📚
+
+**Focused resources for VT-x/AMD-V hardware virtualization:**
+
+- **[Intel VT-x Overview](https://www.intel.com/content/www/us/en/virtualization/virtualization-technology/intel-virtualization-technology.html)** - Official Intel documentation on VT-x technology
+- **[KVM API Tutorial: Creating a Simple VM](https://lwn.net/Articles/658511/)** - Step-by-step guide to using KVM API to create and run a virtual machine
+
+---
+
+## What's Next?
 
 **Recommended Next Steps:**
 
@@ -510,10 +532,3 @@ You now understand **how hardware makes virtualization practical**.
    - Other modern VT-x features
 
 3. **[Complete Virtualization Evolution](../../02_intermediate/03_complete_virtualization/01_evolution_complete.md)** - See the full historical context
-
----
-
-**📊 Progress Check:**
-✅ You understand: How VT-x creates two Ring-0 environments
-✅ You understand: Why EPT eliminates most VM exits
-➡️ Next up: Understanding all VM exit types and minimization techniques
