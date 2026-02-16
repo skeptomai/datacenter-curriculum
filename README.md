@@ -254,6 +254,45 @@ xdg-open html/00_START_HERE.html
 
 ---
 
+## 📄 Generating PDF Documentation
+
+To create a single combined PDF of the entire curriculum (~800 pages):
+
+```bash
+# From repository root
+python3 scripts/create_combined_pdf.py
+
+# PDF will be created at:
+# pdf_output/datacenter-infrastructure-curriculum.pdf
+```
+
+**Features:**
+- All 59 documents combined in pedagogical order
+- Professional book layout with table of contents
+- Section numbering and syntax highlighting
+- Full Unicode support (preserves emojis and special characters)
+- Clickable internal cross-references
+- ~1.9 MB, ~800 pages
+
+**Requirements:**
+- `python3` - Script execution
+- `pandoc` - Document converter
+- `texlive-luatex` - LuaLaTeX PDF engine
+- `texlive-fontsrecommended` - LaTeX fonts
+- `texlive-latexextra` - Additional LaTeX packages
+
+**Install on Arch Linux:**
+```bash
+sudo pacman -S pandoc texlive-luatex texlive-fontsrecommended texlive-latexextra
+```
+
+**Install on Debian/Ubuntu:**
+```bash
+sudo apt install pandoc texlive-luatex texlive-fonts-recommended texlive-latex-extra
+```
+
+---
+
 ## 📖 How to Use This Repository
 
 ### As a Learner
