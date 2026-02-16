@@ -4,6 +4,7 @@ estimated_time: 40 min
 prerequisites:
   - 04_containers/01_fundamentals/01_cgroups_namespaces.md
 next_recommended:
+  - 04_containers/01_fundamentals/04_container_storage.md
   - 04_containers/01_fundamentals/03_container_vs_vm.md
 tags: [containers, filesystem, overlayfs, images, layers, copy-on-write]
 ---
@@ -580,6 +581,7 @@ COPY --from=builder /app /app
 ## Next Steps
 
 **Continue learning:**
+→ [Container Storage](04_container_storage.md) - Volumes, bind mounts, and persistent data
 → [Container vs VM Comparison](03_container_vs_vm.md) - When to use each isolation approach
 
 **Related topics:**

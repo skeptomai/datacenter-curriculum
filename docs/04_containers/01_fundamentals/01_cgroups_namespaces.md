@@ -31,9 +31,10 @@ But what if you don't need **complete** isolation? What if you're okay with proc
 
 This is **container isolation**: using Linux kernel features to create isolated execution environments **without hardware virtualization**.
 
-**The Two Pillars:**
+**The Three Pillars:**
 1. **Namespaces** - Isolation (what you can see)
 2. **cgroups** - Resource limits (what you can use)
+3. **Capabilities** - Privilege control (what you can do)
 
 ---
 
@@ -237,6 +238,109 @@ web-container-abc123
 - Prevents processes in different containers from communicating via IPC
 - Security: container can't spy on host's shared memory
 
+**But wait... how DO containers communicate then?**
+
+Good question! IPC namespace isolation is the **secure default**, but real-world containers need communication. Here are the safe methods:
+
+#### 1. Network Communication (Most Common)
+
+Containers communicate over TCP/IP, even on the same host:
+
+```
+Container A (10.0.0.2:8080)
+    ↓ TCP socket
+Container B (10.0.0.3:3000)
+```
+
+**Why this is secure:**
+- ✅ Network stack has access controls (firewall rules, network policies)
+- ✅ Works across hosts (scalable to distributed systems)
+- ✅ Well-understood security model (TLS, authentication)
+- ✅ Can be monitored and logged
+
+**When to use:** Default choice, especially for microservices
+
+#### 2. Shared Volumes (Very Common)
+
+Containers mount the same volume for file-based communication:
+
+```
+Container A writes → /shared/data.json
+Container B reads  ← /shared/data.json
+```
+
+**Why this is secure:**
+- ✅ Filesystem permissions control access
+- ✅ Explicit configuration required (no accidents)
+- ✅ Can be read-only for consumers
+
+**When to use:**
+- Sidecar patterns (log shippers reading app logs)
+- Configuration sharing
+- Data processing pipelines
+
+#### 3. Unix Domain Sockets via Shared Volumes (Efficient)
+
+More efficient than TCP for same-host communication:
+
+```
+Container A creates socket → /shared/app.sock
+Container B connects to    ← /shared/app.sock
+```
+
+**Why this is secure:**
+- ✅ Filesystem permissions control access
+- ✅ Lower overhead than TCP (no network stack)
+- ✅ Can't be accessed remotely (host-local only)
+
+**When to use:**
+- High-performance local communication
+- Docker daemon communication (Docker socket)
+- Database connections
+
+#### 4. Explicitly Shared IPC Namespace (Trusted Containers)
+
+Containers CAN share IPC namespace when needed:
+
+```bash
+# Docker: Share IPC namespace between containers
+docker run --name app1 myapp
+docker run --ipc=container:app1 myapp-sidecar
+
+# Kubernetes: All containers in a Pod share IPC namespace
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: app
+  - name: sidecar  # Shares IPC with app!
+```
+
+**Why this is secure:**
+- ✅ Explicit opt-in (not accidental)
+- ✅ Only between trusted containers
+- ✅ Kubernetes pods use this by design
+
+**When to use:**
+- Tightly coupled containers (Kubernetes pods)
+- Shared memory for performance-critical paths
+- Legacy apps requiring System V IPC
+
+#### Security Comparison
+
+```
+┌──────────────────────┬──────────┬────────────────────────┐
+│ METHOD               │ OVERHEAD │ SECURITY ISOLATION     │
+├──────────────────────┼──────────┼────────────────────────┤
+│ Network (TCP/IP)     │ Medium   │ ✅ High (firewalls)    │
+│ Unix domain socket   │ Low      │ ✅ High (permissions)  │
+│ Shared volume        │ Low      │ ✅ High (permissions)  │
+│ Shared IPC namespace │ Lowest   │ ⚠️  Trusted only       │
+└──────────────────────┴──────────┴────────────────────────┘
+```
+
+**Key insight:** Networking isn't the ONLY secure method—it's just the most universal and scalable. For same-host communication, Unix sockets and shared volumes are equally secure and often more efficient.
+
 ---
 
 ### USER Namespace: User ID Mapping
@@ -423,9 +527,347 @@ echo "512M" > /sys/fs/cgroup/mycontainer/memory.max
 
 ---
 
-## Part 3: How Containers Use These Primitives
+## Part 3: Linux Capabilities - Privilege Control
 
-### Container = Namespaces + cgroups
+### The Root Problem
+
+Traditional UNIX had only two privilege levels:
+- **UID 0 (root)**: Can do EVERYTHING (kill any process, load kernel modules, change network config, etc.)
+- **UID != 0 (non-root)**: Restricted access
+
+**Problem for containers:** Many containers run as root (UID 0) inside the namespace, but we don't want them to have ALL root powers.
+
+### What are Linux Capabilities?
+
+**Linux capabilities divide root privileges into 40+ fine-grained permissions.**
+
+Instead of "all or nothing," processes can have specific capabilities:
+
+```
+Traditional UNIX:
+┌──────────────────────────────────────┐
+│ Root (UID 0): ALL PRIVILEGES         │
+│ - Change network config              │
+│ - Load kernel modules                │
+│ - Kill any process                   │
+│ - Bypass file permissions            │
+│ - Change system time                 │
+│ - ... (everything)                   │
+└──────────────────────────────────────┘
+        vs
+┌──────────────────────────────────────┐
+│ Non-root: NO PRIVILEGES              │
+└──────────────────────────────────────┘
+
+Linux Capabilities:
+┌──────────────────────────────────────┐
+│ Process with CAP_NET_ADMIN only:     │
+│ ✅ Change network config             │
+│ ❌ Load kernel modules               │
+│ ❌ Kill processes                    │
+│ ❌ Bypass file permissions           │
+└──────────────────────────────────────┘
+```
+
+**Key insight:** A process can be root (UID 0) but have limited capabilities!
+
+---
+
+### Important Capabilities
+
+```
+┌─────────────────┬──────────────────────────────────────────┐
+│ CAPABILITY      │ ALLOWS                                   │
+├─────────────────┼──────────────────────────────────────────┤
+│ CAP_CHOWN       │ Change file ownership                    │
+│ CAP_DAC_OVERRIDE│ Bypass file read/write/execute checks    │
+│ CAP_FOWNER      │ Bypass permission checks on operations   │
+│ CAP_KILL        │ Send signals to any process              │
+│ CAP_SETUID      │ Change UID (e.g., drop privileges)       │
+│ CAP_SETGID      │ Change GID                               │
+│ CAP_NET_BIND_SVC│ Bind to ports < 1024                     │
+│ CAP_NET_RAW     │ Use RAW and PACKET sockets (ping)        │
+│ CAP_NET_ADMIN   │ Network config (routes, firewall, IPs)   │
+│ CAP_SYS_CHROOT  │ Use chroot()                             │
+│ CAP_SYS_PTRACE  │ Trace/debug any process (strace, gdb)    │
+│ CAP_SYS_ADMIN   │ Many admin operations (DANGEROUS)        │
+│ CAP_SYS_MODULE  │ Load/unload kernel modules               │
+│ CAP_SYS_TIME    │ Change system clock                      │
+└─────────────────┴──────────────────────────────────────────┘
+```
+
+**See all 40+ capabilities:** `man capabilities`
+
+---
+
+### Default Container Capabilities
+
+**Docker/containerd default set (14 capabilities):**
+
+```
+✅ Containers GET by default:
+  CAP_CHOWN           - Change file ownership
+  CAP_DAC_OVERRIDE    - Bypass file permissions
+  CAP_FOWNER          - File operations as owner
+  CAP_FSETID          - Set file capabilities
+  CAP_KILL            - Send signals
+  CAP_SETGID          - Change GID
+  CAP_SETUID          - Change UID
+  CAP_SETPCAP         - Modify process capabilities
+  CAP_NET_BIND_SERVICE- Bind ports < 1024
+  CAP_NET_RAW         - Use raw sockets (ping works!)
+  CAP_SYS_CHROOT      - Use chroot
+  CAP_MKNOD           - Create special files
+  CAP_AUDIT_WRITE     - Write to audit log
+  CAP_SETFCAP         - Set file capabilities
+
+❌ Containers DON'T GET by default:
+  CAP_NET_ADMIN       - Network configuration
+  CAP_SYS_ADMIN       - System administration (VERY POWERFUL)
+  CAP_SYS_MODULE      - Kernel modules
+  CAP_SYS_PTRACE      - Process tracing
+  CAP_SYS_TIME        - Change system time
+  CAP_SYS_BOOT        - Reboot system
+  ... (26+ more dangerous capabilities)
+```
+
+**Why this matters:**
+- Container runs as root (UID 0) inside
+- But can't change network config (no CAP_NET_ADMIN)
+- Can't load kernel modules (no CAP_SYS_MODULE)
+- Can't debug host processes (no CAP_SYS_PTRACE)
+- **This is a key security boundary!**
+
+---
+
+### Checking Container Capabilities
+
+```bash
+# Docker: See capabilities of running container
+docker inspect <container> | grep -A 20 "CapAdd"
+
+# Inside container: Check current process capabilities
+capsh --print
+
+# Or decode capability bitmask
+grep Cap /proc/self/status
+# CapEff: 00000000a80425fb  ← Bitmask of effective capabilities
+
+# Decode with capsh
+capsh --decode=00000000a80425fb
+```
+
+**Example output:**
+```
+Current: cap_chown,cap_dac_override,cap_fowner,cap_fsetid,
+         cap_kill,cap_setgid,cap_setuid,cap_setpcap,
+         cap_net_bind_service,cap_net_raw,cap_sys_chroot,
+         cap_mknod,cap_audit_write,cap_setfcap=eip
+```
+
+---
+
+### Common Scenarios Requiring Additional Capabilities
+
+#### Scenario 1: Network Tools (traceroute, tcpdump, VPN)
+
+```bash
+# Problem: Network tool needs to configure network
+docker run alpine ip link set eth0 mtu 1400
+# Error: Operation not permitted
+
+# Solution: Add CAP_NET_ADMIN
+docker run --cap-add=NET_ADMIN alpine ip link set eth0 mtu 1400
+# Success!
+```
+
+**Use cases:**
+- VPN containers (OpenVPN, WireGuard)
+- Network monitoring (tcpdump, Wireshark)
+- Custom routing (multi-homed containers)
+- Network debugging tools
+
+#### Scenario 2: Debugging Tools (strace, gdb)
+
+```bash
+# Problem: Can't trace processes
+docker run alpine strace -p 1
+# Error: Operation not permitted
+
+# Solution: Add CAP_SYS_PTRACE
+docker run --cap-add=SYS_PTRACE alpine strace -p 1
+```
+
+**Use cases:**
+- Debugging containers (strace, gdb, perf)
+- Profiling tools
+- Security analysis
+
+#### Scenario 3: Time Synchronization (NTP servers)
+
+```bash
+# Problem: Can't change system time
+docker run alpine date -s "2024-01-01 12:00:00"
+# Error: Operation not permitted
+
+# Solution: Add CAP_SYS_TIME
+docker run --cap-add=SYS_TIME alpine date -s "2024-01-01 12:00:00"
+```
+
+**Use cases:**
+- NTP server containers
+- Time virtualization for testing
+
+#### Scenario 4: Ping (already works!)
+
+```bash
+# This WORKS without extra capabilities (CAP_NET_RAW is default)
+docker run alpine ping -c 1 8.8.8.8
+# 64 bytes from 8.8.8.8: icmp_seq=1 ttl=117 time=10.2 ms
+```
+
+---
+
+### How to Modify Capabilities
+
+#### Docker
+
+```bash
+# Add specific capability
+docker run --cap-add=NET_ADMIN myimage
+
+# Add multiple capabilities
+docker run --cap-add=NET_ADMIN --cap-add=SYS_PTRACE myimage
+
+# Drop specific capability (from defaults)
+docker run --cap-drop=CHOWN myimage
+
+# Drop all, add only what's needed (most secure)
+docker run --cap-drop=ALL --cap-add=NET_BIND_SERVICE myimage
+
+# DANGER: All capabilities (equivalent to --privileged for caps)
+docker run --cap-add=ALL myimage
+
+# DANGER: Privileged mode (disables ALL security)
+docker run --privileged myimage
+# ⚠️ Gives full access to host! Use only when absolutely necessary
+```
+
+#### Docker Compose
+
+```yaml
+services:
+  vpn:
+    image: openvpn
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    cap_drop:
+      - ALL
+```
+
+#### Kubernetes
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: network-tool
+spec:
+  containers:
+  - name: nettools
+    image: nicolaka/netshoot
+    securityContext:
+      capabilities:
+        add:
+          - NET_ADMIN
+          - NET_RAW
+        drop:
+          - ALL
+```
+
+**Kubernetes defaults:** Same as Docker (14 capabilities)
+
+---
+
+### Security Best Practices
+
+#### 1. Principle of Least Privilege
+
+```bash
+# ❌ BAD: Give all capabilities
+docker run --cap-add=ALL myapp
+
+# ✅ GOOD: Give only what's needed
+docker run --cap-drop=ALL --cap-add=NET_BIND_SERVICE myapp
+```
+
+#### 2. Avoid CAP_SYS_ADMIN
+
+**CAP_SYS_ADMIN is extremely powerful** (allows mounting filesystems, loading modules, and more).
+
+```bash
+# ❌ AVOID: CAP_SYS_ADMIN is almost as dangerous as --privileged
+docker run --cap-add=SYS_ADMIN myapp
+
+# ✅ BETTER: Find specific capability you need
+# (Often you need CAP_NET_ADMIN, not CAP_SYS_ADMIN)
+```
+
+#### 3. Never use --privileged in Production
+
+```bash
+# ❌ NEVER IN PRODUCTION
+docker run --privileged myapp
+# Disables namespaces, capabilities, seccomp, AppArmor
+# Container has full host access!
+```
+
+**When --privileged might be acceptable:**
+- Local development/testing only
+- Container needs direct hardware access (Docker-in-Docker, hardware drivers)
+- Even then, prefer specific capabilities instead
+
+---
+
+### The Three Pillars of Container Security
+
+```
+Container Isolation:
+┌────────────────────────────────────────────────┐
+│ 1. NAMESPACES                                  │
+│    "What can you see?"                         │
+│    - Process isolation (PID)                   │
+│    - Network isolation (NET)                   │
+│    - Filesystem isolation (MNT)                │
+├────────────────────────────────────────────────┤
+│ 2. CGROUPS                                     │
+│    "How much can you use?"                     │
+│    - CPU limits                                │
+│    - Memory limits                             │
+│    - I/O limits                                │
+├────────────────────────────────────────────────┤
+│ 3. CAPABILITIES                                │
+│    "What can you do?"                          │
+│    - Network configuration                     │
+│    - File operations                           │
+│    - Process control                           │
+└────────────────────────────────────────────────┘
+
+Plus: seccomp (syscall filtering), AppArmor/SELinux
+```
+
+**All three work together:**
+- **Namespaces** isolate resources
+- **cgroups** limit resources
+- **Capabilities** restrict privileges
+- Even if container is root, it can't escape without all three being misconfigured!
+
+---
+
+## Part 4: How Containers Use These Primitives
+
+### Container = Namespaces + cgroups + Capabilities
 
 ```
 Container Creation:
@@ -447,9 +889,15 @@ Container Creation:
 │    - memory.max = 4G                                  │
 │    - pids.max = 512                                   │
 │                                                        │
-│ 4. Place processes in:                                │
+│ 4. Set capabilities:                                  │
+│    - Start with default 14 capabilities               │
+│    - Add: CAP_NET_ADMIN (if needed)                   │
+│    - Drop: CAP_CHOWN (if not needed)                  │
+│                                                        │
+│ 5. Place processes in:                                │
 │    - Namespaces (unshare() syscall)                   │
 │    - cgroup (echo $PID > cgroup.procs)                │
+│    - Apply capabilities (capset() syscall)            │
 └────────────────────────────────────────────────────────┘
 ```
 
@@ -479,7 +927,7 @@ unshare --pid --net --mount --uts --ipc \
 
 ---
 
-## Part 4: Security Boundaries and Limitations
+## Part 5: Security Boundaries and Limitations
 
 ### What Containers DO Isolate
 
@@ -532,7 +980,7 @@ Container Escape:
 
 ---
 
-## Part 5: Comparison to Virtual Machine Isolation
+## Part 6: Comparison to Virtual Machine Isolation
 
 ### Architecture Comparison
 
@@ -641,7 +1089,9 @@ cat /sys/fs/cgroup/docker/container1/cpu.stat
 
 ✅ **Namespaces provide isolation** - 7 types isolating different resources
 ✅ **cgroups provide resource limits** - CPU, memory, I/O, PIDs
-✅ **Containers = namespaces + cgroups** - Software-based isolation
+✅ **Capabilities provide privilege control** - Fine-grained root permissions
+✅ **Containers = namespaces + cgroups + capabilities** - Software-based isolation
+✅ **Container communication** - Network, shared volumes, Unix sockets, or shared IPC namespace
 ✅ **Shared kernel** - All containers run on same kernel
 ✅ **Security tradeoffs** - Faster and lighter than VMs, but weaker isolation
 ✅ **Use case alignment** - Containers for trusted code, VMs for strong isolation

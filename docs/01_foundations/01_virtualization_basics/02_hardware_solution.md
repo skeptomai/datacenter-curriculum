@@ -22,6 +22,8 @@ series_info: "Part 1 of 2 - Basic VT-x mechanisms. See Part 2 for advanced optim
 
 # How VT-x/AMD-V Make VM Exits Fast
 
+> **Note:** VT-x (Intel Virtualization Technology for x86) and AMD-V (AMD Virtualization) are Intel's and AMD's respective hardware virtualization extensions.
+
 ## The Problem Before Hardware Support
 
 ### Software-Only Virtualization (Pre-2005)
@@ -35,8 +37,8 @@ Example:
   pushf          ; Push flags to stack
 
 In Ring 0 (kernel):
-  - Returns actual EFLAGS register
-  - Includes IF bit (interrupt flag)
+  - Returns actual EFLAGS (Extended FLAGS) register
+  - Includes IF (Interrupt Flag) bit
 
 In Ring 1 or 3 (virtualized kernel):
   - Returns DIFFERENT flags (IF bit masked!)
@@ -158,6 +160,8 @@ With VT-x:
 │   Ring 0: Guest OS          │  ← Runs in REAL Ring 0!
 │   Ring 3: Guest user        │
 └─────────────────────────────┘
+
+> **Note:** VMX (Virtual Machine Extensions) is Intel's name for their VT-x implementation.
 ```
 
 **Key insight:** Guest OS runs in actual Ring 0, but in a different "mode"
@@ -176,9 +180,9 @@ VM Exit requires saving:
   - All segment registers (6 registers)
   - Control registers (CR0, CR3, CR4)
   - Debug registers
-  - MSRs (hundreds of them)
-  - FPU/SSE state (512 bytes)
-  - Descriptor tables (GDTR, IDTR)
+  - Model Specific Registers (MSRs) (hundreds of them)
+  - Floating Point Unit (FPU)/Streaming SIMD Extensions (SSE) state (512 bytes)
+  - Descriptor tables (Global Descriptor Table Register (GDTR), Interrupt Descriptor Table Register (IDTR))
 
 Software approach:
   1. Execute code to read each register
@@ -225,9 +229,9 @@ Switching modes is complex:
 1. Disable interrupts (can't be interrupted mid-switch)
 2. Save guest page table (CR3)
 3. Load hypervisor page table
-4. TLB flush (expensive!)
-5. Switch stack (RSP)
-6. Switch code segment (CS)
+4. Translation Lookaside Buffer (TLB) flush (expensive!)
+5. Switch stack (Stack Pointer Register (RSP))
+6. Switch code segment (Code Segment (CS))
 7. Re-enable interrupts
 8. Jump to hypervisor
 
@@ -294,7 +298,7 @@ Is this instruction privileged?
   → Check current privilege level
   → Consult table
 
-Is this I/O port allowed?
+Is this Input/Output (I/O) port allowed?
   → Check I/O port bitmap (64KB!)
   → Walk bitmap bit by bit
 
@@ -315,7 +319,7 @@ VMCS Execution Control Fields:
   - I/O bitmap address
   - MSR bitmap address
   - Exception bitmap
-  - CR access bitmap
+  - Control Register (CR) access bitmap
 
 CPU checks in parallel with execution:
   ↓ Instruction fetch
@@ -333,11 +337,13 @@ Zero software overhead for checks!
 
 **This is the BIG one for exit reduction.**
 
+> **📅 Historical Note:** VT-x and AMD-V were introduced in 2005-2006, but EPT (Intel) and NPT (AMD) weren't added until 2008 with Intel's Nehalem (Core i7) and AMD's Barcelona (Phenom) processors. This meant there was a 2-3 year period (2006-2008) where processors had hardware virtualization but still relied on shadow page tables. All processors since ~2009 include EPT/NPT, so you're unlikely to encounter systems without it today—but understanding the difference helps explain why EPT was such a critical advancement.
+
 **Before EPT (Shadow Page Tables):**
 
 ```
-Guest has its own page tables (GVA → GPA)
-Hypervisor maintains shadow page tables (GVA → HPA)
+Guest has its own page tables (Guest Virtual Address (GVA) → Guest Physical Address (GPA))
+Hypervisor maintains shadow page tables (GVA → Host Physical Address (HPA))
 
 Every guest page table modification:
   1. Guest: mov [pte], new_value
@@ -348,7 +354,7 @@ Every guest page table modification:
 Page faults also exit:
   1. Guest: Access unmapped page
   2. Page fault → VM Exit
-  3. Hypervisor: Check if valid in guest PT
+  3. Hypervisor: Check if valid in guest Page Table (PT)
   4. If valid: Update shadow PT, resume
   5. If invalid: Inject page fault to guest
 
@@ -400,6 +406,8 @@ With EPT:
 
 ### Concrete Example: CR3 Write
 
+> **Understanding the Evolution:** This example shows three generations of virtualization technology. The middle case (VT-x without EPT) represents 2006-2008 processors—a transitional period that helped demonstrate why EPT was needed.
+
 **Without Hardware Support (Binary Translation):**
 
 ```
@@ -433,7 +441,7 @@ Hardware VM Exit:
   1. CPU detects CR3 write (0 cycles - parallel check)
   2. Save guest state to VMCS (200 cycles)
   3. Load host state from VMCS (200 cycles)
-  4. Jump to KVM handler (10 cycles)
+  4. Jump to Kernel-based Virtual Machine (KVM) handler (10 cycles)
   5. KVM handler:
      a. Read exit reason (5 cycles)
      b. Validate new PT (50 cycles)
@@ -483,9 +491,11 @@ Total: ~100 cycles (just page table walk)
 Virtualization Overhead:
   Binary Translation: 20-30%
   Para-virtualization: 2-5%
-  VT-x without EPT: 10-15%
-  VT-x with EPT: 2-5%
+  VT-x without EPT: 10-15%  (2006-2008 processors)
+  VT-x with EPT: 2-5%       (2009+ processors)
 ```
+
+> **Note:** Modern systems (2009+) all have EPT/NPT, so you'll see near-native performance in practice.
 
 **The Hardware Solution:**
 - Guest runs natively in Ring 0 (VMX non-root mode)
