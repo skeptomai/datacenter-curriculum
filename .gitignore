@@ -1,6 +1,9 @@
 # Generated HTML output (run scripts/convert_to_html.sh to create)
 html/
 
+# Generated PDF output (run scripts/create_combined_pdf.py to create)
+pdf_output/
+
 # Backup files
 *.bak
 *~
