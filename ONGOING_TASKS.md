@@ -41,12 +41,21 @@
   - Expanded all acronyms at first use across 22 container documents (33 unique acronyms)
   - Enhanced veth pair explanations with TAP/TUN comparisons and namespace boundary diagrams
 
-- [x] **Comprehensive hands-on learning resources** (100+ curated external resources)
-  - Created 00_LEARNING_RESOURCES.md with tutorials, code repositories, and interactive labs
-  - Added focused "Hands-On Resources" section to all 22 container documents
-  - Organized by topic: fundamentals, runtimes, orchestration, networking, security
-  - Includes: minimal implementations (bocker, minc), OCI runtimes (runc, crun, youki), K8s tools (minikube, kind), CNI plugins, security tools (Falco, Trivy), practice environments
-  - Prominent discoverability: README, START_HERE, and every document with 📚 emoji
+- [x] **Comprehensive hands-on learning resources** (200+ curated external resources across ALL topics)
+  - Created three comprehensive resource documents:
+    * 00_VIRTUALIZATION_RESOURCES.md - KVM, QEMU, VT-x/AMD-V, virtio, Firecracker, debugging tools
+    * 00_NETWORKING_RESOURCES.md - RDMA, datacenter networking, SDN, OVS, storage (NVMe-oF)
+    * 00_LEARNING_RESOURCES.md - Containers, K8s, CNI, eBPF, security
+  - Added focused "Hands-On Resources" section to ALL 55 documents:
+    * 15 virtualization documents (Intel/AMD specs, KVM source, kvmtool, crosvm)
+    * 18 networking/storage documents (RDMA specs, Mininet, OVS, BGP, Ceph)
+    * 22 container documents (Docker, K8s, CNI plugins, Falco, Trivy)
+  - Prominent discoverability:
+    * README: All three resource docs listed in "What Makes This Different"
+    * README: Resource links in Path 1, 2, and 3 sections
+    * START_HERE: All three docs prominently listed with topic breakdown
+    * START_HERE: Resource links in Path 1, 2, and 3 sections
+    * Every document: Callout with 📚 emoji pointing to comprehensive list
 
 ---
 
