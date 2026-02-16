@@ -927,7 +927,552 @@ unshare --pid --net --mount --uts --ipc \
 
 ---
 
-## Part 5: Security Boundaries and Limitations
+## Part 5: Hands-On with `unshare`
+
+### What is `unshare`?
+
+**`unshare`** is a Linux utility that runs a program with some **namespaces unshared** from the parent process. It's a wrapper around the `unshare()` system call—the same syscall container runtimes use to create isolated environments.
+
+**The concept:**
+```
+Normal process (fork):
+Parent process (PID ns 1, NET ns 1)
+  └─ Child process (PID ns 1, NET ns 1) ← Inherits all namespaces
+
+With unshare:
+Parent process (PID ns 1, NET ns 1)
+  └─ Child process (PID ns 2, NET ns 2) ← New namespaces!
+```
+
+**Why learn unshare?**
+- Understand how containers really work under the hood
+- Create isolated environments without Docker
+- Debug namespace issues
+- Build custom isolation solutions
+
+---
+
+### The `unshare()` System Call
+
+**C API:**
+```c
+#include <sched.h>
+
+int unshare(int flags);
+
+// Flags specify which namespaces to unshare:
+CLONE_NEWPID    // PID namespace
+CLONE_NEWNET    // Network namespace
+CLONE_NEWNS     // Mount namespace
+CLONE_NEWUTS    // UTS (hostname) namespace
+CLONE_NEWIPC    // IPC namespace
+CLONE_NEWUSER   // User namespace
+CLONE_NEWCGROUP // Cgroup namespace
+```
+
+**Command-line wrapper:**
+```bash
+unshare [options] [program [arguments]]
+
+Options map to flags:
+--pid       → CLONE_NEWPID
+--net       → CLONE_NEWNET
+--mount     → CLONE_NEWNS
+--uts       → CLONE_NEWUTS
+--ipc       → CLONE_NEWIPC
+--user      → CLONE_NEWUSER
+--cgroup    → CLONE_NEWCGROUP
+
+Special options:
+--fork              # Fork before executing (required for PID!)
+--map-root-user     # Map current user to root in user namespace
+```
+
+---
+
+### Example 1: PID Namespace Isolation
+
+**See all processes normally:**
+```bash
+$ ps aux | wc -l
+247  # See all 247 processes on system
+```
+
+**Create isolated PID namespace:**
+```bash
+$ sudo unshare --pid --fork bash
+
+# Inside new PID namespace (need to remount /proc)
+$ mount -t proc proc /proc
+
+$ ps aux
+PID   USER     COMMAND
+1     root     bash        ← This is PID 1 in our namespace!
+15    root     ps aux
+```
+
+**What happened:**
+1. `--pid` created new PID namespace
+2. `--fork` forked so bash becomes PID 1 (required!)
+3. Processes outside namespace are **invisible**
+4. `/proc` shows only namespace processes
+
+**Why `--fork` is required:**
+
+```bash
+# ❌ WITHOUT --fork:
+$ sudo unshare --pid bash
+$ echo $$
+15432  # Still has parent namespace PID!
+
+# ✅ WITH --fork:
+$ sudo unshare --pid --fork bash
+$ echo $$
+1      # PID 1 in new namespace!
+```
+
+The process calling `unshare()` doesn't get a new PID. Only forked children get PIDs starting from 1.
+
+---
+
+### Example 2: Network Namespace Isolation
+
+**Create isolated network:**
+```bash
+$ sudo unshare --net bash
+
+# Inside network namespace
+$ ip addr
+1: lo: <LOOPBACK> state DOWN
+    # Only loopback exists, no eth0!
+
+$ ip link
+1: lo: <LOOPBACK> state DOWN
+    # No network interfaces!
+
+$ ping 8.8.8.8
+connect: Network is unreachable
+
+# Exit back to parent namespace
+$ exit
+
+$ ip addr
+1: lo: <LOOPBACK,UP> state UP
+2: eth0: <BROADCAST,UP> state UP
+    inet 192.168.1.100/24
+    # Parent's interfaces back!
+```
+
+**Practical use case - test isolation:**
+```bash
+# Ensure tests don't make real network calls
+sudo unshare --net pytest tests/network/
+
+# Only localhost (127.0.0.1) available
+# Any attempt to reach internet fails
+```
+
+---
+
+### Example 3: Mount Namespace (Filesystem Isolation)
+
+**Isolate filesystem mounts:**
+```bash
+$ sudo unshare --mount bash
+
+# Inside mount namespace
+$ mount -t tmpfs tmpfs /mnt
+$ echo "namespace-only data" > /mnt/test.txt
+$ ls /mnt/
+test.txt
+
+# Exit namespace
+$ exit
+
+# Back in parent
+$ ls /mnt/
+# Empty! Mount was isolated
+```
+
+**Practical example - safe script testing:**
+```bash
+# Test installation script without affecting host
+sudo unshare --mount bash -c '
+  # Make mounts private (prevent propagation)
+  mount --make-rprivate /
+
+  # Create fake root
+  mount -t tmpfs tmpfs /tmp/fake-root
+
+  # Test install script
+  ./dangerous-install.sh
+
+  # Changes only affect this namespace!
+'
+# Host filesystem untouched
+```
+
+---
+
+### Example 4: Hostname Isolation (UTS Namespace)
+
+**Change hostname without affecting host:**
+```bash
+$ hostname
+my-laptop
+
+$ sudo unshare --uts bash
+
+# Inside UTS namespace
+$ hostname my-container
+$ hostname
+my-container
+
+# Exit
+$ exit
+
+$ hostname
+my-laptop  # Parent hostname unchanged!
+```
+
+---
+
+### Example 5: Creating a "Mini Container"
+
+**Combine all namespaces:**
+```bash
+sudo unshare \
+  --pid --fork \
+  --net \
+  --mount \
+  --uts \
+  --ipc \
+  bash -c '
+    # Set hostname
+    hostname mini-container
+
+    # Mount /proc for new PID namespace
+    mount -t proc proc /proc
+
+    # Bring up loopback
+    ip link set lo up
+
+    # Show isolation
+    echo "=== Hostname ==="
+    hostname
+
+    echo "=== Processes ==="
+    ps aux
+
+    echo "=== Network ==="
+    ip addr
+
+    # Interactive shell
+    bash
+'
+```
+
+**This is essentially what Docker does!** (Plus cgroups, capabilities, seccomp, AppArmor, OverlayFS, and more orchestration)
+
+---
+
+### Example 6: Rootless Isolation with User Namespace
+
+**Run as unprivileged user:**
+```bash
+$ id
+uid=1000(alice) gid=1000(alice)
+
+$ unshare --user --map-root-user bash
+
+# Inside user namespace
+$ id
+uid=0(root) gid=0(root)  ← Appear as root!
+
+$ whoami
+root
+
+# But try to do something privileged:
+$ mount /dev/sda1 /mnt
+mount: /mnt: permission denied.
+# Not real root! Just mapped UID
+```
+
+**Check from parent namespace:**
+```bash
+# From another terminal:
+$ ps aux | grep bash
+alice  12345  ... bash    ← Still shows as 'alice', not root
+```
+
+**This is how rootless Docker works!**
+
+---
+
+### Common Gotchas and Solutions
+
+#### Gotcha 1: `/proc` Shows Wrong Processes
+
+**Problem:**
+```bash
+$ sudo unshare --pid --fork bash
+$ ps aux
+# Shows parent namespace processes! Wrong!
+```
+
+**Solution:** Remount `/proc`
+```bash
+$ sudo unshare --pid --fork bash
+$ mount -t proc proc /proc
+$ ps aux
+# Now shows only namespace processes ✓
+```
+
+#### Gotcha 2: Mount Propagation
+
+**Problem:** Mounts leak to parent namespace
+
+```bash
+$ sudo unshare --mount bash
+$ mount /dev/sdb1 /mnt
+# This might affect parent due to mount propagation!
+```
+
+**Solution:** Make mounts private
+```bash
+$ sudo unshare --mount bash
+$ mount --make-rprivate /
+$ mount /dev/sdb1 /mnt
+# Now isolated ✓
+```
+
+#### Gotcha 3: User Namespace Without Mapping
+
+**Problem:**
+```bash
+$ unshare --user bash
+$ id
+uid=65534(nobody) gid=65534(nogroup)
+# You're "nobody"!
+```
+
+**Solution:** Use `--map-root-user`
+```bash
+$ unshare --user --map-root-user bash
+$ id
+uid=0(root) gid=0(root)  ✓
+```
+
+---
+
+### Building a Manual Container Script
+
+**Complete example - `manual-container.sh`:**
+
+```bash
+#!/bin/bash
+# Create a minimal container using only unshare
+
+set -e
+
+CONTAINER_ROOT="/tmp/container-$(date +%s)"
+
+echo "Creating container with root: $CONTAINER_ROOT"
+
+# Create container root filesystem
+mkdir -p "$CONTAINER_ROOT"/{bin,proc,sys,dev,tmp,etc}
+
+# Copy essential binaries (simplified - real containers use full rootfs)
+cp /bin/bash "$CONTAINER_ROOT/bin/"
+cp /bin/ls "$CONTAINER_ROOT/bin/"
+cp /bin/ps "$CONTAINER_ROOT/bin/"
+
+# Copy required libraries
+mkdir -p "$CONTAINER_ROOT/lib/x86_64-linux-gnu"
+for lib in $(ldd /bin/bash | grep -o '/lib.*\s' | tr -d ' '); do
+  cp "$lib" "$CONTAINER_ROOT/lib/x86_64-linux-gnu/" 2>/dev/null || true
+done
+
+# Create minimal /etc/passwd
+echo "root:x:0:0:root:/:/bin/bash" > "$CONTAINER_ROOT/etc/passwd"
+
+# Launch container with all namespaces
+sudo unshare \
+  --pid --fork \
+  --net \
+  --mount \
+  --uts \
+  --ipc \
+  bash -c "
+    # Set hostname
+    hostname mini-container
+
+    # Mount proc, sys, dev
+    mount -t proc proc $CONTAINER_ROOT/proc
+    mount -t sysfs sys $CONTAINER_ROOT/sys
+    mount -t tmpfs tmpfs $CONTAINER_ROOT/dev
+
+    # Create essential /dev nodes
+    mknod -m 666 $CONTAINER_ROOT/dev/null c 1 3
+    mknod -m 666 $CONTAINER_ROOT/dev/zero c 1 5
+    mknod -m 666 $CONTAINER_ROOT/dev/random c 1 8
+
+    # Setup network
+    ip link set lo up
+
+    # Change root filesystem
+    chroot $CONTAINER_ROOT /bin/bash -c '
+      export PATH=/bin
+      export PS1=\"[container] \$ \"
+
+      echo \"=== Welcome to Mini Container ===\"
+      echo \"Hostname: \$(hostname)\"
+      echo \"Processes:\"
+      ps aux
+      echo \"\"
+      echo \"Network:\"
+      ip addr 2>/dev/null || echo \"(ip command not available)\"
+      echo \"\"
+
+      /bin/bash
+    '
+"
+
+echo "Container exited. Cleaning up..."
+sudo rm -rf "$CONTAINER_ROOT"
+```
+
+**Run it:**
+```bash
+$ chmod +x manual-container.sh
+$ ./manual-container.sh
+Creating container with root: /tmp/container-1704812345
+=== Welcome to Mini Container ===
+Hostname: mini-container
+Processes:
+PID   USER     COMMAND
+1     root     bash
+8     root     ps aux
+
+[container] $ pwd
+/
+[container] $ ls
+bin  dev  etc  proc  sys  tmp
+[container] $ exit
+Container exited. Cleaning up...
+```
+
+---
+
+### Related Tools
+
+#### `nsenter` - Enter Existing Namespace
+
+**unshare vs nsenter:**
+```bash
+# unshare: CREATE new namespace
+unshare --net bash
+
+# nsenter: ENTER existing namespace
+nsenter --target 12345 --net bash
+         ↑ PID of process in target namespace
+```
+
+**Enter Docker container's namespace:**
+```bash
+# Get container PID
+PID=$(docker inspect -f '{{.State.Pid}}' mycontainer)
+
+# Enter all its namespaces
+sudo nsenter --target $PID \
+  --pid --net --mount --uts --ipc \
+  bash
+```
+
+#### `ip netns` - Network Namespace Management
+
+**High-level wrapper around unshare for network:**
+```bash
+# Create named network namespace
+ip netns add testnet
+
+# List namespaces
+ip netns list
+
+# Execute in namespace
+ip netns exec testnet bash
+
+# Delete namespace
+ip netns delete testnet
+```
+
+Internally uses `unshare --net`, but manages namespace lifecycle and naming.
+
+---
+
+### How Container Runtimes Use `unshare()`
+
+**Docker/containerd sequence:**
+
+```
+1. unshare(CLONE_NEWPID | CLONE_NEWNET | CLONE_NEWNS |
+           CLONE_NEWUTS | CLONE_NEWIPC | CLONE_NEWUSER)
+   └─ Create all namespaces
+
+2. Setup cgroups
+   └─ echo $PID > /sys/fs/cgroup/docker/container123/cgroup.procs
+
+3. Drop capabilities
+   └─ capset() to reduce privileges
+
+4. Setup seccomp filter
+   └─ prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, ...)
+
+5. Apply AppArmor/SELinux profile
+   └─ aa_change_profile() or setexeccon()
+
+6. Mount container filesystem (OverlayFS)
+   └─ mount("overlay", ..., lowerdir=..., upperdir=...)
+
+7. chroot to container root
+   └─ chroot("/var/lib/docker/overlay2/xyz/merged")
+
+8. exec() container process
+   └─ execve("/app/myapp", ...)
+```
+
+**The `unshare()` call is just the first step** in container creation!
+
+---
+
+### Debugging Real Containers with `unshare` Knowledge
+
+**See what namespaces a process is in:**
+```bash
+$ docker run -d --name test nginx
+$ PID=$(docker inspect -f '{{.State.Pid}}' test)
+
+# Check process namespaces
+$ ls -la /proc/$PID/ns/
+lrwxrwxrwx 1 root root 0 cgroup -> cgroup:[4026532198]
+lrwxrwxrwx 1 root root 0 ipc -> ipc:[4026532196]
+lrwxrwxrwx 1 root root 0 mnt -> mnt:[4026532194]
+lrwxrwxrwx 1 root root 0 net -> net:[4026532199]
+lrwxrwxrwx 1 root root 0 pid -> pid:[4026532197]
+lrwxrwxrwx 1 root root 0 uts -> uts:[4026532195]
+
+# Numbers are namespace IDs - different from host!
+```
+
+**Compare to host namespaces:**
+```bash
+$ ls -la /proc/self/ns/
+# Different namespace IDs = isolated!
+```
+
+---
+
+## Part 6: Security Boundaries and Limitations
 
 ### What Containers DO Isolate
 
@@ -980,7 +1525,7 @@ Container Escape:
 
 ---
 
-## Part 6: Comparison to Virtual Machine Isolation
+## Part 7: Comparison to Virtual Machine Isolation
 
 ### Architecture Comparison
 
