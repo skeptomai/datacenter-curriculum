@@ -599,7 +599,7 @@ Found a great resource not listed here? Spotted a broken link?
 
 - **Repository**: https://github.com/skeptomai/datacenter-curriculum
 - **Open an issue** or submit a pull request
-- See [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines
+- See the repository README for contribution guidelines
 
 ---
 

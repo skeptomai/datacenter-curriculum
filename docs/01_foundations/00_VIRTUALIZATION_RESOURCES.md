@@ -456,8 +456,8 @@ This document provides curated resources to complement your virtualization learn
 ### Development Environment Setup
 
 See curriculum reference docs:
-- [macOS Kernel Development Setup](../../06_reference/setup_guides/macos_kernel_case_sensitivity_fix.md)
-- [External Drive Setup](../../06_reference/setup_guides/external_drive_kernel_setup.md)
+- [macOS Kernel Development Setup](../06_reference/setup_guides/01_macos_case_sensitivity.md)
+- [External Drive Setup](../06_reference/setup_guides/02_external_drive_setup.md)
 
 ---
 

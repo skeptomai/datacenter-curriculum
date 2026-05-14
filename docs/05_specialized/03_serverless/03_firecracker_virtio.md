@@ -1018,7 +1018,7 @@ This is why Firecracker can boot in <125ms and use only 5MB RAM - it's JUST thes
 
 > 💡 **Want more?** This section shows the most essential resources for this topic.
 > For a comprehensive list of tutorials, code repositories, and tools across all virtualization topics, see:
-> **→ [Complete Virtualization Learning Resources](../../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
+> **→ [Complete Virtualization Learning Resources](../../01_foundations/00_VIRTUALIZATION_RESOURCES.md)** 📚
 
 **Focused resources for virtio and Firecracker's device implementation:**
 

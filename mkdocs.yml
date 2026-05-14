@@ -1,0 +1,163 @@
+site_name: Datacenter Infrastructure Curriculum
+site_description: A comprehensive hands-on curriculum covering virtualization, networking, storage, and containers
+site_url: https://skeptomai.github.io/datacenter-curriculum/
+repo_url: https://github.com/skeptomai/datacenter-curriculum
+repo_name: skeptomai/datacenter-curriculum
+docs_dir: docs
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - search.share
+    - content.code.copy
+
+plugins:
+  - search
+  - tags
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+      title: On this page
+
+nav:
+  - Home: index.md
+  - Start Here: 00_START_HERE.md
+
+  - Quick Starts:
+    - Virtualization: quick_start_virtualization.md
+    - Networking: quick_start_networking.md
+    - Containers: quick_start_containers.md
+    - Full Stack: quick_start_full_stack.md
+
+  - Foundations:
+    - Overview: 01_foundations/README.md
+    - Virtualization Basics:
+      - Overview: 01_foundations/01_virtualization_basics/README.md
+      - The Ring 0 Problem: 01_foundations/01_virtualization_basics/01_the_ring0_problem.md
+      - Hardware Solution: 01_foundations/01_virtualization_basics/02_hardware_solution.md
+      - VM Exit Basics: 01_foundations/01_virtualization_basics/03_vm_exit_basics.md
+    - Datacenter Topology:
+      - Modern Topology: 01_foundations/02_datacenter_topology/01_modern_topology.md
+      - Server Hierarchy: 01_foundations/02_datacenter_topology/02_server_hierarchy.md
+      - 3-Tier vs Spine-Leaf: 01_foundations/02_datacenter_topology/03_3tier_vs_spine_leaf.md
+      - ECMP Load Balancing: 01_foundations/02_datacenter_topology/04_ecmp_load_balancing.md
+    - Resources: 01_foundations/00_VIRTUALIZATION_RESOURCES.md
+
+  - Intermediate:
+    - Overview: 02_intermediate/README.md
+    - Advanced Networking:
+      - VLAN vs VXLAN: 02_intermediate/01_advanced_networking/01_vlan_vs_vxlan.md
+      - Overlay Mechanics: 02_intermediate/01_advanced_networking/02_overlay_mechanics.md
+      - EVPN & BGP Overview: 02_intermediate/01_advanced_networking/03_evpn_bgp_overview.md
+    - RDMA:
+      - Fundamentals: 02_intermediate/02_rdma/01_rdma_fundamentals.md
+      - Protocol Variants: 02_intermediate/02_rdma/02_protocol_variants.md
+      - Converged Ethernet: 02_intermediate/02_rdma/03_converged_ethernet.md
+      - NUMA Considerations: 02_intermediate/02_rdma/04_numa_considerations.md
+    - Complete Virtualization:
+      - Overview: 02_intermediate/03_complete_virtualization/README.md
+      - Evolution: 02_intermediate/03_complete_virtualization/01_evolution_complete.md
+      - Exit Minimization: 02_intermediate/03_complete_virtualization/02_exit_minimization.md
+      - Hardware Optimizations: 02_intermediate/03_complete_virtualization/03_hardware_optimizations.md
+      - Device Passthrough: 02_intermediate/03_complete_virtualization/04_device_passthrough.md
+    - Resources: 02_intermediate/00_NETWORKING_RESOURCES.md
+
+  - Containers:
+    - Resources: 04_containers/00_LEARNING_RESOURCES.md
+    - Fundamentals:
+      - cgroups & Namespaces: 04_containers/01_fundamentals/01_cgroups_namespaces.md
+      - Union Filesystems: 04_containers/01_fundamentals/02_union_filesystems.md
+      - Container vs VM: 04_containers/01_fundamentals/03_container_vs_vm.md
+      - Container Storage: 04_containers/01_fundamentals/04_container_storage.md
+    - Runtimes:
+      - Runtime Landscape: 04_containers/02_runtimes/01_runtime_landscape.md
+      - Docker & containerd: 04_containers/02_runtimes/02_docker_containerd.md
+      - Kata & gVisor: 04_containers/02_runtimes/03_kata_gvisor.md
+      - Runtime Comparison: 04_containers/02_runtimes/04_runtime_comparison.md
+    - Orchestration:
+      - Kubernetes Architecture: 04_containers/03_orchestration/01_kubernetes_architecture.md
+      - Pods & Workloads: 04_containers/03_orchestration/02_pods_workloads.md
+      - Services & Networking: 04_containers/03_orchestration/03_services_networking.md
+      - Scheduling & Resources: 04_containers/03_orchestration/04_scheduling_resources.md
+      - Storage & Volumes: 04_containers/03_orchestration/05_storage_volumes.md
+      - Production Patterns: 04_containers/03_orchestration/06_production_patterns.md
+    - Networking:
+      - CNI Deep Dive: 04_containers/04_networking/01_cni_deep_dive.md
+      - Calico vs Cilium: 04_containers/04_networking/02_calico_vs_cilium.md
+      - eBPF Networking: 04_containers/04_networking/03_ebpf_networking.md
+      - Service Mesh: 04_containers/04_networking/04_service_mesh.md
+      - Network Policies: 04_containers/04_networking/05_network_policies_advanced.md
+    - Security:
+      - Image Security: 04_containers/05_security/01_image_security.md
+      - Runtime Security: 04_containers/05_security/02_runtime_security.md
+      - Pod Security: 04_containers/05_security/03_pod_security.md
+      - Supply Chain: 04_containers/05_security/04_supply_chain.md
+
+  - Specialized:
+    - Overview: 05_specialized/README.md
+    - Storage:
+      - PFC & DCB: 05_specialized/01_storage/01_pfc_dcb_storage.md
+    - Overlay Networking:
+      - VXLAN, Geneve & BGP: 05_specialized/02_overlay_networking/01_vxlan_geneve_bgp.md
+      - BGP Communities & RR: 05_specialized/02_overlay_networking/02_bgp_communities_rr.md
+      - RR Session Cardinality: 05_specialized/02_overlay_networking/03_rr_session_cardinality.md
+      - OVS Control vs Data Plane: 05_specialized/02_overlay_networking/04_ovs_control_data.md
+      - OVS, Cilium & Geneve: 05_specialized/02_overlay_networking/05_ovs_cilium_geneve.md
+      - OpenFlow Precompile: 05_specialized/02_overlay_networking/06_openflow_precompile.md
+      - Prepopulated vs Learning: 05_specialized/02_overlay_networking/07_prepopulated_vs_learning.md
+    - Serverless & MicroVMs:
+      - Firecracker & KVM: 05_specialized/03_serverless/01_firecracker_relationship.md
+      - Firecracker Deep Dive: 05_specialized/03_serverless/02_firecracker_deep_dive.md
+      - Firecracker & virtio: 05_specialized/03_serverless/03_firecracker_virtio.md
+    - CPU & Memory:
+      - TLB & EPT Explained: 05_specialized/04_cpu_memory/01_tlb_ept_explained.md
+      - TLB Capacity Limits: 05_specialized/04_cpu_memory/02_tlb_capacity_limits.md
+    - Compatibility:
+      - KVM Compatibility: 05_specialized/05_compatibility/01_kvm_compat.md
+      - compat vs KVM compat: 05_specialized/05_compatibility/02_compat_vs_kvm_compat.md
+      - Compat Examples: 05_specialized/05_compatibility/03_compat_examples.md
+
+  - Reference:
+    - Overview: 06_reference/README.md
+    - Decision Frameworks:
+      - Virtualization Primer: 06_reference/decision_frameworks/01_virtualization_primer.md
+    - Learning Resources:
+      - KVM Learning Guide: 06_reference/learning_resources/01_learning_kvm_guide.md
+      - Networking Acronyms: 06_reference/learning_resources/02_networking_acronyms.md
+    - Setup Guides:
+      - macOS Case Sensitivity: 06_reference/setup_guides/01_macos_case_sensitivity.md
+      - External Drive Setup: 06_reference/setup_guides/02_external_drive_setup.md
