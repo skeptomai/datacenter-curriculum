@@ -21,7 +21,7 @@ Why RDMA is critical for:
 ---
 
 ### [3.2: Overlay Networking Deep-Dives](02_overlay_networking/)
-**Time:** ~6 hours | **Prerequisites:** Advanced networking
+**Time:** ~6 hours | **Prerequisites:** Advanced networking + EVPN/BGP overview
 
 7 documents covering:
 - VXLAN + BGP EVPN with route reflectors
