@@ -1,12 +1,13 @@
 ---
 level: specialized
-estimated_time: 55 min
+estimated_time: 75 min
 prerequisites:
   - 04_containers/04_networking/01_cni_deep_dive.md
   - 01_foundations/02_datacenter_topology/04_ecmp_load_balancing.md
 next_recommended:
   - 04_containers/04_networking/03_ebpf_networking.md
-tags: [calico, cilium, cni, bgp, ebpf, networking, performance]
+  - 04_containers/05_security/05_compliance_fips_pci.md
+tags: [calico, cilium, cni, bgp, ebpf, networking, performance, vxlan, wireguard, ipsec, encryption]
 ---
 
 # Calico vs Cilium: Architecture and Design Philosophy
@@ -21,6 +22,9 @@ After reading this document, you will understand:
 - NetworkPolicy implementation differences
 - When to choose Calico vs Cilium
 - Migration considerations
+- Calico's three data plane modes: BGP native, VXLAN, and IP-in-IP
+- How Felix uses the Kubernetes API to build VXLAN tunnels without BGP
+- Encryption options: WireGuard, IPsec, and mTLS
 
 ## Prerequisites
 
@@ -749,9 +753,161 @@ CiliumNetworkPolicy (L7) only works on Cilium
 
 ---
 
-## Quick Reference
+## 9. Calico Data Plane Modes: BGP, VXLAN, and IP-in-IP
 
-### Architecture Summary
+Calico presents three distinct data plane modes that are often confused because the product supports all of them. The key insight: **BGP and VXLAN are mutually exclusive in Calico** — enabling one disables the other.
+
+### Mode 1: BGP Native Routing (No Encapsulation)
+
+BGP mode routes pod packets as standard IP traffic — no tunneling, no extra headers. Felix programs the local routing table. BIRD (a BGP daemon) on each node exchanges pod CIDR routes with peers.
+
+```
+Control plane:  BIRD ←→ BIRD (or ToR switch)
+                BGP route exchange: "10.244.1.0/24 is on Node 2"
+
+Data plane:     Pod A ──► Linux routing table ──► wire ──► Node 2 ──► Pod B
+                          (no encapsulation)
+```
+
+**What BIRD does:** Advertises the node's pod subnet (e.g., `10.244.1.0/24 via 192.168.1.10`) to peers. Peers install this as a kernel route. Packets are forwarded natively.
+
+**Why BGP alone is sufficient here:** There is no overlay to orchestrate. The physical network understands where each node is (L3 reachability), and BGP tells it which pod CIDRs live on which node. No MAC/IP mappings, no VTEP (VXLAN Tunnel Endpoint) tables — standard L3 forwarding tables are enough.
+
+---
+
+### Mode 2: VXLAN (BGP Disabled)
+
+When VXLAN is enabled in Calico, BIRD is shut down entirely for internal cluster communication. Calico does **not** use BGP EVPN (Ethernet VPN) to distribute tunnel endpoint information — it uses a completely different mechanism.
+
+```
+Control plane:  Felix ←→ Kubernetes API server
+                "Where is pod 10.244.1.5?"
+                → K8s API: "On Node 2, host IP 192.168.1.10"
+                Felix programs: FDB, ARP cache, routing table via netlink
+
+Data plane:     Pod A ──► VXLAN encap (Felix-managed tunnel) ──► Node 2 ──► Pod B
+```
+
+**What Felix does in VXLAN mode:**
+1. Watches the Kubernetes API for pod IP-to-node assignments
+2. Calls into the Linux kernel via netlink to program:
+   - The local FDB (Forwarding Database) — maps remote pod MACs to node IPs
+   - The ARP cache — pre-populates pod IP to MAC mappings
+   - The routing table — directs pod subnet traffic into the VXLAN interface
+3. No BGP daemon involved at any point
+
+**Why this matters architecturally:** Calico achieves the same outcome as BGP EVPN (populating VXLAN tunnel endpoints) but uses the Kubernetes API as its single source of truth instead of a network routing protocol. This makes VXLAN mode work anywhere without requiring BGP-capable switches.
+
+```
+BGP EVPN approach (traditional):     Calico VXLAN approach:
+  VTEP discovery via BGP type-2       VTEP discovery via K8s API
+  MAC/IP routes distributed by BGP    Felix reads pod assignments
+  Works with: physical BGP fabric     Works with: any IP network
+```
+
+---
+
+### Mode 3: IP-in-IP
+
+IP-in-IP is Calico's middle-ground encapsulation mode. Unlike VXLAN mode, it **does** use BGP — but for L3 routing only, not for any L2/VTEP distribution.
+
+```
+Control plane:  BIRD exchanges routes (same as BGP native mode)
+                "10.244.1.0/24 via 192.168.1.10"
+
+Data plane:     Pod A ──► tunl0 (IP-in-IP tunnel interface) ──► Node 2 ──► Pod B
+                          outer IP: 192.168.1.5 → 192.168.1.10
+                          inner IP: 10.244.0.5 → 10.244.1.5
+```
+
+BGP tells nodes which tunnel interface to send traffic into; IP-in-IP wraps the pod packet in an outer IP header. There is no L2 (MAC) information distributed — it is still purely L3 routing pointing at a tunnel interface, not BGP EVPN.
+
+**When IP-in-IP is used:** When the underlying network blocks unencapsulated pod IPs (common in cloud environments where VPCs reject packets with source IPs that don't match the instance IP), but you still want BGP for route distribution rather than the Kubernetes API.
+
+---
+
+### Mode Comparison Summary
+
+| Mode | BGP | Encapsulation | Control plane source | Works on any network |
+|---|---|---|---|---|
+| BGP native | ✓ (BIRD) | None | BGP peers / ToR | Only with BGP-capable switches |
+| VXLAN | ✗ (disabled) | VXLAN (UDP) | Kubernetes API (Felix) | ✓ |
+| IP-in-IP | ✓ (BIRD) | IP-in-IP | BGP peers | Only if underlay accepts outer IP |
+
+---
+
+## 10. Encryption for Calico Native Routing
+
+In BGP native mode, pod packets cross the physical wire as plaintext IP packets. Regulated environments (PCI-DSS, FIPS) and zero-trust deployments require encrypting this traffic. Three approaches are available:
+
+### WireGuard (Recommended for Non-FIPS Clusters)
+
+Calico has built-in WireGuard support. Felix handles key exchange and tunnel management automatically — no manual configuration of peers or keys.
+
+```bash
+# Enable with a single command
+kubectl patch felixconfiguration default \
+  --type='merge' \
+  -p '{"spec":{"wireguardEnabled":true}}'
+```
+
+**How it works:**
+```
+Pod A ──► Felix ──► wg0 (WireGuard interface) ──► ChaCha20-Poly1305 encrypted UDP ──► Node 2 ──► Pod B
+```
+
+**Performance:** WireGuard runs in the Linux kernel and uses ChaCha20-Poly1305, which is significantly faster and lower-CPU than AES-based IPsec on hardware without AES-NI acceleration. On modern x86 CPUs (which have AES-NI), the gap narrows.
+
+**Requires:** Linux kernel 5.6+ (WireGuard upstream), or 5.4 with backport.
+
+**FIPS limitation:** WireGuard's ChaCha20-Poly1305 is not in the NIST-approved algorithm set and has no FIPS 140-2/3 validated implementation. When Calico's FIPS mode is enabled, WireGuard is automatically disabled. See `05_security/05_compliance_fips_pci.md` for the FIPS path.
+
+---
+
+### IPsec via StrongSwan (FIPS-Compliant Path)
+
+For environments requiring FIPS 140-2/3 compliance (federal, healthcare, payment), Calico supports IPsec using StrongSwan, backed by the host kernel's FIPS-validated cryptographic modules.
+
+```yaml
+apiVersion: projectcalico.org/v3
+kind: FelixConfiguration
+metadata:
+  name: default
+spec:
+  ipsecMode: "ESP"
+  ipsecIKEAlgorithm: "aes256gcm16-prfsha384-ecp384"
+  ipsecESPAlgorithm: "aes256gcm16"
+```
+
+**Trade-off:** Higher CPU overhead than WireGuard. AES-GCM is slow without hardware acceleration (AES-NI); modern x86 servers typically have it, making this less severe in practice. Required for any FIPS-certified deployment.
+
+---
+
+### mTLS via Service Mesh (Application-Layer Encryption)
+
+Rather than encrypting at L3, a service mesh (Istio, Linkerd, Cilium's sidecarless mesh) encrypts at L7 using mutual TLS.
+
+```
+Pod A ──► Envoy proxy (mTLS client cert) ──► TLS 1.3 ──► Envoy proxy (mTLS server cert) ──► Pod B
+```
+
+**Key distinction:** Calico remains completely unencapsulated at the network layer — packets are still "naked" L3 IP packets on the wire. The payload is encrypted by the application-layer proxy.
+
+**Limitation:** mTLS only covers app-to-app traffic. Infrastructure traffic (kubelet, etcd, node health checks) is not encrypted. PCI-DSS auditors often require both IPsec (seal the network) and mTLS (prove workload identity).
+
+---
+
+### Encryption Comparison
+
+| Option | Layer | FIPS-compatible | CPU overhead | Covers infrastructure traffic |
+|---|---|---|---|---|
+| WireGuard | L3 | ✗ | Low | ✓ |
+| IPsec | L3 | ✓ | Medium | ✓ |
+| mTLS (service mesh) | L7 | ✓ (TLS 1.2/1.3) | Medium–High | ✗ |
+
+---
+
+
 
 ```
 Calico:
@@ -841,5 +997,7 @@ hubble observe --http-status 500
 
 - **Previous**: `04_networking/01_cni_deep_dive.md` - CNI fundamentals
 - **Next**: `04_networking/03_ebpf_networking.md` - eBPF deep dive
+- **Selection guide**: `04_networking/06_cni_selection_guide.md` - Flannel vs Calico vs Cilium vs Cloud CNI decision guide
+- **Compliance**: `05_security/05_compliance_fips_pci.md` - FIPS + PCI-DSS architecture with Calico
 - **Foundation**: `01_foundations/02_datacenter_topology/04_ecmp_load_balancing.md` - BGP ECMP
 - **Related**: `05_specialized/02_overlay_networking/01_bgp_communities_vs_route_reflectors.md` - BGP scaling
