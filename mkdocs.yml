@@ -61,6 +61,7 @@ nav:
     - Virtualization: quick_start_virtualization.md
     - Networking: quick_start_networking.md
     - Containers: quick_start_containers.md
+    - Hardware Security: quick_start_hardware_security.md
     - Full Stack: quick_start_full_stack.md
 
   - Foundations:

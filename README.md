@@ -52,6 +52,7 @@ Choose a fast-track guide for rapid introduction:
 - **[Virtualization Essentials](docs/quick_start_virtualization.md)** - Ring-0 problem through SR-IOV
 - **[Networking Essentials](docs/quick_start_networking.md)** - Spine-leaf through RDMA
 - **[Container Essentials](docs/quick_start_containers.md)** - Containers through Kubernetes
+- **[Hardware Security Essentials](docs/quick_start_hardware_security.md)** - TPMs through Secure Boot and attestation
 - **[Full Stack Overview](docs/quick_start_full_stack.md)** - Complete datacenter infrastructure
 
 ### For Experienced Engineers
@@ -268,7 +269,7 @@ python3 scripts/create_combined_pdf.py
 ```
 
 **Features:**
-- All 67 documents combined in pedagogical order
+- All 68 documents combined in pedagogical order
 - Professional book layout with table of contents
 - Section numbering and syntax highlighting
 - Full Unicode support (preserves emojis and special characters)
@@ -464,7 +465,7 @@ Special recognition to the **KVM, QEMU, Open vSwitch, and Cilium communities** w
 - **90+ total files** including READMEs and navigation aids
 - **35,000+ lines** of technical documentation
 - **5 learning paths** from containers to full stack platform engineering
-- **4 quick-start guides** for rapid overviews
+- **5 quick-start guides** for rapid overviews
 
 **Last updated:** 2026-02-14
 **Status:** ✅ Complete and ready for use

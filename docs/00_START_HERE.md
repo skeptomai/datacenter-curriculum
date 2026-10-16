@@ -1,6 +1,6 @@
 # Datacenter Infrastructure: A Learning Guide
 
-This guide consists of **67 documents** covering containers, virtualization, datacenter networking, infrastructure development, and hardware security organized pedagogically to support structured learning rather than random exploration.
+This guide consists of **68 documents** covering containers, virtualization, datacenter networking, infrastructure development, and hardware security organized pedagogically to support structured learning rather than random exploration.
 
 **What makes this different:** Instead of a reference manual, this is a structured curriculum with five learning paths designed around what you're actually working with. Each path includes explicit prerequisites, depth indicators (📖 Foundational → 📚 Intermediate → 🔬 Specialized), and a clear progression from fundamentals through production deployment.
 
@@ -612,6 +612,7 @@ For those who want rapid overviews before deep dives:
 - **[Quick Start: Virtualization](quick_start_virtualization.md)** - Essential virtualization concepts
 - **[Quick Start: Networking](quick_start_networking.md)** - Essential networking concepts
 - **[Quick Start: Containers](quick_start_containers.md)** - Container fundamentals through Kubernetes
+- **[Quick Start: Hardware Security](quick_start_hardware_security.md)** - TPMs, measured boot, Secure Boot, attestation
 - **[Quick Start: Full Stack](quick_start_full_stack.md)** - Complete overview of all topics
 
 ---

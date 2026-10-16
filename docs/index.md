@@ -21,6 +21,7 @@ Jump straight into a topic area:
 | [Virtualization](quick_start_virtualization.md) | Ring 0, hardware virtualization, VM exits | ~2 hours |
 | [Networking](quick_start_networking.md) | VLAN, VXLAN, EVPN, BGP, overlays | ~3 hours |
 | [Containers](quick_start_containers.md) | cgroups, namespaces, runtimes, Kubernetes | ~4 hours |
+| [Hardware Security](quick_start_hardware_security.md) | TPMs, measured boot, Secure Boot, attestation | ~2 hours |
 | [Full Stack](quick_start_full_stack.md) | End-to-end datacenter picture | ~8 hours |
 
 ---
@@ -43,3 +44,4 @@ Reference            → Acronyms, decision frameworks, setup guides
 **Networking** — VLAN/VXLAN, EVPN/BGP, Geneve, OVS, Cilium, eBPF, service mesh  
 **Storage** — RDMA, NVMe-oF, PFC/DCB, container volumes  
 **Containers** — cgroups, namespaces, OCI runtimes, Kubernetes, pod security  
+**Hardware Security** — TPMs, key hierarchies, measured boot, Secure Boot, SPIFFE/SPIRE attestation  
