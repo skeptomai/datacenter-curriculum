@@ -13,6 +13,10 @@ tags: [measured-boot, crtm, srtm, drtm, chain-of-trust, pcr, boot-guard]
 ## Learning Objectives
 
 After reading this document, you will understand:
+- What "measuring" a piece of code actually means — and the crucial fact that it is
+  about a binary's *identity*, never about what it *does* when it runs
+- Concretely, which piece of software performs the read-hash-extend sequence, and
+  how it knows where to find the next stage in the first place
 - Who measures the very first thing in the boot chain, and why that act itself is trustworthy
 - The "measure before execute" principle and why it, not TPM policing, is what prevents forged measurements
 - The full Static Root of Trust for Measurement (SRTM) boot chain, stage by stage
@@ -77,7 +81,124 @@ for its own trustworthiness.
 
 ---
 
-## 3. The Core Root of Trust for Measurement (CRTM)
+## 3. What Actually Gets Measured, and Who Does It
+
+Section 2 described the four-step sequence in the abstract. Two questions are
+easy to gloss over there and worth answering explicitly: **what does "measure
+the code" actually mean**, and **who performs that read-hash-extend sequence,
+and how do they know what to read in the first place?**
+
+### Measuring is about identity, not behavior
+
+"Measuring" a piece of code means computing a cryptographic hash of its raw
+bytes — the compiled binary, exactly as it sits on disk — *before* that code
+ever runs. It is not "run this code and record what it decided." The measurer
+never executes the thing it's measuring, never inspects its logic, and never
+asks it to self-report anything. It treats the artifact as an opaque blob of
+bytes and hashes those bytes, full stop.
+
+This distinction matters more than it looks. Suppose Stage N+1 is boot logic
+that includes a kernel-version check — code that inspects a kernel image and
+decides whether to proceed. There are two very different things "measuring"
+could mean here, and only one of them is what actually happens:
+
+```
+NOT this:                                  ACTUALLY this:
+Run the version-check code,                Hash Stage N+1's binary — the raw
+ask it "did the kernel pass?",             bytes containing the version-check
+and record the answer (PASS/FAIL)          logic — BEFORE running any of it,
+as the measurement.                        then extend a PCR with that hash,
+                                            THEN execute it.
+
+Problem: this trusts the code to           Why this is better: the measurer
+self-report honestly. A compromised        never has to trust anything the
+version-check could lie about its          code says about itself. A tampered
+own outcome while doing something          version of the code — even one
+different underneath.                      patched to always report "PASS" —
+                                            is a DIFFERENT set of bytes, which
+                                            produces a DIFFERENT hash. The
+                                            tampering is caught by the
+                                            fingerprint changing, not by
+                                            catching the code in a lie.
+```
+
+Whatever Stage N+1's kernel-version-check logic actually decides when it
+runs — approve, reject, panic, print a cat ASCII-art banner — is ordinary
+program execution that happens *after* measurement is already done and
+irreversible. None of that behavior is, or could be, part of the measurement.
+The measurement only ever answers "is this the exact same code that was there
+before," never "did this code behave correctly."
+
+This is also why boot-relevant *data*, not just executable code, gets
+measured in practice — a bootloader configuration file, a kernel command-line
+string, the recorded state of UEFI Secure Boot variables. None of that is
+"code" in the sense of CPU instructions, but all of it influences what happens
+next, so the same rule applies: hash the bytes, before acting on them, every
+time.
+
+### Who performs the read-hash-extend sequence
+
+There is no external supervisor watching the boot process and independently
+deciding to measure things. **The current stage's own code does the
+measuring, because its developers built it to, following a published
+specification.** Concretely:
+
+- UEFI firmware, before it calls the standard `LoadImage`/`StartImage`
+  routines to hand control to the next executable, is specified by the TCG PC
+  Client Platform Firmware Profile to first call a defined measurement
+  routine (historically `TCG2_HashLogExtendEvent` in the UEFI TCG2 protocol)
+  against that executable's bytes. The order — measure, *then* load and run —
+  is mandated by the spec, not left to firmware authors' discretion.
+- GRUB, Shim, and Windows Boot Manager each carry their own equivalent calls
+  into the platform's TPM measurement interface, invoked right before their
+  respective `chainloader`/`linux`/boot-image-launch operations.
+
+So "who tells it to go read this code and hash it" has a plain answer: **the
+spec tells the stage's implementers to put that call there, and they did.**
+It's self-discipline, encoded directly into the stage's own program logic,
+immediately before the point where it would otherwise just jump to the next
+thing.
+
+### How does it know *where* the next stage even is?
+
+Separately from *that* it measures, each stage also needs to know *what file,
+at what location*, counts as "the next stage" — and that's answered by
+ordinary, non-cryptographic boot configuration: UEFI firmware reads boot
+variables from NVRAM (`BootOrder`, `Boot0001`, etc.) pointing at a specific
+file on a specific disk partition; GRUB reads its own `grub.cfg`, which names
+a specific kernel file and path.
+
+This location information is not itself trusted or protected — and it
+doesn't need to be, which is the elegant part. Whatever ends up getting
+loaded, from wherever the configuration pointed, is exactly what gets read
+and hashed. If an attacker tampered with a boot variable or a config file to
+redirect "the next stage" at a malicious substitute, the measuring stage
+doesn't know or care that a redirection happened — it simply measures
+whatever bytes it was handed. The result is a hash of the *attacker's*
+substituted artifact, which does not match the trusted reference value that a
+seal or a remote quote checks against later. Misdirecting *where* the
+measurement reads from doesn't evade measurement; it just guarantees the
+measurement will faithfully record the substitution, and the mismatch is
+caught downstream.
+
+### The recursive question this leaves open
+
+One gap remains, and it's the one this whole document exists to close: **what
+stops Stage N itself from simply skipping its measurement call, or calling it
+with a fabricated hash instead of a real one?** Nothing *inherent* to the
+command itself — as Section 1 already established, the TPM accepts whatever
+`PCR_Extend` value it's handed. The guarantee instead comes from exactly the
+same recursive argument as before: Stage N can only skip or falsify its own
+measurement duty if Stage N's *own code* has been tampered with to remove
+that duty — and whether Stage N's code has been tampered with is precisely
+what Stage N-1 already measured, before Stage N was ever allowed to run.
+
+That recursion has to end somewhere, with a measurer that has no earlier
+stage to vouch for *its* integrity. That's the CRTM, covered next.
+
+---
+
+## 4. The Core Root of Trust for Measurement (CRTM)
 
 The first measurer is called the **CRTM** — typically a small piece of
 boot firmware baked into the chipset/motherboard, often physically immutable
@@ -110,7 +231,7 @@ software bug), which is precisely the point.
 
 ---
 
-## 4. The Full SRTM Boot Chain
+## 5. The Full SRTM Boot Chain
 
 Putting it together, a typical **Static Root of Trust for Measurement (SRTM)**
 chain — "static" because it starts at power-on and runs the entire sequence
@@ -144,7 +265,7 @@ built one irreversible extend at a time, starting from an immutable root.
 
 ---
 
-## 5. Static vs. Dynamic RTM
+## 6. Static vs. Dynamic RTM
 
 SRTM has a real practical downside: it measures *everything* from power-on,
 including a lot of early, messy pre-boot firmware behavior that has nothing to
@@ -172,7 +293,7 @@ in").
 
 ---
 
-## 6. The Practical Pain Point
+## 7. The Practical Pain Point
 
 Because SRTM measures the *entire* chain, a routine UEFI firmware update, a
 GRUB version bump, or even a BIOS setting change can shift PCR values —
@@ -191,6 +312,9 @@ of view until you check.
 
 | Question | Answer |
 |---|---|
+| What does "measuring code" actually mean? | Hashing its raw bytes before it runs — never executing it, never recording what it decides |
+| Who performs the read-hash-extend sequence? | The current stage's own code, calling a platform measurement API, because its spec says to do so right before loading the next stage |
+| How does a stage know where the next stage even is? | Ordinary boot configuration (UEFI boot variables, a bootloader's config file) — not itself trusted, because whatever gets loaded is exactly what gets measured, substitution included |
 | Can software feed the TPM a dishonest `PCR_Extend` value? | Yes, technically — the TPM doesn't verify measurement truthfulness |
 | So why can't boot measurements be faked in practice? | Measure-before-execute: malicious code never runs before it's already measured, all the way back to an immutable CRTM |
 | What makes the CRTM itself trustworthy? | Hardware immutability or factory-fused signature enforcement (e.g., Intel Boot Guard) — not software vouching |
@@ -201,6 +325,9 @@ of view until you check.
 
 ## What You've Learned
 
+✅ Measuring code means hashing its bytes before it runs — never executing it, never recording its decisions or behavior
+✅ Each stage's own code does the measuring itself, via a platform API call its spec mandates right before loading the next stage
+✅ The next stage's location comes from ordinary, untrusted boot configuration — safe because whatever gets loaded is exactly what gets measured, substitutions included
 ✅ The TPM does not verify measurement truthfulness — "measure before execute" is what actually prevents forged measurements
 ✅ The CRTM is the one link that can't appeal to earlier software for its trustworthiness — it's anchored in hardware immutability or fused signatures
 ✅ The full SRTM chain (CRTM → firmware → bootloader → OS loader → kernel) builds one irreversible PCR extend at a time
