@@ -150,6 +150,15 @@ nav:
       - KVM Compatibility: 05_specialized/05_compatibility/01_kvm_compat.md
       - compat vs KVM compat: 05_specialized/05_compatibility/02_compat_vs_kvm_compat.md
       - Compat Examples: 05_specialized/05_compatibility/03_compat_examples.md
+    - Hardware Security & Trusted Boot:
+      - Overview: 05_specialized/06_hardware_security/README.md
+      - TPM Fundamentals: 05_specialized/06_hardware_security/01_tpm_fundamentals.md
+      - Key Hierarchy & Provisioning: 05_specialized/06_hardware_security/02_key_hierarchy_and_provisioning.md
+      - Sealing, Attestation & PCRs: 05_specialized/06_hardware_security/03_sealing_attestation_pcrs.md
+      - Vendor Landscape (dTPM vs fTPM): 05_specialized/06_hardware_security/04_vendor_landscape_dtpm_vs_ftpm.md
+      - TPM in Practice: 05_specialized/06_hardware_security/05_tpm_in_practice.md
+      - Measured Boot: 05_specialized/06_hardware_security/06_measured_boot.md
+      - Secure Boot: 05_specialized/06_hardware_security/07_secure_boot.md
 
   - Reference:
     - Overview: 06_reference/README.md

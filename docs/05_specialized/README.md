@@ -72,6 +72,20 @@ KVM 32-bit/64-bit compatibility:
 
 ---
 
+### [3.6: Hardware Security & Trusted Boot](06_hardware_security/)
+**Time:** ~4.5 hours | **Prerequisites:** None (standalone)
+
+7 documents covering:
+- TPM fundamentals, key hierarchy, and factory provisioning
+- Sealing, attestation, PCRs, and the Attestation Key
+- Vendor/model variance (dTPM vs. fTPM vs. integrated, 1.2 vs. 2.0)
+- TPM in practice (BitLocker, LUKS, SSH, remote attestation)
+- Measured boot (the chain-of-trust argument) and Secure Boot (UEFI PK/KEK/db/dbx)
+
+**When to specialize:** Platform security engineers, anyone evaluating disk encryption or remote attestation, Secure/measured boot troubleshooting
+
+---
+
 ## Navigation Tips
 
 - **Don't read everything** - specialize based on your role
@@ -81,5 +95,5 @@ KVM 32-bit/64-bit compatibility:
 
 ---
 
-**⏱️ Total Specialized Time:** 15-20 hours (if reading all specializations)
+**⏱️ Total Specialized Time:** 20-25 hours (if reading all specializations)
 **📊 Approach:** Choose 1-2 specializations, not all

@@ -217,7 +217,8 @@ datacenter_virt/
 │   │   ├── 02_overlay_networking/       (7 documents)
 │   │   ├── 03_serverless/               (3 documents)
 │   │   ├── 04_cpu_memory/               (2 documents)
-│   │   └── 05_compatibility/            (3 documents)
+│   │   ├── 05_compatibility/            (3 documents)
+│   │   └── 06_hardware_security/        (7 documents)
 │   └── 06_reference/           ← Practical guides
 │       ├── setup_guides/                (2 documents)
 │       ├── learning_resources/          (2 documents)
@@ -267,7 +268,7 @@ python3 scripts/create_combined_pdf.py
 ```
 
 **Features:**
-- All 59 documents combined in pedagogical order
+- All 66 documents combined in pedagogical order
 - Professional book layout with table of contents
 - Section numbering and syntax highlighting
 - Full Unicode support (preserves emojis and special characters)

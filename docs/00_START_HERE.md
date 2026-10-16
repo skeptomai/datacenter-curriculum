@@ -1,6 +1,6 @@
 # Datacenter Infrastructure: A Learning Guide
 
-This guide consists of **59 documents** covering containers, virtualization, datacenter networking, and infrastructure development organized pedagogically to support structured learning rather than random exploration.
+This guide consists of **66 documents** covering containers, virtualization, datacenter networking, infrastructure development, and hardware security organized pedagogically to support structured learning rather than random exploration.
 
 **What makes this different:** Instead of a reference manual, this is a structured curriculum with five learning paths designed around what you're actually working with. Each path includes explicit prerequisites, depth indicators (📖 Foundational → 📚 Intermediate → 🔬 Specialized), and a clear progression from fundamentals through production deployment.
 
@@ -97,6 +97,14 @@ This guide consists of **59 documents** covering containers, virtualization, dat
    - [KVM Compat Explained](05_specialized/05_compatibility/01_kvm_compat.md)
    - [CONFIG_COMPAT vs CONFIG_KVM_COMPAT](05_specialized/05_compatibility/02_compat_vs_kvm_compat.md)
    - [Real Examples with QEMU](05_specialized/05_compatibility/03_compat_examples.md)
+
+6. **Specialized/Hardware Security** (Optional)
+   - [TPM Fundamentals](05_specialized/06_hardware_security/01_tpm_fundamentals.md)
+   - [Key Hierarchy & Provisioning](05_specialized/06_hardware_security/02_key_hierarchy_and_provisioning.md)
+   - [Sealing, Attestation & PCRs](05_specialized/06_hardware_security/03_sealing_attestation_pcrs.md)
+   - [Measured Boot](05_specialized/06_hardware_security/06_measured_boot.md)
+   - [Secure Boot](05_specialized/06_hardware_security/07_secure_boot.md)
+   - **Why:** Hardware roots of trust underpin VM/host attestation and disk encryption on the same platforms this path covers
 
 **Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
 **Outcome:** Production-ready understanding of modern virtualization stack
@@ -205,7 +213,7 @@ This guide consists of **59 documents** covering containers, virtualization, dat
    - Container technologies
 
 3. Select from **Part 3: Specialized** based on your focus
-   - Storage, overlay networking, serverless, CPU/memory deep dives
+   - Storage, overlay networking, serverless, CPU/memory deep dives, hardware security & trusted boot
 
 4. Reference **Part 4** as needed
 
@@ -532,33 +540,61 @@ This guide consists of **59 documents** covering containers, virtualization, dat
 
 ---
 
+#### **3.6 Hardware Security & Trusted Boot**
+
+53. **[TPM Fundamentals](05_specialized/06_hardware_security/01_tpm_fundamentals.md)**
+    - **What you'll learn:** Why secure key storage needs dedicated hardware, not just encryption
+
+54. **[Key Hierarchy and Provisioning](05_specialized/06_hardware_security/02_key_hierarchy_and_provisioning.md)**
+    - **Prerequisites:** Doc #53
+    - **What you'll learn:** The Endorsement Key, the four hierarchies, and where the Attestation Key actually comes from
+
+55. **[Sealing, Attestation, and PCRs](05_specialized/06_hardware_security/03_sealing_attestation_pcrs.md)**
+    - **Prerequisites:** Doc #54
+
+56. **[TPM Vendor Landscape: dTPM vs. fTPM vs. Integrated](05_specialized/06_hardware_security/04_vendor_landscape_dtpm_vs_ftpm.md)**
+    - **Prerequisites:** Doc #53
+
+57. **[TPM in Practice](05_specialized/06_hardware_security/05_tpm_in_practice.md)**
+    - **Prerequisites:** Docs #55, #56
+
+58. **[Measured Boot](05_specialized/06_hardware_security/06_measured_boot.md)**
+    - **Prerequisites:** Doc #55
+    - **What you'll learn:** Why boot measurements can't be forged — the CRTM and the "measure before execute" principle
+
+59. **[Secure Boot](05_specialized/06_hardware_security/07_secure_boot.md)**
+    - **Prerequisites:** Doc #58
+    - **What you'll learn:** UEFI's PK/KEK/db/dbx signature chain, shim/MOK, and why production systems need both Secure Boot and measured boot
+
+---
+
 ### **Part 4: REFERENCE & PRACTICAL GUIDES**
 
 **Use as needed - not sequential reading**
 
 #### **4.1 Development Environment Setup**
 
-53. **[macOS Kernel Development Setup](06_reference/setup_guides/01_macos_case_sensitivity.md)**
+60. **[macOS Kernel Development Setup](06_reference/setup_guides/01_macos_case_sensitivity.md)**
     - **When:** Setting up Linux kernel development on macOS
 
-54. **[External Drive for Kernel Work](06_reference/setup_guides/02_external_drive_setup.md)**
+61. **[External Drive for Kernel Work](06_reference/setup_guides/02_external_drive_setup.md)**
     - **When:** Choosing storage for kernel work
 
 ---
 
 #### **4.2 Learning Resources**
 
-55. **[Learning KVM Comprehensive Guide](06_reference/learning_resources/01_learning_kvm_guide.md)**
+62. **[Learning KVM Comprehensive Guide](06_reference/learning_resources/01_learning_kvm_guide.md)**
     - **When:** Starting KVM source code study
 
-56. **[Networking Acronyms Glossary](06_reference/learning_resources/02_networking_acronyms.md)**
+63. **[Networking Acronyms Glossary](06_reference/learning_resources/02_networking_acronyms.md)**
     - **When:** Need quick reference for acronyms
 
 ---
 
 #### **4.3 Technology Selection**
 
-57. **[Virtualization Technology Primer](06_reference/decision_frameworks/01_virtualization_primer.md)**
+64. **[Virtualization Technology Primer](06_reference/decision_frameworks/01_virtualization_primer.md)**
     - **When:** Choosing virtualization technology
     - **NOTE:** Read AFTER understanding fundamentals (Part 2.3)
 
