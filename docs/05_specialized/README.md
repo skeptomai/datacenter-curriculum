@@ -73,14 +73,16 @@ KVM 32-bit/64-bit compatibility:
 ---
 
 ### [3.6: Hardware Security & Trusted Boot](06_hardware_security/)
-**Time:** ~4.5 hours | **Prerequisites:** None (standalone)
+**Time:** ~5.5 hours | **Prerequisites:** None (standalone)
 
-7 documents covering:
+8 documents covering:
 - TPM fundamentals, key hierarchy, and factory provisioning
 - Sealing, attestation, PCRs, and the Attestation Key
 - Vendor/model variance (dTPM vs. fTPM vs. integrated, 1.2 vs. 2.0)
 - TPM in practice (BitLocker, LUKS, SSH, remote attestation)
 - Measured boot (the chain-of-trust argument) and Secure Boot (UEFI PK/KEK/db/dbx)
+- A real-world case study: TPM-backed node identity with SPIRE/SPIFFE on a production
+  Kubernetes cluster
 
 **When to specialize:** Platform security engineers, anyone evaluating disk encryption or remote attestation, Secure/measured boot troubleshooting
 

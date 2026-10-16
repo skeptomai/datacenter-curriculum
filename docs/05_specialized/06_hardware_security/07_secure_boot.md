@@ -164,3 +164,4 @@ check was never designed to notice in the first place.
 **Related topics:**
 → [Measured Boot](06_measured_boot.md)
 → [TPM in Practice](05_tpm_in_practice.md)
+→ [Case Study: TPM-Backed Node Identity with SPIRE/SPIFFE](08_case_study_spire_tpm_devid.md) — a real cluster applying these primitives to a different problem (device identity, not boot verification)

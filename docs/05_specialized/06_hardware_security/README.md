@@ -1,10 +1,11 @@
 # Hardware Security & Trusted Boot
 
-**Hardware roots of trust, from the silicon up through the boot chain (4–5 hours total)**
+**Hardware roots of trust, from the silicon up through the boot chain, plus a real
+production example (5–6 hours total)**
 
-Seven documents building from "what is a TPM" through to the two complementary
+Eight documents building from "what is a TPM" through to the two complementary
 mechanisms — measured boot and Secure Boot — that actually use it in a running
-system.
+system, closing with a real-world case study.
 
 ---
 
@@ -73,13 +74,23 @@ system.
 
 ---
 
+### 8. [Case Study: TPM-Backed Node Identity with SPIRE/SPIFFE](08_case_study_spire_tpm_devid.md)
+**Time:** 50 minutes | **Prerequisites:** Documents #2, #3, #4
+
+**The Question:** What does all of this look like on a real, running cluster?
+
+**What you'll learn:** A real mixed-vendor TPM hardware inventory, credential activation reused for device identity instead of boot quoting, why hardware-rooted trust had to be engineered in both directions separately, and a real vendor-performance bug traced to on-chip RSA key generation.
+
+---
+
 ## Navigation Tips
 
 - Documents #1–#3 are the conceptual core — read them in order.
 - Document #4 (vendor landscape) can be read any time after #1; it doesn't depend on #2/#3.
 - Documents #5–#7 apply the concepts to real systems and can be read in any order after #3/#4.
+- Document #8 is a capstone case study — read it last; it draws on #2, #3, and #4 together.
 
 ---
 
-**⏱️ Total Time:** ~4.5 hours
+**⏱️ Total Time:** ~5.5 hours
 **📊 Depth:** 🔬 Specialized throughout

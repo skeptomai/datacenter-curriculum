@@ -1,6 +1,6 @@
 # Datacenter Infrastructure: A Learning Guide
 
-This guide consists of **66 documents** covering containers, virtualization, datacenter networking, infrastructure development, and hardware security organized pedagogically to support structured learning rather than random exploration.
+This guide consists of **67 documents** covering containers, virtualization, datacenter networking, infrastructure development, and hardware security organized pedagogically to support structured learning rather than random exploration.
 
 **What makes this different:** Instead of a reference manual, this is a structured curriculum with five learning paths designed around what you're actually working with. Each path includes explicit prerequisites, depth indicators (📖 Foundational → 📚 Intermediate → 🔬 Specialized), and a clear progression from fundamentals through production deployment.
 
@@ -104,6 +104,7 @@ This guide consists of **66 documents** covering containers, virtualization, dat
    - [Sealing, Attestation & PCRs](05_specialized/06_hardware_security/03_sealing_attestation_pcrs.md)
    - [Measured Boot](05_specialized/06_hardware_security/06_measured_boot.md)
    - [Secure Boot](05_specialized/06_hardware_security/07_secure_boot.md)
+   - [Case Study: SPIRE/SPIFFE TPM DevID](05_specialized/06_hardware_security/08_case_study_spire_tpm_devid.md)
    - **Why:** Hardware roots of trust underpin VM/host attestation and disk encryption on the same platforms this path covers
 
 **Curriculum depth:** 📖 Foundational → 📚 Intermediate → 🔬 Specialized
@@ -566,6 +567,10 @@ This guide consists of **66 documents** covering containers, virtualization, dat
     - **Prerequisites:** Doc #58
     - **What you'll learn:** UEFI's PK/KEK/db/dbx signature chain, shim/MOK, and why production systems need both Secure Boot and measured boot
 
+60. **[Case Study: TPM-Backed Node Identity with SPIRE/SPIFFE](05_specialized/06_hardware_security/08_case_study_spire_tpm_devid.md)**
+    - **Prerequisites:** Docs #54, #55, #56
+    - **What you'll learn:** A real mixed-vendor TPM fleet, credential activation reused for device identity instead of boot quoting, and a vendor-performance bug traced to on-chip RSA key generation
+
 ---
 
 ### **Part 4: REFERENCE & PRACTICAL GUIDES**
@@ -574,27 +579,27 @@ This guide consists of **66 documents** covering containers, virtualization, dat
 
 #### **4.1 Development Environment Setup**
 
-60. **[macOS Kernel Development Setup](06_reference/setup_guides/01_macos_case_sensitivity.md)**
+61. **[macOS Kernel Development Setup](06_reference/setup_guides/01_macos_case_sensitivity.md)**
     - **When:** Setting up Linux kernel development on macOS
 
-61. **[External Drive for Kernel Work](06_reference/setup_guides/02_external_drive_setup.md)**
+62. **[External Drive for Kernel Work](06_reference/setup_guides/02_external_drive_setup.md)**
     - **When:** Choosing storage for kernel work
 
 ---
 
 #### **4.2 Learning Resources**
 
-62. **[Learning KVM Comprehensive Guide](06_reference/learning_resources/01_learning_kvm_guide.md)**
+63. **[Learning KVM Comprehensive Guide](06_reference/learning_resources/01_learning_kvm_guide.md)**
     - **When:** Starting KVM source code study
 
-63. **[Networking Acronyms Glossary](06_reference/learning_resources/02_networking_acronyms.md)**
+64. **[Networking Acronyms Glossary](06_reference/learning_resources/02_networking_acronyms.md)**
     - **When:** Need quick reference for acronyms
 
 ---
 
 #### **4.3 Technology Selection**
 
-64. **[Virtualization Technology Primer](06_reference/decision_frameworks/01_virtualization_primer.md)**
+65. **[Virtualization Technology Primer](06_reference/decision_frameworks/01_virtualization_primer.md)**
     - **When:** Choosing virtualization technology
     - **NOTE:** Read AFTER understanding fundamentals (Part 2.3)
 

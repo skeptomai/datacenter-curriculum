@@ -159,6 +159,7 @@ nav:
       - TPM in Practice: 05_specialized/06_hardware_security/05_tpm_in_practice.md
       - Measured Boot: 05_specialized/06_hardware_security/06_measured_boot.md
       - Secure Boot: 05_specialized/06_hardware_security/07_secure_boot.md
+      - "Case Study: SPIRE/SPIFFE TPM DevID": 05_specialized/06_hardware_security/08_case_study_spire_tpm_devid.md
 
   - Reference:
     - Overview: 06_reference/README.md
