@@ -28,6 +28,10 @@ Before reading this, you should understand:
 
 ## 1. PCRs: One Register, One Operation
 
+[TPM Fundamentals](01_tpm_fundamentals.md) introduced PCRs briefly, as a bank of
+registers that only ever accumulate a hash. This section covers the actual
+mechanics behind that one-line description.
+
 A TPM has a bank of **Platform Configuration Registers** — typically 24, each
 holding a hash value, duplicated per supported hash algorithm (a SHA-1 bank and
 a SHA-256 bank commonly coexist for legacy compatibility). PCRs support exactly

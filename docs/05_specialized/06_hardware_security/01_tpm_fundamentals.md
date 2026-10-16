@@ -15,6 +15,7 @@ After reading this document, you will understand:
 - The specific problem a TPM (Trusted Platform Module) solves that software-only
   security cannot
 - What a TPM physically is and how it differs from a general-purpose CPU
+- What a PCR physically is, and the one-line meaning of sealing/unsealing and quoting
 - The narrow, fixed command interface that defines what a TPM can and cannot do
 - Why the TPM boundary (not encryption alone) is the source of its guarantees
 
@@ -76,6 +77,11 @@ general CPU core running security code. It contains:
 │  │ (KB, not GB)  │  │ and lockout state   │    │
 │  └──────────────┘  └───────────────────┘    │
 │                                               │
+│  ┌─────────────────────────────────────┐    │
+│  │ PCR bank — ~24 registers, each       │    │
+│  │ holding one hash value               │    │
+│  └─────────────────────────────────────┘    │
+│                                               │
 │  Fixed firmware — speaks ONLY the TPM 2.0    │
 │  command protocol. No general code execution │
 │  exposed to the host.                        │
@@ -86,7 +92,31 @@ general CPU core running security code. It contains:
                   Host CPU / OS
 ```
 
-Two properties matter more than any other:
+Two of those components need a one-paragraph plain-language introduction before
+going further, because the command list just below refers to them by name:
+
+**PCRs (Platform Configuration Registers)** are a small bank of registers —
+typically 24 — that each hold a single hash value. There is no command to set
+a PCR to a chosen value; the only operation on one folds a new measurement into
+whatever is already there. Repeated over the course of a boot, this produces a
+tamper-evident fingerprint of everything that happened, one irreversible step at
+a time. That's the physical fact to hold onto for now. *What* gets measured, by
+whom, and why that fingerprint can be trusted are each the subject of a full
+document later in this section —
+[Sealing, Attestation, and PCRs](03_sealing_attestation_pcrs.md) and
+[Measured Boot](06_measured_boot.md).
+
+**Sealing**, **unsealing**, and **quoting** are operations that use PCR values
+as a condition, in one line each: *sealing* means "encrypt this so the TPM will
+only hand it back if the PCRs currently look like X"; *unsealing* is that
+hand-back, if and only if they do; *quoting* means "sign a statement of what
+the PCRs currently look like, for someone else to check." That one-line version
+is enough to make sense of the command list below — the full mechanics
+(including why a PCR fingerprint can't just be faked) are in
+[Sealing, Attestation, and PCRs](03_sealing_attestation_pcrs.md).
+
+With those two pieces named, two properties of the TPM's command set matter
+more than any other:
 
 1. **It has no "export the private key" command.** The command set (standardized
    by the Trusted Computing Group, TCG) is a fixed menu: create a key, seal data,
@@ -120,6 +150,8 @@ document: see [TPM Vendor Landscape](04_vendor_landscape_dtpm_vs_ftpm.md).
 | Can you ever read out a `fixedTPM` private key? | No — there is no such command in the protocol |
 | What makes a TPM trustworthy vs. a software vault? | The non-exportability is enforced by the absence of an export command, not by policy |
 | Does a TPM need to be a separate chip? | No — firmware TPMs (Intel PTT, AMD fTPM) and die-integrated TPMs (Pluton) exist too |
+| What's a PCR, physically? | One of ~24 registers, each holding a hash value that can only be extended, never set directly |
+| What do sealing/quoting do, in one line? | Seal: "release this only if the PCRs match"; Quote: "sign a statement of what the PCRs currently are" |
 
 ---
 
@@ -127,6 +159,8 @@ document: see [TPM Vendor Landscape](04_vendor_landscape_dtpm_vs_ftpm.md).
 
 ✅ The specific gap a TPM fills: a key usable without ever being readable as plaintext by the host
 ✅ A TPM is dedicated silicon with a fixed, narrow command protocol — not software
+✅ A PCR is physically a register that only ever accumulates a hash — never set directly
+✅ Sealing ties data release to PCR state; quoting signs a statement of that state for someone else
 ✅ Non-exportability comes from the command set's design, not from encryption alone
 ✅ Form factor (discrete chip vs. firmware vs. die-integrated) is a separate axis, covered later
 
