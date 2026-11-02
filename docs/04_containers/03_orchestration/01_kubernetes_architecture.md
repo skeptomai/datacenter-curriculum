@@ -1,12 +1,12 @@
 ---
 level: intermediate
-estimated_time: 45 min
+estimated_time: 55 min
 prerequisites:
   - 04_containers/01_fundamentals/01_cgroups_namespaces.md
   - 04_containers/02_runtimes/01_runtime_landscape.md
 next_recommended:
   - 04_containers/03_orchestration/02_pods_workloads.md
-tags: [kubernetes, orchestration, architecture, control-plane, etcd]
+tags: [kubernetes, orchestration, architecture, control-plane, etcd, high-availability, managed-kubernetes]
 ---
 
 # Kubernetes Architecture
@@ -19,6 +19,8 @@ After reading this document, you will understand:
 - The node (worker) components and their roles
 - The declarative model and reconciliation loops
 - How all components interact to run containers
+- What happens to workers when the control plane itself becomes unreachable (not just when a worker dies)
+- The difference between a kubeadm-joined control plane and a managed one (EKS/GKE/AKS), and whether either "acts like a cluster" internally
 - Why Kubernetes is designed as it is
 
 ## Prerequisites
@@ -108,6 +110,8 @@ Consider the complexity:
 ## 3. Control Plane Components
 
 The control plane makes global decisions about the cluster (scheduling, detecting failures, etc.).
+
+**How these actually run**: in a kubeadm cluster, all four components below are typically **static pods** — manifest files on each control-plane node's disk, started by kubelet with no scheduler involved. See `03_orchestration/02_pods_workloads.md` Section 3 for exactly how that works and why. (k3s, which this repo's reference cluster runs, skips this entirely and runs them as goroutines inside the `k3s server` process instead.)
 
 ### 3.1 API Server (kube-apiserver)
 
@@ -559,6 +563,54 @@ T+5m  kubelets start new pods
 - **Pod anti-affinity**: Spread replicas across nodes
 - **Readiness probes**: Don't route traffic to pods that aren't ready
 
+### Control Plane Outages: What Happens to Workers
+
+The failure mode above assumes the control plane is healthy and evicting a *dead worker*. The inverse scenario — the control plane itself becomes unreachable while workers are fine — behaves very differently, and catches people off guard.
+
+**What keeps working:**
+- **Already-running containers**: kubelet restarts them locally via the container runtime, using the `restartPolicy` already on the Pod spec. This needs zero contact with the API server — it's the same local mechanism that recovers a crashed container during normal operation.
+- **Existing Service routing**: kube-proxy's iptables/IPVS rules are already programmed; traffic to already-known backend pods keeps flowing.
+- **Data-plane components with their own cached state**: CoreDNS keeps serving already-cached records; CNI agents and already-configured LoadBalancer/VIP mechanisms (e.g. MetalLB speakers, kube-vip) keep operating off state they hold locally, not a live API call per packet.
+
+**What stops immediately:**
+- **Any new scheduling.** No pod can be created, updated, or placed on a node.
+- **All reconciliation loops.** No ReplicaSet replacing a dead pod, no HPA scaling, no CronJob triggering, no Endpoints updates (a pod that dies now stays in, or drops out of, the Service's rotation with nothing to correct it).
+- **ConfigMap/Secret syncs.** kubelet's periodic re-pull of mounted volumes (~1 min default) can't happen; pods keep running on stale-but-last-known values.
+
+**The sharp edge — a node reboot during the outage:**
+If a worker's kubelet restarts while the API server is unreachable, it has no way to re-learn which *regular* (API-sourced) pods it should be running — that list normally comes from a watch against the API server at startup. **Static pods are the exception**: since they're defined by a manifest file on that node's own disk, kubelet starts them with zero API server dependency, reboot or not. See `03_orchestration/02_pods_workloads.md` Section 3 ("Static Pods: The Controller-less Pod") for why this distinction exists and how it's used to bootstrap the control plane itself.
+
+### Where the Control Plane Lives: Joined vs. Managed
+
+Everything above assumes control-plane nodes are themselves kubelet-joined members of the cluster (what `kubeadm init`/`join` gives you) — they show up in `kubectl get nodes`, usually tainted `NoSchedule`. That's a choice, not a requirement.
+
+```
+Joined (kubeadm-style)              Not joined (managed / external etcd)
+───────────────────────             ──────────────────────────────────────
+kubectl get nodes:                  kubectl get nodes:
+  ipc4   control-plane,etcd           ipc7   <none>
+  ipc5   control-plane,etcd           ipc8   <none>
+  ipc6   control-plane,etcd           ipc9   <none>
+  ipc7   <none>                     (control plane invisible — runs on
+  ipc8   <none>                       provider infra, e.g. EKS/GKE/AKS, or
+  ipc9   <none>                       on dedicated etcd-only boxes with no
+                                       kubelet at all)
+```
+
+**Advantages of joining control-plane nodes to the cluster:**
+1. **Schedulable capacity isn't wasted.** An untainted control-plane node can run workloads on whatever CPU/RAM apiserver/etcd/scheduler aren't using.
+2. **Uniform tooling and visibility.** The nodes show up in `kubectl get nodes`/`top nodes`, can run your own monitoring DaemonSets, and are debuggable with the same tools as any worker.
+3. **You control placement, lifecycle, and config** — which etcd topology, which CNI, when to add or remove a member — instead of depending on a provider's internal implementation.
+
+The trade-off is exactly why kubeadm taints these nodes `NoSchedule` by default: etcd is latency-sensitive to disk I/O and CPU scheduling jitter, so letting arbitrary workloads contend with it risks destabilizing the thing everything else depends on. Untainting is a deliberate bet that the hardware has enough headroom to make that risk negligible.
+
+**Do non-joined control planes act like a cluster among themselves?** Yes — but "the control plane" is actually three different mechanisms bundled together, none of which involve kubelet membership at all:
+- **etcd** runs its own Raft consensus cluster among its peers (leader election, log replication, quorum) — the identical protocol whether the members are kubeadm-joined nodes, dedicated external-etcd boxes with no kubelet, or fully provider-managed.
+- **Scheduler and controller manager** use leader election via `Lease` objects (stored in that same etcd) when run with multiple replicas — one active leader, the rest standing by.
+- **The API server tier** isn't a consensus cluster at all — just stateless replicas independently reading/writing etcd, fronted by a load balancer (your own VIP, or the provider's internal LB).
+
+In other words, there are really two separate "clusters" that kubeadm's stacked topology conflates by running both on the same boxes: the **control-plane cluster** (Raft etcd + leader-elected controllers) and the **Kubernetes cluster** as `kubectl get nodes` shows it (kubelet-registered Nodes). A managed control plane simply never participates in the second one.
+
 ---
 
 ## 9. Comparison to Other Orchestrators
@@ -686,6 +738,7 @@ Kubernetes is a **declarative orchestration system** that:
 ## Related Documents
 
 - **Previous**: `02_runtimes/01_runtime_landscape.md` - How Kubernetes uses CRI
-- **Next**: `03_orchestration/02_pods_workloads.md` - Pods, Deployments, StatefulSets
+- **Next**: `03_orchestration/02_pods_workloads.md` - Pods, Deployments, StatefulSets, and Section 3 on static pods
+- **Related**: `03_orchestration/02_pods_workloads.md` Section 3 - How static pods let a control plane bootstrap and reboot without depending on itself
 - **Related**: `01_foundations/02_datacenter_topology/01_modern_topology.md` - Physical infrastructure Kubernetes runs on
 - **Deep dive**: Coming in `03_orchestration/03_services_networking.md` - How kube-proxy and CNI work together

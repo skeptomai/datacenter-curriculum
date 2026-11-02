@@ -1,12 +1,12 @@
 ---
 level: intermediate
-estimated_time: 50 min
+estimated_time: 60 min
 prerequisites:
   - 04_containers/03_orchestration/01_kubernetes_architecture.md
   - 04_containers/01_fundamentals/01_cgroups_namespaces.md
 next_recommended:
   - 04_containers/03_orchestration/03_services_networking.md
-tags: [kubernetes, pods, deployments, statefulsets, daemonsets, jobs]
+tags: [kubernetes, pods, static-pods, deployments, statefulsets, daemonsets, jobs]
 ---
 
 # Pods and Workload Controllers
@@ -16,6 +16,7 @@ tags: [kubernetes, pods, deployments, statefulsets, daemonsets, jobs]
 After reading this document, you will understand:
 - What a pod is and why it's the atomic unit
 - How multiple containers share a pod's network namespace
+- What a static pod is, how kubelet manages it without a controller, and why kubeadm clusters bootstrap themselves this way
 - The different workload controllers and when to use each
 - How Deployments manage rolling updates
 - When to use StatefulSets vs Deployments
@@ -186,11 +187,84 @@ spec:
 
 ---
 
-## 3. Workload Controllers
+## 3. Static Pods: The Controller-less Pod
+
+Every workload controller in the next section exists because the API server knows about it. Static pods are the exception — pods that kubelet runs **without the API server, the scheduler, or any controller ever deciding to**.
+
+### What a Static Pod Is
+
+A static pod is just a pod manifest **file sitting on one node's local disk**, in a directory kubelet is configured to watch (`staticPodPath` in the kubelet config — classically `/etc/kubernetes/manifests` in a kubeadm cluster).
+
+```
+/etc/kubernetes/manifests/
+├── etcd.yaml
+├── kube-apiserver.yaml
+├── kube-controller-manager.yaml
+└── kube-scheduler.yaml
+```
+
+kubelet polls that directory directly. Drop a file in, kubelet starts the pod. Edit it, kubelet restarts it with the new spec. Delete it, kubelet kills it. **No scheduler decision is ever made** — the pod is pinned to whichever node holds the file, permanently, by construction.
+
+### Why This Exists: Bootstrapping the Control Plane
+
+kubeadm has a chicken-and-egg problem: `kube-apiserver` has to be running *before* anything can talk to an API server to ask for it to be started. Static pods solve this — kubelet can start etcd, the API server, the scheduler, and the controller manager from local files alone, with zero dependency on the cluster it's about to create.
+
+```
+Node boots
+  → kubelet starts (reads its local config, including staticPodPath)
+  → kubelet sees etcd.yaml, kube-apiserver.yaml, ... in the manifest dir
+  → kubelet starts those containers directly via the CRI
+  → kube-apiserver comes up
+  → NOW there's an API server to talk to
+```
+
+### Mirror Pods: Read-Only Visibility
+
+Once the API server *is* up, kubelet registers a **mirror pod** object for each static pod it's running, so you can see it:
+
+```bash
+$ kubectl get pods -n kube-system
+kube-apiserver-ipc4            1/1   Running
+kube-scheduler-ipc4            1/1   Running
+kube-controller-manager-ipc4   1/1   Running
+etcd-ipc4                      1/1   Running
+```
+
+That mirror object is **read-only** in practice:
+- `kubectl delete pod kube-apiserver-ipc4` → kubelet notices it's "missing," resyncs from the file, and recreates it almost instantly.
+- `kubectl edit pod kube-apiserver-ipc4` → rejected, or silently has no effect on the real pod.
+
+**The only way to actually change a static pod is to edit the manifest file on that node's disk.** kubelet's file-watch picks up the diff and restarts the container accordingly. This is literally the mechanism `kubeadm upgrade apply` uses to roll out a new control-plane version — it rewrites the manifest files one node at a time and lets kubelet's own restart logic do the rest. No Deployment, no rollout object, no ReplicaSet anywhere in that process.
+
+### Naming and Placement
+
+Static pod names get the node name appended automatically: `kube-apiserver-ipc4`, not a random suffix like a Deployment-managed pod would get. There's no ambiguity about where it runs — it runs on the node whose disk holds the file, forever, because nothing else is capable of placing it anywhere else.
+
+**Connection to earlier concepts**: see `03_orchestration/01_kubernetes_architecture.md` Section 8 ("Control Plane Outages: What Happens to Workers") — static pods are exactly the mechanism that lets a control-plane node's own apiserver/etcd restart cleanly after a reboot, with no other API server reachable yet to tell it what to do.
+
+### Static Pods vs. Controller-Managed Pods
+
+| | Static Pod | Controller-Managed Pod (next section) |
+|---|---|---|
+| Source of truth | File on the node's disk | etcd, via the API server |
+| Who places it | Fixed to that node, by definition | Scheduler, dynamically |
+| Managed by | kubelet alone | Scheduler + controller + kubelet |
+| kubectl control | Read-only mirror | Full create/edit/delete |
+| Needs API server to start | No | Yes |
+| If the node dies | Pod is just gone — nothing reschedules it | Controller creates a replacement elsewhere |
+| Typical use | Bootstrapping the control plane, node-pinned agents | Everything else |
+
+### Real-World Aside: k3s Skips This Entirely
+
+Not every distribution uses static pods for its own control plane. **k3s doesn't** — `kube-apiserver`, `etcd`, `kube-scheduler`, and `kube-controller-manager` all run as goroutines inside the single `k3s server` process, managed by the `k3s` systemd unit and its `config.yaml`, not by manifest files kubelet is watching. There's no `/etc/kubernetes/manifests/kube-apiserver.yaml` to find on a k3s control-plane node — the static-pod bootstrap problem kubeadm solves this way simply doesn't apply, because k3s's control plane isn't built from separate processes kubelet needs to start piecemeal. The static-pod mechanism is still available generically for your own use on a k3s node — k3s just doesn't lean on it for itself.
+
+---
+
+## 4. Workload Controllers
 
 Pods are mortal. When they die, they're gone (not resurrected). **Workload controllers** manage pods' lifecycle.
 
-### 3.1 ReplicaSet
+### 4.1 ReplicaSet
 
 **Goal**: Maintain a stable set of pod replicas.
 
@@ -240,7 +314,7 @@ kubectl delete pod frontend-abc frontend-def frontend-ghi
 
 **Solution**: Don't use ReplicaSets directly. Use Deployments.
 
-### 3.2 Deployment (Most Common)
+### 4.2 Deployment (Most Common)
 
 **Goal**: Declarative updates for pods, with rollout/rollback.
 
@@ -333,7 +407,7 @@ spec:
     type: Recreate  # All pods deleted, then recreated
 ```
 
-### 3.3 StatefulSet
+### 4.3 StatefulSet
 
 **Problem**: Deployments treat pods as interchangeable. But what about:
 - Databases (each replica needs unique persistent storage)
@@ -422,7 +496,7 @@ If mysql-1 pod is deleted and recreated:
 - Apps that can use shared storage (use Deployment + RWX volume)
 - Apps that don't care about pod names/order
 
-### 3.4 DaemonSet
+### 4.4 DaemonSet
 
 **Goal**: Run one pod per node (or subset of nodes).
 
@@ -489,7 +563,7 @@ spec:
       maxUnavailable: 1  # Update one node at a time
 ```
 
-### 3.5 Job
+### 4.5 Job
 
 **Goal**: Run a task to completion, then stop.
 
@@ -543,7 +617,7 @@ Deployment/StatefulSet: restartPolicy: Always (default)
 Job:                    restartPolicy: OnFailure or Never
 ```
 
-### 3.6 CronJob
+### 4.6 CronJob
 
 **Goal**: Run Jobs on a schedule (like cron).
 
@@ -598,7 +672,7 @@ spec:
 
 ---
 
-## 4. Workload Comparison
+## 5. Workload Comparison
 
 | Controller    | Replicas | Ordering | Stable Network | Stable Storage | Use Case                          |
 |---------------|----------|----------|----------------|----------------|-----------------------------------|
@@ -609,9 +683,11 @@ spec:
 | Job           | N times  | No       | No             | No             | Batch processing, one-off tasks   |
 | CronJob       | Scheduled| No       | No             | No             | Scheduled batch jobs              |
 
+**Note**: Static pods aren't in this table because they aren't a controller at all — see Section 3. There's no replica count, no ordering, no rescheduling; it's one pod, pinned to one node, managed by kubelet alone.
+
 ---
 
-## 5. Pod Specifications Deep Dive
+## 6. Pod Specifications Deep Dive
 
 ### Resource Requests and Limits
 
@@ -748,7 +824,7 @@ lifecycle:
 
 ---
 
-## 6. Advanced Patterns
+## 7. Advanced Patterns
 
 ### Sidecar Pattern
 
@@ -882,6 +958,8 @@ kubectl debug frontend-abc --image=busybox  # Ephemeral debug container
 - Network namespace sharing enables localhost communication
 - Volumes enable file sharing between containers
 
+**Static pods** are the exception to all of this: a manifest file on one node's disk, managed by kubelet alone, with no scheduler and no API server dependency to start. kubeadm clusters use them to bootstrap the control plane itself; k3s skips the mechanism entirely by running its control plane as goroutines in one process instead.
+
 **Workload controllers** manage pods' lifecycle:
 - **Deployment**: Stateless apps, rolling updates (use this by default)
 - **StatefulSet**: Stateful apps needing stable identity/storage
@@ -913,6 +991,7 @@ kubectl debug frontend-abc --image=busybox  # Ephemeral debug container
 ## Related Documents
 
 - **Previous**: `03_orchestration/01_kubernetes_architecture.md` - Control plane components
+- **Related**: `03_orchestration/01_kubernetes_architecture.md` Section 8 - What happens to static vs. regular pods when the control plane itself fails
 - **Next**: `03_orchestration/03_services_networking.md` - How pods discover and communicate
 - **Foundation**: `01_fundamentals/01_cgroups_namespaces.md` - How pods use namespaces and cgroups
 - **Related**: `02_runtimes/02_docker_containerd.md` - How kubelet actually starts containers
