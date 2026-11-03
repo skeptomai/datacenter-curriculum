@@ -1,12 +1,12 @@
 ---
 level: intermediate
-estimated_time: 40 min
+estimated_time: 50 min
 prerequisites:
   - 04_containers/03_orchestration/02_pods_workloads.md
   - 04_containers/01_fundamentals/02_union_filesystems.md
 next_recommended:
   - 04_containers/03_orchestration/06_production_patterns.md
-tags: [kubernetes, storage, volumes, persistent-volumes, storage-classes, csi]
+tags: [kubernetes, storage, volumes, persistent-volumes, storage-classes, csi, volume-mode, ephemeral-volumes]
 ---
 
 # Storage and Volumes
@@ -17,6 +17,8 @@ After reading this document, you will understand:
 - Why containers need volumes for persistent data
 - The different volume types and their use cases
 - PersistentVolumes and PersistentVolumeClaims
+- Access modes, including the stricter ReadWriteOncePod, and volume mode (Filesystem vs. Block)
+- The three different ways a PVC can be created — standalone, StatefulSet-templated, and generic ephemeral — and how their lifecycles differ
 - StorageClasses for dynamic provisioning
 - StatefulSet storage patterns
 - The Container Storage Interface (CSI)
@@ -354,10 +356,13 @@ spec:
 ReadWriteOnce (RWO): Single node, read-write (most common for block storage)
 ReadOnlyMany (ROX): Multiple nodes, read-only
 ReadWriteMany (RWX): Multiple nodes, read-write (requires shared filesystem: NFS, CephFS)
+ReadWriteOncePod (RWOP): Single POD, read-write — stricter than RWO
 
 Block storage (EBS, GCE PD): RWO only
 File storage (NFS, CephFS, EFS): RWX supported
 ```
+
+**RWO vs. RWOP**: RWO lets *any* pod on the node that's already mounted the volume mount it too (e.g. multiple replicas of a Deployment that happen to land on the same node). RWOP closes that gap — only the one pod that first claims it can ever mount it, cluster-wide, regardless of node. Use RWOP when a single-writer guarantee actually matters (e.g. a database that would corrupt its files if two processes ever opened them at once) and RWO's node-level guarantee isn't tight enough.
 
 **Reclaim Policies**:
 ```
@@ -420,7 +425,66 @@ spec:
 6. PVC deleted → Reclaim policy determines PV fate
 ```
 
-### 3.3 StorageClass (Dynamic Provisioning)
+### 3.3 Volume Mode: Filesystem vs. Block
+
+Every PV and PVC also sets `volumeMode` — a completely different axis from access mode. Access mode controls *who* can mount a volume; volume mode controls *what shape* it takes inside the container.
+
+```yaml
+spec:
+  volumeMode: Filesystem  # default
+  # or
+  volumeMode: Block
+```
+
+**Filesystem** (default): the volume is formatted with (or already contains) a filesystem and mounted as a directory — everything shown so far, via `volumeMounts`.
+
+**Block**: the volume is handed to the container as a raw, unformatted block device — Kubernetes imposes no filesystem at all. The pod references it under `volumeDevices`, not `volumeMounts`:
+
+```yaml
+spec:
+  containers:
+  - name: app
+    volumeDevices:          # ← not volumeMounts
+    - name: raw-data
+      devicePath: /dev/xvda  # ← a device node, not a directory
+  volumes:
+  - name: raw-data
+    persistentVolumeClaim:
+      claimName: raw-block-pvc
+```
+
+**Why you'd want raw block**: storage engines that manage their own on-disk layout (some Ceph, Cassandra, or MongoDB configurations) get better performance writing directly to a block device, skipping the filesystem layer entirely. Most workloads should stay with `Filesystem` — `Block` only pays off when the application is actually built to manage raw storage, and the underlying StorageClass/CSI driver has to support it (not all do).
+
+### 3.4 Generic Ephemeral Volumes: A PVC Tied to the Pod
+
+Section 3.2 described a **standalone PVC**: create it once, reference it by `claimName`, and it outlives the pod — deleting the pod does nothing to it. There's a second pattern that looks almost identical in YAML but behaves oppositely.
+
+```yaml
+spec:
+  containers:
+  - name: app
+    volumeMounts:
+    - name: scratch
+      mountPath: /scratch
+  volumes:
+  - name: scratch
+    ephemeral:                 # ← not persistentVolumeClaim
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          storageClassName: fast-ssd
+          resources:
+            requests:
+              storage: 1Gi
+```
+
+Kubernetes creates a PVC automatically from the inline template, names it `<pod-name>-<volume-name>`, and — critically — **deletes it when the pod is deleted**. No `claimName` to manage, nothing left behind to clean up.
+
+**Why this exists**: some workloads want real PVC-backed, CSI-provisioned storage (not just node-local `emptyDir`) but have no reason for that storage to outlive the pod — a scratch volume backed by fast network storage, say. A generic ephemeral volume gets dynamic provisioning with `emptyDir`-like lifecycle.
+
+This is a **third** PVC creation pattern, alongside the standalone PVC (3.2) and the StatefulSet `volumeClaimTemplates` covered next in Section 4 — same object kind (`PersistentVolumeClaim`), three different ways it gets created, three different lifecycles. Section 4 closes with a table comparing all three directly.
+
+### 3.5 StorageClass (Dynamic Provisioning)
 
 **Problem**: Admins manually creating PVs doesn't scale.
 
@@ -478,7 +542,7 @@ Azure: disk.csi.azure.com (Azure Disks)
 On-prem: NFS, Ceph RBD, local-path
 ```
 
-### 3.4 Volume Expansion
+### 3.6 Volume Expansion
 
 **Resize existing volume** (if StorageClass allows):
 
@@ -578,6 +642,16 @@ StatefulSet deleted → PVCs kept (not deleted)
 Manual cleanup:
   kubectl delete pvc data-mysql-0 data-mysql-1 data-mysql-2
 ```
+
+### Comparing the Three PVC Creation Patterns
+
+| | Standalone PVC (3.2) | StatefulSet `volumeClaimTemplates` | Generic Ephemeral Volume (3.4) |
+|---|---|---|---|
+| Who creates the PVC | You, directly | Kubernetes, one per replica | Kubernetes, inline from the pod spec |
+| Naming | Whatever you name it | `<template>-<statefulset>-<ordinal>` | `<pod-name>-<volume-name>` |
+| Tied to | Nothing — an independent object | The StatefulSet replica slot | That exact pod |
+| Deleted when the pod dies | No | No (survives scale-down by default) | **Yes, automatically** |
+| Typical use | Shared storage, manually managed lifecycle | Databases, clustered apps needing stable per-replica identity | Scratch space that needs real provisioned storage but shouldn't outlive the pod |
 
 ---
 
@@ -802,6 +876,14 @@ Pod scheduled on node with local PV (via nodeAffinity)
 RWO (ReadWriteOnce): Single node, read-write (EBS, GCE PD)
 ROX (ReadOnlyMany): Multiple nodes, read-only
 RWX (ReadWriteMany): Multiple nodes, read-write (NFS, EFS, CephFS)
+RWOP (ReadWriteOncePod): Single POD, read-write (stricter than RWO)
+```
+
+### Volume Mode
+
+```
+Filesystem (default): mounted as a directory, via volumeMounts
+Block: raw device, via volumeDevices — app manages its own on-disk layout
 ```
 
 ### Common Commands
@@ -866,10 +948,16 @@ kubectl get pods -n kube-system | grep csi
 - **StorageClass**: Automatic PV provisioning
 
 **Key concepts**:
-- **Access modes**: RWO (single node), RWX (multiple nodes)
+- **Access modes**: RWO (single node), RWX (multiple nodes), RWOP (single pod — stricter than RWO)
+- **Volume mode**: Filesystem (default, mounted directory) vs. Block (raw device)
 - **Reclaim policies**: Retain, Delete
 - **Dynamic provisioning**: StorageClass automates PV creation
 - **CSI**: Standard plugin interface for storage vendors
+
+**Three ways a PVC gets created** — same object, different lifecycles:
+- **Standalone**: you create it, it outlives the pod
+- **StatefulSet `volumeClaimTemplates`**: one per replica, survives scale-down
+- **Generic ephemeral volume**: inline in the pod spec, deleted automatically with the pod
 
 **StatefulSets**:
 - `volumeClaimTemplates` create PVC per pod
